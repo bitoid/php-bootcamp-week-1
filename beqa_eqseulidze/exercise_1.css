@@ -1,0 +1,59 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:boredr-box;    
+}
+label,
+input,
+span,
+p{
+    font-size:1.5em;
+    line-height: 1.7em;
+
+}
+fieldset{
+    max-width:700px;    
+    margin:20px auto;
+    padding:10px;
+    border:5px solid green; 
+}
+legend{
+    text-align:center;
+    color:red;    
+}
+form{
+    width:100%;
+    border:1px solid purple;
+}
+div.container{
+    margin:10px 0;
+    display: flex;
+    flex-wrap: wrap;      
+}
+div.container>*{
+    margin-right:5px;
+}
+label{
+    width:100px;
+}
+input{
+    width:310px;
+    border:1px solid black;
+}
+span{
+    color:red;    
+}
+div.hello{
+    color:green;
+    font-size:2em;
+    line-height:3em;
+    width:100%;
+    text-align:center;
+    text-transform:uppercase;
+}
+img{
+    width:200px;
+    display: block;
+    margin:10px auto;
+    border: 5px solid red;
+}
