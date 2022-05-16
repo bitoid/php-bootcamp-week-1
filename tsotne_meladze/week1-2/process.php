@@ -32,9 +32,7 @@ include_once 'function.php';
 
           if ($sumbitType == "repo") {
 
-
             echo '<div class="result">';
-
             echo '<ul class="pagination">';
             for ($i=1; $i < $fromPageNumber; $i++) { 
               echo "<li class='page-item'><a class='page-link' href='process.php?page=$i&user=$userName&type=$sumbitType&number=$aggPageNumber'>$i</a></li>";

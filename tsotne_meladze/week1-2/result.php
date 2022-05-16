@@ -35,11 +35,11 @@ include_once 'function.php';
             echo '<div class="result">';
             $userInfo = json_decode(parseJson("https://api.github.com/users/$userName"), true);
             $existCheck = array_key_exists("public_repos", $userInfo);
-     
+           // check whether user exists
             if ($existCheck === true) {
               $existCount = $userInfo["public_repos"];
               $pageNumber = ceil($userInfo["public_repos"]/100)+1;
-
+              //if user exists, counts how many pages would be needed for full info
 
                 if ($existCount > 0) {
                   echo '<ul class="pagination">';
@@ -47,11 +47,9 @@ include_once 'function.php';
                   for ($i=2; $i < $pageNumber; $i++) { 
                     echo "<li class='page-item'><a class='page-link' href='process.php?page=$i&user=$userName&type=$sumbitType&number=$pageNumber'>$i</a></li>";
                   }
-                  echo '</ul>';
-
+                  echo '</ul>'; 
+                  // creates page links
                   tableHeader("N", "Repository სახელი", "აღწერა");
-                   
-
                     $result = parseJson("https://api.github.com/users/$userName/repos?per_page=100&page=1");
                     $api = json_decode($result, true);
                     $x=1;
@@ -78,7 +76,7 @@ include_once 'function.php';
 
             }  
             echo '</div>';
-          }
+          } // ll the same is done with followers
 
           if ($sumbitType  == "follow") {
 
@@ -105,8 +103,7 @@ include_once 'function.php';
              
                   tableHeader("N", "ფოტო", "სახელი");
             
-             
-
+            
                     $result = parseJson("https://api.github.com/users/$userName/followers?per_page=100&page=1");
                     $api = json_decode($result, true);
           
@@ -132,7 +129,7 @@ include_once 'function.php';
                 echo '</div>';
             }
             
-          
+          //if both followers and repos are selected, pagination is not included
             if ($_POST["github"] == "both") {
 
               $userInfo = json_decode(parseJson("https://api.github.com/users/$userName"), true);
@@ -174,8 +171,6 @@ include_once 'function.php';
                   $pageNumber1 = ceil($userInfo["followers"]/100)+1;
                   if ($existCount1 > 0) {
                
-          
-  
                     tableHeader("N", "ფოტო", "სახელი");
                     $x1=1; 
                     for ($i=1; $i < $pageNumber1; $i++) { 
@@ -198,8 +193,7 @@ include_once 'function.php';
                     emptyUser("მომხმარებელს არ ჰყავს გამომწერები");
                   }
                   
-                  
-  
+                
                   echo '</table>';
                   echo '</div>';
                   
@@ -213,19 +207,8 @@ include_once 'function.php';
               }  
              
             }
-          
-          
-          
-          
-          
-          
+
           }
-        
-
-
-
-        
-        
       ?>
     </div>
   </body>

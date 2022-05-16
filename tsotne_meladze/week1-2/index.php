@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>ავტორიზაცია</title>
+    <title>Github</title>
   </head>
   <body>
     <div class="box">
@@ -33,7 +33,7 @@
             </select>
           </div>
         </div>
-        <div class="lin7e7">
+        <div id="line4">
           <input id="submit" type="submit" name="submit" value="GET" class="btn btn-success" />
         </div>
       </form>

@@ -1,6 +1,8 @@
 <?php
 
         $noUser = '<table><tr><tr id="header"><th id="comment" style="border-top-left-radius: 12px;" colspan=2>კომენტარი</th></tr><tr style="background-color: red;"><td style="color: white"; colspan=2 >ასეთი მომხმარებელი არ არსებობს</td></tr></table>'; 
+        //table with comment for  non-existing user
+        
         function tableHeader($a, $b, $c ) {
           echo '
           <table>
@@ -9,7 +11,8 @@
           <th>' . $b . '</th>
           <th style="border-top-right-radius: 12px;">' . $c . '</th>
           </tr>';
-        }
+        }//to generate table th with different headers
+
         function parseJson($urls) {
           $c = curl_init($urls);
           curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
@@ -44,5 +47,5 @@
           . $tag . '</td>
           </tr>
           </table>';
-        };
+        }; //table with comment for empty results for existing user
 ?>

@@ -1,34 +1,27 @@
 <?php
-$stylee = "block";
-$pattern = "/^[A-Z]{2,}$/";
-$error = "";
-$divResult = "";
-if (isset($_POST["submit"])) {
-  $fname = $_POST['fname'];
-$lname = $_POST['lname'];
-if (!preg_match($pattern, $lname) || !preg_match($pattern, $fname) || $_FILES["uploadfile"]["size"] > 1000000) {
-    $error =  "არასწორი ფორმატი, გამოიყენე A-Z და ფაილი 500kb-ზე ნაკლები ზომის";
-    $imageURL = "";
-    $fullName = "";
-  }  else {
-      $stylee = "none";
-      $image_name = $_FILES['uploadfile']['name'];
-      $image_tmp_name= $_FILES['uploadfile']['tmp_name'];
-      
-      
-          move_uploaded_file($_FILES['uploadfile']['tmp_name'], "vault/$image_name");
-          $imageURL = "<img src='vault/$image_name'>";
-          $fullName = $fname . " " . $lname;
+  $stylee = "block";
+  $pattern = "/^[A-Z]{2,}$/";
+  $error = "";
+  $divResult = "";
+  if (isset($_POST["submit"])) {
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    if (!preg_match($pattern, $lname) || !preg_match($pattern, $fname) || $_FILES["uploadfile"]["size"] > 1000000) {
+      $error =  "არასწორი ფორმატი, გამოიყენე A-Z და ფაილი 500kb-ზე ნაკლები ზომის";
+      $imageURL = "";
+      $fullName = "";
+    }  else  {
+        $stylee = "none";
+        $image_name = $_FILES['uploadfile']['name'];
+        $image_tmp_name= $_FILES['uploadfile']['tmp_name'];
+        move_uploaded_file($_FILES['uploadfile']['tmp_name'], "vault/$image_name");
+        $imageURL = "<img src='vault/$image_name'>";
+        $fullName = $fname . " " . $lname;
+    }
 
-        
-
-
+    $divResult = '<div class="result"><p><span class="auto-input">' . '</span></p>  ' . $imageURL . '<br></div>';
 
   }
-
-  $divResult = '<div class="result"><p><span class="auto-input">' . '</span></p>  ' . $imageURL . '<br></div>';
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +65,7 @@ if (!preg_match($pattern, $lname) || !preg_match($pattern, $fname) || $_FILES["u
           <input type="file" name="uploadfile" value="" required/>
         </div>
 
-        <div class="lin7e7">
+        <div id="line4">
           <input id="submit" type="submit" name="submit" value="SEND" class="btn btn-success"  />
 
         </div>
@@ -82,14 +75,14 @@ if (!preg_match($pattern, $lname) || !preg_match($pattern, $fname) || $_FILES["u
     <?php echo $divResult ?>
 
 
-<script>
-  let typed = new Typed(".auto-input", {
-    strings: ["<?php echo $fullName . $error ?>"],
-    typeSpeed: 80,
-    backSpeed: 250,
-    loop: false,
-  });
-</script>
+    <script>
+      let typed = new Typed(".auto-input", {
+        strings: ["<?php echo $fullName . $error ?>"],
+        typeSpeed: 80,
+        backSpeed: 250,
+        loop: false,
+      });
+    </script>
 
 
 
