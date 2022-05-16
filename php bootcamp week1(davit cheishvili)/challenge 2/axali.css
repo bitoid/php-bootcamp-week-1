@@ -1,0 +1,89 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #33495e;
+    height: auto;
+}
+.box{
+    width: 600px;
+    padding: 60px;
+    position: relative;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 100px);
+    background: #191919;
+    text-align: center;
+    border-radius: 40px;
+    transition: 0.5s;
+}
+.box h1{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+
+}
+.box input[type = "text1"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 17px 12px;
+    width: 300px;
+    font-size: 20px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+.divd{
+    width: 500px;
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    transform: translate(0%, 150px);
+    background: #191919;
+    text-align: center;
+    border-radius: 40px;
+    transition: 0.5s;
+}
+.tabee{
+    display: flex;
+    
+}
+
+.div table{
+    display: block;
+}
+.box input[type = "text1"]:focus{
+    width: 380px;
+    border-color: #2ecc71;
+}
+.box input[type = "submit"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 50px;
+    cursor: pointer;
+    font-size: 20px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+.box input[type = "submit"]:hover{
+    background: #2ecc71;
+}
+.pagination{
+    margin-top: 130px;
+    display: inline-block;
+    padding: 50px;
+}
