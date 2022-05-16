@@ -38,7 +38,7 @@ if (isset($name)){
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Week 1 Chelenge 2</title>
+    <title>Week 1 Project 2</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
