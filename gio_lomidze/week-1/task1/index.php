@@ -76,7 +76,11 @@
                                     <p>First name: ' . $_POST['firstName'] . '</p>
                                     <p>Last name: ' . $_POST['lastName'] . '</p>';
                             $img = $_FILES['userImage'];
-                            $img_name = 'images/' . $_FILES['userImage']['name'];
+                            $dir = 'images/';
+                            if(!is_dir($dir)) {
+                                mkdir($dir,'0777',true);
+                            }
+                            $img_name = $dir . $_FILES['userImage']['name'];
                             $tmp_img_name = $_FILES['userImage']['tmp_name'];
                             move_uploaded_file($tmp_img_name, $img_name);
                             echo "<div class='img_wrap'><img src='$img_name' alt='$img_name'/></div>";
