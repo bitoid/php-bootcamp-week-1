@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    background-color: #edf2f4;
+    font-family: 'Roboto Slab', serif;
+}
+
+footer {
+    padding: 10px;
+    text-align: right;
+}
+
+
+.wrapper {
+    margin-top: 5vh;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form__title {
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: #4FC3A1;
+}
+
+.form__search-bar {
+    display: flex;
+}
+ 
+.form__input{
+    width: 100%;
+    font-size: 16px ;
+    min-height: 2em;;
+}
+
+.form__submit-button {
+    cursor: pointer;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+
+}
+
+.profile__title {
+    font-size: 22px;
+    
+}
+
+.profile__item {
+    font-size: 14px;
+    margin-top: 0.6em;
+}
+
+.profile__picture {
+    width: auto;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+}
+
+.profile__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.profile__list li {
+    padding-right: 1.2em;
+    float: left;
+}
+
+.profile__button {
+    max-width: 200px;
+    width: 150px;
+    height: 2em;
+    background-color: #f8f8f8;
+    border: 1px solid #4FC3A1;
+    cursor: pointer;
+}
+
+.profile__button:hover {
+    background-color: #4FC3A1;
+}
+
+
+.tbl {
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+.tbl th {
+    text-align: center;
+    color: #ffffff;
+    background: #4FC3A1;
+}
+
+.tbl td {
+    text-align: center;
+    padding: 8px;
+    border-right: 1px solid #f8f8f8;
+    font-size: 14px;
+}
+
+
+.tbl thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.tbl tr:nth-child(even) {
+    background: #F8F8F8;
+}
+
+.tbl__image {
+    width: auto;
+    max-width: 75px;
+    max-height: 75px;
+    border: 2px solid skyblue;
+    border-radius: 50%;
+    transition: transform .4s
+}
+
+.tbl__image:hover {
+    transform: scale(1.1);
+}
+
+.error-alert {
+    margin-top: 20px;
+    padding: 5px;
+    color: red;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
