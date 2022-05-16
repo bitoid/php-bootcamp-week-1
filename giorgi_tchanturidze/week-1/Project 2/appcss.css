@@ -1,0 +1,24 @@
+body{
+    padding: 50px;
+}
+h1{
+    text-align: center;
+ }
+ .product-img{
+     width: 200px;
+ }
+ .form-group{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+     width: 500px;
+ }
+ ul {
+    columns: 4;
+    -webkit-columns: 4;
+    -moz-columns: 4;
+
+ }
+ .images{
+    width: 50px;
+ }
