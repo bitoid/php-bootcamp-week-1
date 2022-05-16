@@ -1,4 +1,4 @@
-##Challenge 1:
+## Challenge 1:
 
 Write a PHP program that will output a webpage containing a form with the following fields:
 -	First Name
@@ -11,7 +11,7 @@ Task #3: Show uploaded data and the picture on the same page.
 
 
 
-##Challenge #2:
+## Challenge #2:
 
 Build a Github repository list and followers generator for a specific Github user:
 
