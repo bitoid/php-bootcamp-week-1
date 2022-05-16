@@ -1,0 +1,36 @@
+* {
+  margin: auto;
+  padding: auto;
+}
+/* ცენტრში მოვაცუიე ყველა ელემენტი */
+body {
+  align-items: center;
+  text-align: center;
+  align-content: center;
+}
+/* ფორმის დივებიც ცენტრში მოვაციე */
+.form {
+  align-items: center;
+  text-align: center;
+  align-content: center;
+}
+
+/* სათაური დივებიც ცენტრში მოვაციე */
+.deadline {
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  color: blue;
+}
+
+.conteiner {
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  margin-top: 100px;
+}
+
+.imagecont {
+  height: 200px;
+  width: 200px;
+}
