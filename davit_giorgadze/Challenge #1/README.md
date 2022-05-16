@@ -10,7 +10,7 @@
     
     ```
 
-- Create users table :
+- Create users table in your database:
     ```sql
     create table users (
         id int(11) not null auto_increment,
