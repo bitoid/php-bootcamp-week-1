@@ -1,0 +1,57 @@
+<?php
+include "./config/followers.php";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GITHUB</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <div>
+      <a href="./">User repositories</a>
+      <a href="./followers.php">User followers</a>
+    </div>
+  </nav>
+
+  <div class="minicontainer">
+    <form method="post">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username">
+        <b class="validation">
+          <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST['username'])) {
+              echo 'Filling in this field is required';
+            }
+          ?>
+        </b>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <div class="grid-container">
+      <?php
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
+        foreach ($followersfunction->followers as $item) {
+        ?>
+          <div class="item">
+          <a href="<?php echo $item->html_url ?>" target="_blank">
+            <img src="<?php echo $item->avatar_url ?>" alt="<?php echo $item->login ?>" id="profileimg">
+            <b>
+              <?php echo $item->login ?>
+            </b>
+          </a>
+          </div>
+        <?php
+        }
+      }
+      ?>
+    </div>
+  </div>
+</body>
+</html>
