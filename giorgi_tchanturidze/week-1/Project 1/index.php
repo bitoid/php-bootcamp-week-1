@@ -86,7 +86,7 @@
       <?php if (empty($errors)): ?>
         <tr>
           <td>
-            <img src="<?php echo $imagePath?>" alt="No File Choosen" class="product-img">
+            <img src="<?php echo $imagePath?>" class="product-img">
           </td>
           <td>
             <?php echo $name ?>
