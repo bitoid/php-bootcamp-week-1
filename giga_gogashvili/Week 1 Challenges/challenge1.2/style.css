@@ -1,0 +1,53 @@
+header form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+header form input {
+  width: 75%;
+  padding: 10px;
+}
+
+header form input::placeholder {
+  font-size: 20px;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.repositories ul li {
+  list-style: decimal;
+  padding: 5px 5px;
+}
+
+.repositories ul li a,
+.followers ul li a {
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+.followers ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.followers ul li {
+  padding: 5px 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.followers ul li a {
+  margin-bottom: 5px;
+}
