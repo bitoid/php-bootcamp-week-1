@@ -1,5 +1,5 @@
 <?php
-  $stylee = "block";
+  $display_status = "block";
   $pattern = "/^[A-Z]{2,}$/";
   $error = "";
   $divResult = "";
@@ -11,7 +11,7 @@
       $imageURL = "";
       $fullName = "";
     }  else  {
-        $stylee = "none";
+        $display_status = "none";
         $image_name = $_FILES['uploadfile']['name'];
         $image_tmp_name= $_FILES['uploadfile']['tmp_name'];
         move_uploaded_file($_FILES['uploadfile']['tmp_name'], "vault/$image_name");
@@ -45,7 +45,7 @@
   </head>
   <body>
 
-  <div class="box" style="display: <?php echo $stylee ?>;">
+  <div class="box" style="display: <?php echo $display_status ?>;">
 
 
 
