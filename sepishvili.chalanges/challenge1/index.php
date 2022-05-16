@@ -27,6 +27,10 @@
 
                 
                 if(strlen($filename)>0 && strlen($firstname)>0 && strlen($lastname)>0){
+                    if(!is_dir("img")){
+                        mkdir("img");
+                    }
+
                     $folder="img/".$filename;
                     move_uploaded_file($tempname, $folder);
                   
