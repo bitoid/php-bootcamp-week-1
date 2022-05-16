@@ -1,0 +1,134 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    position: absolute;
+    background: rgb(54, 51, 51);
+    width: 100vw;
+    color:rgb(255, 255, 255);
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    top: 0;
+    left: 0;
+}
+/*==========
+    form
+  ==========
+*/
+form{
+    width: 50vw;
+    height: 25vh;
+    margin: 5vh auto;
+    background: rgb(54, 51, 51);
+    border-radius: 30px;
+    padding: 5vh 6vw;
+}
+
+.submit {
+    display: block;
+    position: relative;
+    width: 15vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.userError{
+    width: 38vw;
+    font-size: 1.5rem;
+    background-color: red;
+    margin-left:auto;
+    margin-right: auto;
+    border-radius: 5px;
+    text-align: center;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.2rem;
+}
+/*  =======================
+    Github user Profile
+    =======================
+*/
+.user{
+    width: 38vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.user h3{
+    display: inline-block;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    margin-left: 1rem;
+}
+
+.user h2{
+    padding-top: 2vh;
+}
+.user img {
+    width:200px;
+    height: auto;
+    border-radius: 50%;
+}
+/*  ====================================
+    Create grid for repos and followers
+    ====================================
+*/
+#container {
+    width: 100vw;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.grid-template {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    width: 100%;
+    max-width: 80vw;
+    grid-gap: 1.2rem;
+    margin: 1.5rem auto;
+    padding: 2rem 2rem;
+    border: 3px solid white;
+    border-radius: 15px;
+}
+.style {
+    border: 2px solid rgb(223, 141, 19);
+    border-radius: 15px;
+    padding: 1rem 1rem;
+    text-align: center;
+}
+.style a{
+    font-size: 2rem;
+    color: rgb(223, 141, 19);
+    text-align: center;
+    padding-bottom: 1rem;
+}
+.style a:hover {
+    text-decoration: none;
+    font-size: 2.05rem;
+    color: white;
+}
+.style p{
+    font-size: 1rem;
+    text-align: left;
+    padding-top: 1rem;
+    border-top:  2px solid rgb(223, 141, 19);
+}
+.style h3 {
+    margin-top: 1rem;
+}
+
+.style img {
+    width:150px;
+    height: auto;
+    border-radius: 50%;
+}
