@@ -29,8 +29,7 @@
   <?php
 
 $headers = [
-  "User-Agent: api test",
-  "Authorization: token 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"
+'User-Agent: GitHub-username'
 ];
 // Get how many public repositories user has
   $ch = curl_init("https://api.github.com/users/".$username);
@@ -140,8 +139,7 @@ for($x = 1; $x < $pages + 1; $x++){
 <?php
 
 $headers = [
-  "User-Agent: api test",
-  "Authorization: token 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"
+'User-Agent: GitHub-username'
 ];
 // Get how many public repositories user has
   $ch = curl_init("https://api.github.com/users/".$username);
@@ -202,8 +200,7 @@ for($x = 1; $x < $pages + 1; $x++){
 <?php }else if(isset($username) && isset($_POST["followers"])){
 // Get how many public follower user has
 $headers = [
-  "User-Agent: api test",
-  "Authorization: token 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"
+'User-Agent: GitHub-username'
 ];
   $ch = curl_init("https://api.github.com/users/".$username);
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -252,4 +249,3 @@ $headers = [
       </main>
 </body>
 </html>
-<a href=""></a>
