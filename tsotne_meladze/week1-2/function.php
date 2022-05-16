@@ -14,7 +14,7 @@
           $c = curl_init($urls);
           curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
           curl_setopt($c, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0");
-          curl_setopt($c, CURLOPT_HTTPHEADER, array('Accept: application/json', 'Content-Type: application/json', 'authorization: token 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'));
+          curl_setopt($c, CURLOPT_HTTPHEADER, array('Accept: application/json', 'Content-Type: application/json'));
           $content = curl_exec($c);
           return $content;      
         };
