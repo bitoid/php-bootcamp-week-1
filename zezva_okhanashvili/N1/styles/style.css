@@ -1,0 +1,73 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Chakra Petch', sans-serif;
+    background-color: #a7c0cd;
+}
+input{
+    font-size: 1.2rem;
+}
+input[type='text']{
+    background-color: #a7c0cd;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    margin-left: 20px;
+}
+
+input[type='file']{
+    display: none;
+}
+label[for='image']{
+    background-color: #00897b;
+    padding: 10px;
+    border-radius: 5px;
+    color:#FFF;
+}
+label[for='image']:hover{
+    background-color: #005b4f;
+    color: #4ebaaa;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px auto;
+    width: 400px;
+}
+.inputs{
+    display: flex;
+    justify-content: center;
+}
+#submit{
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #00695c;
+    color: #FFF;
+}
+#submit:hover{
+    background-color: #006064;
+}
+hr{
+    background-color: #4ebaaa;
+    height: 0.5px;
+    border: none;
+}
+
+.error{
+    color:#b0003a;
+    text-align: center;
+}
+
+.output{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+}
+.output img{
+    width: 500px;
+    object-fit: cover;
+}
