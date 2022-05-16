@@ -2,8 +2,6 @@
     
     $headers = [
         "User-Agent: Bitoid Challenge",
-        "Authorization: token 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"
-
     ];
 
 
