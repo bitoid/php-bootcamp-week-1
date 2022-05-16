@@ -1,0 +1,40 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+form input {
+  padding: 10px;
+  margin: 10px 0;
+}
+
+form button {
+  padding: 10px;
+}
+
+span {
+  font-weight: 600;
+}
+
+.mainContent {
+  font-family: sans-serif;
+  font-size: 20px;
+  width: 60%;
+}
+.picture {
+  display: flex;
+  flex-direction: column;
+}
+
+.error_message {
+  color: red;
+}
