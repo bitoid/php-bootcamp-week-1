@@ -1,0 +1,44 @@
+.uploadForm{
+    margin: 50px 550px;
+    padding: 25px;
+    height:500px;
+    position: relative;
+    background: white;
+    width: 500px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.uploadForm #firstname{
+    background: rgb(248, 246, 246);
+    display: block ;
+    padding: 14px;
+    margin: 5px 0 16px;
+    width: 100%;
+}
+
+.uploadForm #lastname{
+    background: rgb(248, 246, 246);
+    display: block ;
+    padding: 14px;
+    margin: 5px 0 16px;
+    width: 100%;
+}
+
+.uploadForm #image{
+    background: rgb(248, 246, 246);
+    display: block ;
+    padding: 14px;
+    margin: 5px 0 16px;
+    width: 100%;
+}
+
+.uploadForm #submit{
+    color: white;
+    background-color: #1f0469;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    padding: 19px;
+    margin: 10px 0;
+}
