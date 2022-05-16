@@ -31,7 +31,7 @@
                     }else{
                         move_uploaded_file($imageTmpName, $imageDestination);
                         $htmlContent = <<<CON
-        
+
                         <div class='mainContent'>
                             <p>Your Name is: <span>$firstName</span></p>
                             <p>Your Surname is: <span>$lastName</span></p>
