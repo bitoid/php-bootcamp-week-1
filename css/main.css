@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'FiraGO';
+    src: url("../vendor/fonts/firago/FiraGO-Regular.woff2") format("woff2"), url("../vendor/fonts/firago/FiraGO-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal; }
+@font-face {
+    font-family: 'FiraGO-light';
+    src: url("../vendor/fonts/firago/FiraGO-Light.woff2") format("woff2"), url("../vendor/fonts/firago/FiraGO-Light.woff") format("woff");
+    font-weight: normal;
+    font-style: normal; }
+
+
+.card1 {
+    height: 400px;
+}
+.list-group1{
+    max-height: 200px;
+    /*margin-bottom: 10px;*/
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.card-img {
+    text-align: center;
+}

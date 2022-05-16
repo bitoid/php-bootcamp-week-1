@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'FiraGO';
+    src: url('FiraGO-Regular.woff2') format('woff2'),
+        url('FiraGO-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'FiraGO-light';
+    src: url('FiraGO-Light.woff2') format('woff2'),
+        url('FiraGO-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
