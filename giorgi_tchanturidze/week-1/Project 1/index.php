@@ -28,7 +28,7 @@
 
     if(isset($image)){
       $imagePath = 'images/'.$image['name'] ;
-      move_uploaded_file($image['tmp_name'],'images/'.$image['name']);
+      move_uploaded_file($image['tmp_name'],$imagePath);
     }
   }
 ?>
