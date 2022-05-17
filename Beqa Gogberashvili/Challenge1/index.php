@@ -16,75 +16,51 @@
 
     <?php
 
-    // Saving default form inside variable
-
-    $form = '<div class="main">
-        <div class="form">
-            <h1>Who are you?</h1>
-            <form method="post" enctype="multipart/form-data">
-                <ul class="form-items">
-                    <li><input type="text" name="firstName" placeholder="First Name"></li>
-                    <li><input type="text" name="lastName" placeholder="Last Name"></li>
-                    <li><label class="custom-file-upload">
-                    <input type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/gif, image/jpeg">
-                    <img src="./upload.png" width="20px" style="object-fit: cover; vertical-align:middle">
-                    Upload Image
-                </label></li>
-                    <li><input type="submit" name="submit" class="butt" value="Submit"></li>
-                </ul>
-            </form>
-        </div>
-    </div>';
+    session_start();
 
     // Validating inputs
 
     if (isset($_POST['submit'])) {
-        $first = $_POST['firstName'];
-        $last = $_POST['lastName'];
-        switch ($first && $last) {
-            case '':
-                echo $form;
-                echo '<script>alert("Warrning: Fill both names")</script>';
-                break;
-            case !preg_match("#^[a-zA-Z]+$#", $first):
-                echo $form;
-                echo '<script>alert("Warrning: Only letters allowed")</script>';
-                break;
-            case !preg_match("#^[a-zA-Z]+$#", $last):
-                echo $form;
-                echo '<script>alert("Warrning: Only letters allowed")</script>';
-                break;
-            default:
+        $_SESSION['first'] = $_POST['firstName'];
+        $_SESSION['last'] = $_POST['lastName'];
 
-                // Uploading image
+        if ($_SESSION['first'] == '') {
+            $_SESSION['firstname_error'] = 'First name: Empty';
+        } else if (!preg_match("#^[a-zA-Z]+$#", $_SESSION['first'])) {
+            $_SESSION['firstname_error'] = 'First name: Only letters allowed';
+        } else {
+            $_SESSION['firstname_error'] = '';
+        }
 
-                if (empty($_FILES['fileToUpload']['name'])) {
-                    echo $form;
-                    echo '<script>alert("Warrning: No image uploaded")</script>';
-                } else {
-                    $filename = $_FILES['fileToUpload']['name'];
-                    if (!is_dir('upload')) {
-                        mkdir('upload');
-                    }
-                    $location = "upload/" . $filename;
-                    move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $location);
+        if ($_SESSION['last'] == '') {
+            $_SESSION['lastname_error'] = 'Last name: Empty';
+        } else if (!preg_match("#^[a-zA-Z]+$#", $_SESSION['first'])) {
+            $_SESSION['lastname_error'] = 'Last name: Only letters allowed';
+        } else {
+            $_SESSION['lastname_error'] = '';
+        }
 
-                    // Echo result
+        if (empty($_FILES['fileToUpload']['name'])) {
+            $_SESSION['image_error'] = 'No image uploaded';
+        } else {
+            $_SESSION['filename'] = $_FILES['fileToUpload']['name'];
+            if (!is_dir('upload')) {
+                mkdir('upload');
+            }
+            $location = "upload/" . $_SESSION['filename'];
+            move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $location);
+            $_SESSION['image_error'] = '';
+        }
 
-                    echo '<div class="main">
-                    <div class="output">
-                        <img src="./upload/' . $filename . '" alt="myImage" width="400px" height="400px" style="object-fit: cover">
-                        <h1>' . $first . ' ' . $last . '</h1>
-                    </div>
-                    <a href="./index.php"><button class="another">Another one</button></a>
-                    </div>';
-                }
-                break;
+        if ($_SESSION['firstname_error'] == '' && $_SESSION['lastname_error'] == '' && $_SESSION['image_error'] == '') {
+            header('Location: result.php');
+        } else {
+            include "form.php";
         }
     } else {
-        // Echo out default form
-        echo $form;
+        include "form.php";
     }
+
 
 
     ?>

@@ -12,14 +12,13 @@
     <title>Form Result</title>
 </head>
 
-<?php include "index.php" ?>
+<?php session_start(); ?>
 
 <body>
-
     <div class="main">
         <div class="output">
-            <img src="./upload/' . $filename . '" alt="myImage" width="400px" height="400px" style="object-fit: cover">
-            <h1>' . $first . ' ' . $last . '</h1>
+            <img src="./upload/<?php echo $_SESSION['filename'] ?>" alt="myImage" width="400px" height="400px" style="object-fit: cover">
+            <h1><?php echo $_SESSION['first'] ?> <?php echo $_SESSION['last'] ?></h1>
         </div>
         <a href="./index.php"><button class="another">Another one</button></a>
     </div>
