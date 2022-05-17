@@ -1,16 +1,12 @@
-<?php include "./follow.php"; ?>
-<?php require "header.html"; ?>
-
+<?php include "follow.php"; ?>
+<?php require "./templates/header.html"; ?>
 <table>
     <thead>
         <tr>
             <th>
                 <a href="./index.php">Repositories/</a>
+                <h3 style="display: inline-block;">Followers</h3>
             </th>
-            <th>
-                <h3>Followers</h3>
-            </th>
-            <th></th>
         </tr>
         <tr>
             <th>index</th>
@@ -18,15 +14,16 @@
             <th>followers name</th>
         </tr>
     </thead>
+
     <tbody>
         <?php foreach ($data as $repository) : ?>
             <tr>
                 <td><?= $i++; ?></td>
-                <td><?= $repository['image'] ?></td>
-                <td><?= $repository['name'] ?></td>
+                <td><img class="followers_image" src="<?= $repository['avatar_url']; ?>" alt="oops!"></td>
+                <td><?= $repository['login'] ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
 
-<?php require "footer.html" ?>
+<?php require "./templates/footer.html" ?>

@@ -1,15 +1,13 @@
 <?php
+require './index.php';
 
-$headers = [
-    "User-Agent: Example REST API Client"
-];
+$curl = require "./init_curl.php";
 
-$curl = curl_init("https://api.github.com/users/otarza/followers");
+// get username
+session_start();
+$user_name = $_SESSION['USERNAME'];
 
-curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
-// Responce body will be returnd as a string(containing json formated data)
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_URL, "https://api.github.com/users/$user_name/followers");
 
 $response = curl_exec($curl);
 
@@ -17,6 +15,13 @@ curl_close($curl);
 
 // decoode responce data
 $data = json_decode($response, true);
+
+// if data == 0 there is no followers to display
+if (count($data) == 0) { 
+    print "The is no followers to display";
+}else {
+    print "";
+}
 
 // for incrementing repository indexis
 $i = 1;

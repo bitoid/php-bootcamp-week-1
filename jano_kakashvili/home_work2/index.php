@@ -1,13 +1,16 @@
 <?php include "./repos.php"; ?>
-<?php require "header.html" ?>
-<?php require "form.php" ?>
-<table>
+<?php require "./templates/header.html" ?>
+
+<form class="main_form" action="index.php" method="POST" enctype="multipart/form-data">
+    <input type="text" name="username" />
+    <input type="submit" value="Search" />
+</form>
+
+<table style="visibility: <?= $show ?>;">
     <thead>
         <tr>
             <th>
-                <h3>Repositories</h2>
-            </th>
-            <th>
+                <h3 style="display: inline-block;">Repositories</h2>
                 <a href="./followers.php">/Followers</a>
             </th>
         </tr>
@@ -16,6 +19,7 @@
             <th>Repository Names</th>
         </tr>
     </thead>
+
     <tbody>
         <?php foreach ($data as $repository) : ?>
             <tr>
@@ -25,4 +29,4 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-<?php require "footer.html" ?>
+<?php require "./templates/footer.html" ?>
