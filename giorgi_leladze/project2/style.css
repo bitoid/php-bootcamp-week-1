@@ -1,0 +1,64 @@
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    min-width: 50%;
+    margin-top: 100px;
+    margin-left: 25%;
+}
+
+td {
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+header {
+    background-color: rgb(92, 78, 78);
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    padding: 20px 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    border: 3px solid black;
+    border-radius: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: blue;
+}
+
+input {
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgb(192, 191, 191);
+}
+
+button {
+    background-color: red;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px 10px;
+}
+
+button:hover {
+    background-color: black;
+    border-color: red;
+    color: white;
+    cursor: pointer;
+}

@@ -1,0 +1,85 @@
+:root {
+    --button-col: rgb(247, 8, 40);
+}
+
+body {
+    padding: 100px ;
+    background: linear-gradient(to right, #030025, #1f0f11, #000000);
+}
+
+.form-container {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    width: 40%;
+    height: auto;
+}
+
+.input-text {
+    width: 80%;
+    height: 50px;
+    margin-top: 15px;
+    margin-left: 10%;
+    background: linear-gradient(to right, #ffffff, #080029);
+}
+
+.input-img {
+    margin-top: 15px;
+    margin-left: 10%;
+    width: 90%;
+    color: red;
+}
+
+input#file-upload-button {
+    background: red;
+}
+
+.btn {
+    margin: 10px 5px 5px 10%;
+    width: 150px;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 30px;
+    background-color: var(--button-col);
+}
+
+.btn:hover {
+    cursor: pointer;
+    border-color: var(--button-col);
+    border-width: 3px;
+    background: black;
+    color: var(--button-col);
+}
+
+/* for new browsers */
+::placeholder {
+    color: black;
+    padding-left: 30px;
+}
+
+span {
+    color: orange;
+    margin: 10px 0 5px 25%;
+}
+
+.submited_form-message {
+    position: absolute;
+    background-color: white;
+    color: green;
+    width: 60%;
+    height: 700px;
+    margin-left: 15%;
+    justify-content: center;
+    text-align: center;
+    padding-top: 30px;
+}
+
+img {
+    width: 400px;
+    height: 400px;
+    border-radius: 100%;
+    border: 5px solid black;
+}
