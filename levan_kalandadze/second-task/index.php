@@ -8,20 +8,21 @@
         <div>
             <h3>Enter username</h3>
             <form action="/index.php" method="POST">
-                <input type="text" id="user_n" name="username" placeholder="username">
-                <input type="submit" value="Submit" name="Submited">
+                <input type="text" id="user_n" name="username" placeholder="username" required>
+                <input type="submit" value="Submit">
             </form>
         </div>
 
 
     <?php
         
-        $userName = $_POST['username'];
+        $user_name = $_POST['username'];
         $headers = [
-            "User-Agent: Example REST API Client"
+            "User-Agent: REST API Client"
         ];
     
-        $url_repos = "https://api.github.com/users/$userName/repos?per_page=100";
+        $url_repos = "https://api.github.com/users/$user_name/repos?per_page=100";
+        
         if($_POST['username']){
             $resource  = curl_init();
             curl_setopt($resource, CURLOPT_HTTPHEADER, $headers);
@@ -41,13 +42,13 @@
             foreach ($data as $repo) {
             
                 
-                $fullName = $repo["full_name"];
-                $repoLink = $repo["html_url"];
+                $full_name = $repo["full_name"];
+                $repo_link = $repo["html_url"];
                 $description = $repo["description"];
     ?>
                 <div class = "inside-loop">
     <?php
-                    echo "<a class = \"text\" href=\"$repoLink\">$fullName</a>";
+                    echo "<a class = \"text\" href=\"$repo_link\">$full_name</a>";
                 
                     echo "<p class = \"text\">Description: </p>";
                 
@@ -67,7 +68,7 @@
 
     <?php
 
-            $url_followers = "https://api.github.com/users/$userName/followers?per_page=100";
+            $url_followers = "https://api.github.com/users/$user_name/followers?per_page=100";
             
             if($_POST['username']){
                 $resource  = curl_init();
@@ -82,12 +83,11 @@
                 foreach ($data as $repo) {
             
                     $name = $repo["login"];
-                    $profileLink = $repo["html_url"];
-                    $imgSource = $repo["avatar_url"];
-                    $displayImg = "<img src=\"$imgSource\" alt=\"Github Avatar\"/>"; 
+                    $profile_link = $repo["html_url"];
+                    $img_source = $repo["avatar_url"];
+                    $display_img = "<img src=\"$img_source\" alt=\"Github Avatar\"/>"; 
             
-
-                    echo "<figure><a href=\"$profileLink\" target=\"_blank\">$displayImg</a><figcaption>$name</figcaption></figure>"; 
+                    echo "<figure><a href=\"$profile_link\" target=\"_blank\">$display_img</a><figcaption>$name</figcaption></figure>"; 
                     echo "<br>";
                     echo "<br>";
 
