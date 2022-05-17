@@ -41,7 +41,7 @@
             $arrRepos = json_decode($r , true);
             ?><h2>Repos</h2><?php
             foreach ($arrRepos as $c) {?>
-                <p><a href="<?php echo $c['html_url']; ?>" target="_blank"> <?php echo $c['name']; ?> </a><p><?php
+                <p><a href="<?php echo $c['html_url']; ?>" target="_blank"> <?php echo $c['name']; ?> </a></p><?php
             };
             unset($c);
 
@@ -57,7 +57,7 @@
                         >
                         <?php echo $c['login']; ?>
                     </a>
-                <p><?php
+                </p><?php
             };
             unset($c);
             
