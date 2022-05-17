@@ -14,7 +14,7 @@
             if(!empty($_POST['user_name'])){
                 $name = $_POST['user_name'];
                 if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-                    header('Location: index.php?error=გთხოვთ შეიყვანეთ მხოლოდ ასოები.');
+                    header('Location: index.php?error=გთხოვთ შეიყვანეთ მხოლოდ ლათინური ასოები.');
                     exit();
                 }              
                 
@@ -25,7 +25,7 @@
             if(!empty($_POST['last_name'])){
                 $last_name = $_POST['user_name'];
                 if (!preg_match("/^[a-zA-Z-' ]*$/",$last_name)) {
-                    header('Location: index.php?error=გთხოვთ შეიყვანეთ მხოლოდ ასოები.');
+                    header('Location: index.php?error=გთხოვთ შეიყვანეთ მხოლოდ ლათინური ასოები.');
                     exit();
                 }  
             }else{
