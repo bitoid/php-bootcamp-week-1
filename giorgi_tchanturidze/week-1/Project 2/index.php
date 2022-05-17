@@ -67,9 +67,10 @@ if (isset($name)){
     </form>
     <!-- Showing list of resoults -->
     <div>
-      <!-- Repos -->
+      <!-- Checking if Repos was requested  -->
         <?php if ($way==="repos"): ?>
           <ul class="columns" data-columns="4">
+          <!-- In foreach each string with str_ireplace generating linked repo names -->
           <?php foreach ($arr as $new) : ?>
               <li>
                 <a href="<?php echo $new ?>"><?php echo str_ireplace("https://github.com/".$name ."/", "", $new) ?></a>
@@ -77,9 +78,10 @@ if (isset($name)){
           <?php endforeach; ?>
           </ul>
         <?php endif; ?>
-        <!-- Followers -->
+        <!-- Cheking if Followers was requested -->
         <?php if ($way==="followers"): ?>
           <ul class="columns" data-columns="4">
+          <!-- In foreach each string with str_ireplace generating linked follower names and images -->
           <?php foreach ($arr as $new) : ?>
               <li>
                 <a href="<?php echo $new ?>"><?php echo str_ireplace("https://github.com/", "", $new) ?><br>
