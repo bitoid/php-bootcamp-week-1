@@ -34,7 +34,7 @@
 
         if ($_SESSION['last'] == '') {
             $_SESSION['lastname_error'] = 'Last name: Empty';
-        } else if (!preg_match("#^[a-zA-Z]+$#", $_SESSION['first'])) {
+        } else if (!preg_match("#^[a-zA-Z]+$#", $_SESSION['last'])) {
             $_SESSION['lastname_error'] = 'Last name: Only letters allowed';
         } else {
             $_SESSION['lastname_error'] = '';
