@@ -29,7 +29,7 @@
                     exit();
                 }  
             }else{
-                header('Location: index.php?error=გთხოვთ შეიყვანეთ გვარის ველი.');
+                header('Location: index.php?error=გთხოვთ შეიყვანეთ გვარი.');
                 exit();
 
             }
