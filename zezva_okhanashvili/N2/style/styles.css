@@ -1,0 +1,109 @@
+body{
+    margin:0;
+    padding: 0;
+    background-color: #394053;
+}
+h2{
+    color: #FFF;
+    margin-top: 20px;
+    text-align: center;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+form label {
+    font-size: 1.5em;
+    color: #FFF;
+}
+form input[type="text"]{
+    outline: none;
+    font-size: 1.5em;
+    border: none;
+    box-sizing: border-box;
+    height: 40px;
+    transition: padding 1s;
+    background-color: #e7e9ee;
+}
+form input[type="text"]:focus{
+    border: #6e5494 solid 1px;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+#submit{
+    font-size: 1.3em;
+    padding: 10px 30px;
+    background-color: #7CAE7A;
+    border: none;
+    border-radius: 5px;   
+}
+#submit:hover{
+    background-color: #8fb98d;
+}
+
+.followers{
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    width: 90%;
+    margin: auto;
+}
+.followers a{
+    text-decoration: none;
+    color: #394053;
+    font-weight: bold;
+}
+
+.item{
+    background: linear-gradient(200deg , #EBEDE8, #5D6652);
+    display: flex;
+    padding: 20px;
+    border-radius: 5px;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.2em;
+    align-items: center;
+}
+.followers p{
+    margin: 0;
+    padding: 0;
+}
+
+img{
+    width:100px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.repos{
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    width: 90%;
+    margin: 20px auto;
+    box-sizing: border-box;
+    background-color: aliceblue;
+}
+
+.repos li{
+    list-style-type: none;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 100px;
+}
+.repos a{
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #312e38;
+}
+#folder{
+    width: 30px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
