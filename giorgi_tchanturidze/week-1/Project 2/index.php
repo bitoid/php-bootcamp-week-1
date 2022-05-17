@@ -5,7 +5,7 @@
   //Pre described variables
 $name=$_POST['name'];
 $way=$_POST['select'];
-$i=1; // Variable for while loop pages
+$page=1; // Variable for while loop pages
 // Open the file using the HTTP headers 
 $param = [
   'http' => [
@@ -19,14 +19,14 @@ $context = stream_context_create($param);
 // when name submited starting while loop file_get_content for data
 if (isset($name)){
   while (true){    
-    $file = file_get_contents('https://api.github.com/users/'. $name .'/'.$way . '?page=' . $i.'&per_page=100', false, $context);
+    $file = file_get_contents('https://api.github.com/users/'. $name .'/'.$way . '?page=' . $page .'&per_page=100', false, $context);
     $data=json_decode($file,false);
     
     // access to every object value in the way that you want
     foreach ($data as $obj){
       $arr[]= $obj->html_url;
     }
-    $i++;
+    $page++;
     // When there is no more data, breaking while loop
     if (empty($data)){   
       break;
