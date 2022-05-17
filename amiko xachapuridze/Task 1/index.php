@@ -82,7 +82,7 @@ function UploadImage($name,$lastname)
 </head>
 <body>
 
-
+<?php if(empty($_POST)) : ?>
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post"  enctype="multipart/form-data">
 <input type="text" name="name"  minlength="4" maxlength="25" placeholder="input  name" value="<?php echo  $name ?>">
     <span class="error">* <?php echo $nameErr;?></span>
@@ -96,11 +96,13 @@ function UploadImage($name,$lastname)
     <br>
     <input type="submit" value="გაგზავნა">
 </form>
+<?php else : ?>
 <div> 
-<img src="./images/<?php echo htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])) ?>" alt="profileimage" width="15px" height="15px">
+<img src="./images/<?php echo htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])) ?>" alt="profileimage" width="40px" height="40px">
             <?php
             echo $name . " " . $lastname;
             ?>
 </div>
+<?php endif ?>
 </body>
 </html>
