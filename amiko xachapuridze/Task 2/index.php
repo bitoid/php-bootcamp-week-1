@@ -26,7 +26,7 @@
 
 $headers = [
     "User-Agent: Example REST API Client",
-    "Authorization: token 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"
+    "Authorization: token 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"
 ];
 
 $ch = curl_init();
