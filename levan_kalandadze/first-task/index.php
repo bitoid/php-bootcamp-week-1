@@ -54,7 +54,7 @@
                     
                 }
                     
-            }else{
+            }else if($_POST['fist_name'] && !$checked){
                 echo "<p class=\"error\">Error ! Use only alphabetic characters</p>";
             }
 
