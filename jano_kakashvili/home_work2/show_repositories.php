@@ -1,8 +1,6 @@
 <?php
-$show = 'hidden';
 
 if (!empty($_POST['username'])) {
-    $show = 'visible';
     $user_name = $_POST['username'];
 
     $curl = require "./init_curl.php";
@@ -15,7 +13,6 @@ if (!empty($_POST['username'])) {
 
     // decode responce data
     $data = json_decode($response, true);
-
 
     // for incrementing repository indexis
     $i = 1;

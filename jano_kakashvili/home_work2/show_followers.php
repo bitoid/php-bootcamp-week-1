@@ -1,5 +1,5 @@
 <?php
-require './index.php';
+// require './index.php';
 
 $curl = require "./init_curl.php";
 
@@ -15,13 +15,6 @@ curl_close($curl);
 
 // decoode responce data
 $data = json_decode($response, true);
-
-// if data == 0 there is no followers to display
-if (count($data) == 0) { 
-    print "The is no followers to display";
-}else {
-    print "";
-}
 
 // for incrementing repository indexis
 $i = 1;

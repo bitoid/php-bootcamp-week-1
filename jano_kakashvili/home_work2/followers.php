@@ -1,5 +1,6 @@
-<?php include "follow.php"; ?>
+<?php include "show_followers.php"; ?>
 <?php require "./templates/header.html"; ?>
+
 <table>
     <thead>
         <tr>
@@ -25,5 +26,4 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-
 <?php require "./templates/footer.html" ?>
