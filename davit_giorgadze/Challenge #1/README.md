@@ -16,6 +16,7 @@
         id int(11) not null auto_increment,
         first_name varchar(255) not null,
         last_name varchar(255) not null,
+        image varchar(255),
         primary key (id)
     );
     ```
