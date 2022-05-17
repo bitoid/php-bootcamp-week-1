@@ -1,6 +1,5 @@
 <?php 
 
-// function returns github user's repos api
 function fetch_user_repo($user){
     $api_url = 'https://api.github.com/users/' . $user .'/repos';
 

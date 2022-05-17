@@ -26,12 +26,7 @@
                     </a></div>";
                 }
                 echo "</div>";
-                $data = fetch_user_repo($user_name); 
-                // echo "<ul>";
-                // foreach($data as $repo){
-                //     echo "<li><a href='". $api_url .$repo->full_name ."'>". $repo->name . "</a></li>";
-                // }
-                // echo "</ul>";
+                $data = fetch_user_repo($user_name);
                 echo "<h2>$user_name Repositories</h2>";
                 echo "<ul class='repos'>";
                 foreach($data as $repo){
