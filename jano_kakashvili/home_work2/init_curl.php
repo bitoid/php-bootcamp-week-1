@@ -2,7 +2,7 @@
 
 $headers = [
     "User-Agent: Example REST API Client",
-    "Authorization: token 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"
+    "Authorization: token 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"
 ];
 
 // creates curl session

@@ -1,6 +1,6 @@
 <?php
 
-if (!empty($_POST['username'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'])) {
     $user_name = $_POST['username'];
 
     $curl = require "./init_curl.php";
@@ -10,6 +10,9 @@ if (!empty($_POST['username'])) {
     $response = curl_exec($curl);
 
     curl_close($curl);
+
+    // get http status code f(200) => user exists
+    $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
     // decode responce data
     $data = json_decode($response, true);
