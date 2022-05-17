@@ -1,6 +1,5 @@
 <?php
-include "./config/repos.php";
-?>
+include "./config/repos.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,11 +22,13 @@ include "./config/repos.php";
       <div class="input-group">
         <label for="username">Username</label>
         <input type="text" name="username" id="username">
-        <b class="validation">
+          <?php 
+          if ($_SERVER["REQUEST_METHOD"] === "POST" && empty($_POST["username"]))
+          { 
+          ?>
+            <b class="validation">Filling in this field is required</b>
           <?php
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST['username'])) {
-              echo 'Filling in this field is required';
-            }
+          } 
           ?>
         </b>
       </div>
@@ -35,16 +36,18 @@ include "./config/repos.php";
     </form>
     <hr>
     <div class="grid-container">
-      <?php
-      if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
-        foreach ($reposfunction->repos as $item) {
-        ?>
+      <?php 
+      if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST["username"]))
+      {
+        foreach ($repos as $item)
+        { 
+      ?>
           <div class="item">
-            <a href="<?php echo $item->html_url ?>" target="_blank">
-              <?php echo $item->name ?>
+            <a href="<?php echo $item->html_url; ?>" target="_blank">
+              <?php echo $item->name; ?>
             </a>
           </div>
-        <?php
+      <?php
         }
       }
       ?>

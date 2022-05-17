@@ -23,32 +23,35 @@ include "./config/followers.php";
       <div class="input-group">
         <label for="username">Username</label>
         <input type="text" name="username" id="username">
-        <b class="validation">
           <?php
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST['username'])) {
-              echo 'Filling in this field is required';
-            }
+          if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST['username']))
+          {
           ?>
-        </b>
+            <b class="validation">Filling in this field is required</b>
+          <?php
+          }
+          ?>
       </div>
       <button type="submit">Submit</button>
     </form>
     <hr>
     <div class="grid-container">
       <?php
-      if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
-        foreach ($followersfunction->followers as $item) {
-        ?>
-          <div class="item">
-          <a href="<?php echo $item->html_url ?>" target="_blank">
-            <img src="<?php echo $item->avatar_url ?>" alt="<?php echo $item->login ?>" id="profileimg">
-            <b>
-              <?php echo $item->login ?>
-            </b>
-          </a>
-          </div>
-        <?php
-        }
+      if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username']))
+      {
+          foreach ($followers as $item)
+          {
+      ?>
+      <div class="item">
+        <a href="<?php echo $item->html_url ?>" target="_blank">
+          <img src="<?php echo $item->avatar_url ?>" alt="<?php echo $item->login ?>" id="profileimg">
+          <b>
+            <?php echo $item->login ?>
+          </b>
+        </a>
+      </div>
+      <?php
+          }
       }
       ?>
     </div>
