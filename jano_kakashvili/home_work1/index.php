@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/reset.css">
     <?php include 'main.php'; ?>
-    <title>Hello PHP</title>
+    <title>Hello</title>
 </head>
 
 <body>

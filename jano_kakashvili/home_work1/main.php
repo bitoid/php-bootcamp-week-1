@@ -119,6 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nameValidationSuccess = true;  // სახელი და გვარის ვალიდაცია დასრულდა წარმატებით
     }
 
+    
     // თუ text და file input-ების ვალიდაცია წარმატებით დასრულდა მონაცემთა 
     // დამუშავება გაგრძელდება
     if ($nameValidationSuccess && $fileUploadSuccess) {
