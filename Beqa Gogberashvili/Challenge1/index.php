@@ -53,7 +53,7 @@
         }
 
         if ($_SESSION['firstname_error'] == '' && $_SESSION['lastname_error'] == '' && $_SESSION['image_error'] == '') {
-            header('Location: result.php');
+            include "result.php";
         } else {
             include "form.php";
         }
