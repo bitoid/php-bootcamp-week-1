@@ -8,15 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
     <title>Simple Form</title>
 </head>
 
 <body>
 
-    <style>
-        <?php include "style.css" ?>
-    </style>
-    <h1></h1>
     <?php
 
     // Saving default form inside variable
@@ -79,9 +76,7 @@
                         <img src="./upload/' . $filename . '" alt="myImage" width="400px" height="400px" style="object-fit: cover">
                         <h1>' . $first . ' ' . $last . '</h1>
                     </div>
-                    <form method="post">
-                        <input type="submit" value="Another one" class="another" name="another">
-                    </form>
+                    <a href="./index.php"><button class="another">Another one</button></a>
                     </div>';
                 }
                 break;
@@ -91,13 +86,8 @@
         echo $form;
     }
 
-    if (isset($_POST['another'])) {
-        unset($first);
-        unset($last);
-    }
 
     ?>
-
 </body>
 
 </html>

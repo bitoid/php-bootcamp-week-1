@@ -36,17 +36,17 @@
 
     if (isset($_POST['submit']) || isset($_GET['pg'])) {
         if (isset($_GET['pg'])) {
-            $n = $_GET['pg'];
+            $which_page = $_GET['pg'];
         } else {
-            $n = 1;
+            $which_page = 1;
         }
         if (isset($_POST['user'])) {
-            $gitUser = $_POST['user'];
+            $git_user = $_POST['user'];
         } else {
-            $gitUser = $_GET['us'];
+            $git_user = $_GET['us'];
         }
 
-        $url = 'https://github.com/' . $gitUser;
+        $url = 'https://github.com/' . $git_user;
         $handle = curl_init($url);
         curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
         $response = curl_exec($handle);
@@ -54,7 +54,7 @@
 
         // If github user isn't found, error out alert, else do the rest
 
-        if ($httpCode == 404 || $gitUser == "") {
+        if ($httpCode == 404 || $git_user == "") {
             echo $default;
             echo '<script>alert("There is no such user!")</script>';
         } else {
@@ -74,7 +74,7 @@
 
             $ch = curl_init();
             curl_setopt_array($ch, [
-                CURLOPT_URL => "https://api.github.com/users/" . $gitUser,
+                CURLOPT_URL => "https://api.github.com/users/" . $git_user,
                 CURLOPT_HTTPHEADER => [
                     "Accept: application/vnd.github.v3+json",
                     'User-Agent: PHP'
@@ -87,8 +87,8 @@
             $followers = $arr->followers;
             $public_repos = $arr->public_repos;
 
-            $timesF = ceil($followers / 21);
-            $timesR = ceil($public_repos / 100);
+            $how_many_followers = ceil($followers / 21);
+            $how_many_repos = ceil($public_repos / 100);
 
             // Generating user data
 
@@ -119,19 +119,19 @@
 
             if ((isset($_POST['choice']) && $_POST['choice'] == 'repos') || (isset($_POST['choice']) && $_POST['choice'] == 'both') || (isset($_GET['choice']) && $_GET['choice'] == 'repos') || (isset($_GET['choice']) && $_GET['choice'] == 'both')) {
                 echo '<div class="repos">            
-            <h1>Repos of <a href="https://github.com/' . $gitUser . '"><span style="border-bottom: 1px solid #dedede; color: white !important">' . $gitUser . '</a></span> :</h1>
+            <h1>Repos of <a href="https://github.com/' . $git_user . '"><span style="border-bottom: 1px solid #dedede; color: white !important">' . $git_user . '</a></span> :</h1>
             <ul>';
 
                 // Repos generator
 
-                $num = 1;
-                for ($e = 0; $e < $timesR; $e++) {
-                    ${'reposContent' . $e} = file_get_contents("https://api.github.com/users/" . $gitUser . "/repos?per_page=100&page=" . $e + 1, false, $context);
+                $prefix_number_counter = 1;
+                for ($e = 0; $e < $how_many_repos; $e++) {
+                    ${'reposContent' . $e} = file_get_contents("https://api.github.com/users/" . $git_user . "/repos?per_page=100&page=" . $e + 1, false, $context);
                     ${'reposArr' . $e} = json_decode(${'reposContent' . $e});
                     foreach (${'reposArr' . $e} as ${'val' . $e}) {
                         $repoName = ${'val' . $e}->name;
-                        echo '<a href="https://github.com/' . $gitUser . '/' . $repoName . '"><li>' . $num . '. ' . $repoName . '</li></a>';
-                        $num++;
+                        echo '<a href="https://github.com/' . $git_user . '/' . $repoName . '"><li>' . $prefix_number_counter . '. ' . $repoName . '</li></a>';
+                        $prefix_number_counter++;
                     }
                 }
 
@@ -141,12 +141,12 @@
 
             if ((isset($_POST['choice']) && $_POST['choice'] == 'followers') || (isset($_POST['choice']) && $_POST['choice'] == 'both') || (isset($_GET['choice'])) && ($_GET['choice'] == 'followers') || (isset($_GET['choice'])) && $_GET['choice'] == 'both') {
                 echo '<div class="followers">
-                <h1>Followers of <a href="https://github.com/' . $gitUser . '"><span style="border-bottom: 1px solid #dedede; color: white !important">' . $gitUser . '</a></span> :</h1>
+                <h1>Followers of <a href="https://github.com/' . $git_user . '"><span style="border-bottom: 1px solid #dedede; color: white !important">' . $git_user . '</a></span> :</h1>
                 <ul>';
 
                 // Followers generator
 
-                $followerContent = file_get_contents("https://api.github.com/users/" . $gitUser . "/followers?per_page=21&page=" . $n, false, $context);
+                $followerContent = file_get_contents("https://api.github.com/users/" . $git_user . "/followers?per_page=21&page=" . $which_page, false, $context);
                 $followerArr = json_decode($followerContent);
                 foreach ($followerArr as $val) {
                     $login = $val->login;
@@ -158,8 +158,8 @@
 
                 echo '</ul>';
                 echo '<div class="pagi">';
-                for ($i = 0; $i < $timesF; $i++) {
-                    echo '<a href="?us=' . $gitUser . '&pg=' . $i + 1 . '&choice=' . $choice . '"><button>' . $i + 1 . '</button></a>';
+                for ($i = 0; $i < $how_many_followers; $i++) {
+                    echo '<a href="?us=' . $git_user . '&pg=' . $i + 1 . '&choice=' . $choice . '"><button>' . $i + 1 . '</button></a>';
                 }
                 echo '</div>';
                 echo '</div>';

@@ -2,11 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 html {
     font-size: 62.5%;
+    font-family: 'Poppins', sans-serif;
 }
 
 input {
@@ -82,12 +82,15 @@ input:focus {
 }
 
 .another {
-    min-width: 20px !important;
+    border: none;
     margin-bottom: 150px;
-    padding: 10px 20px !important;
+    padding: 15px 20px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
     cursor: pointer;
-    background: #3377AB;
-    color: #f6fafc;
 }
 
 .another:hover {
