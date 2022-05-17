@@ -1,0 +1,20 @@
+body{
+    padding:50px;
+}
+form{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    justify-content: flex-start;
+    text-align: inherit;
+    align-items: center;
+    width: 70%;
+}
+.pic{
+    height:50px;
+    width:50px;
+}
