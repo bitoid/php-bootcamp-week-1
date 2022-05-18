@@ -1,3 +1,36 @@
+<?php
+if (isset($_POST['btn']) && $_POST["user"] != "") {
+
+    $user = $_POST["user"];
+    $opt = $_POST["opt"];
+
+    $service_url_repo = "https://api.github.com/users/" . $user . "/repos";
+    $service_url_followers = "https://api.github.com/users/" . $user . "/followers";
+
+    $curl_repo = curl_init($service_url_repo);
+    $curl_followers = curl_init($service_url_followers);
+
+    curl_setopt($curl_repo, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl_repo, CURLOPT_POST, false);
+    curl_setopt($curl_repo, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl_repo, CURLOPT_USERAGENT, "Github Api in Curl");
+
+    curl_setopt($curl_followers, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl_followers, CURLOPT_POST, false);
+    curl_setopt($curl_followers, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl_followers, CURLOPT_USERAGENT, "Github Api in Curl");
+
+    $curl_response_repo = curl_exec($curl_repo);
+    curl_close($curl_repo);
+
+    $curl_response_followers = curl_exec($curl_followers);
+    curl_close($curl_followers);
+
+    $jsons_repo = json_decode($curl_response_repo);
+
+    $jsons_followers = json_decode($curl_response_followers);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +42,7 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-v
+
 
 <body>
     <div class="wrapper">
@@ -32,178 +65,59 @@ v
     </div>
 
     <div class="infoContainer">
-        <?php
-        if (isset($_POST['btn']) && $_POST["user"] != "") {
+        <?php if (isset($_POST['btn']) && $opt == "both" && !empty($jsons_repo)) : ?>
+            <?php foreach ($jsons_repo as $data) : ?>
+                <h2>name: <?php echo $data->name; ?></h2>
+                <p>id: <?php echo $data->id; ?></p>
+                <p>full_name: <?php echo $data->full_name; ?></p>
+                <p>login: <?php echo $data->owner->login; ?></p>
+                <p>followers_url: <?php echo $data->owner->followers_url; ?></p>
+                <p>deployments_url: <?php echo $data->deployments_url; ?></p>
+                <p>created_at: <?php echo $data->created_at; ?></p>
+                <p>updated_at: <?php echo $data->updated_at; ?></p>
+                <p>pushed_at: <?php echo $data->pushed_at; ?></p>
+                <p>git_url: <?php echo $data->git_url; ?></p>
+                <p>clone_url: <?php echo $data->clone_url; ?></p>
+                <p>ssh_url: <?php echo $data->ssh_url; ?></p>
+                <p>svn_url: <?php echo $data->svn_url; ?></p>
+                <p>visibility: <?php echo $data->visibility; ?></p>
+                <p>default_branch: <?php echo $data->default_branch; ?></p>
+                <hr style="background-color:white; width: 90%;">
+            <?php endforeach ?>
 
-            $user = $_POST["user"];
-            $opt = $_POST["opt"];
+            <?php foreach ($jsons_followers as $data) : ?>
+                <h2><?php echo $data->login; ?></h2>
+                <img src="<?php echo $data->avatar_url; ?>">
+            <?php endforeach ?>
 
-            if ($opt == "both") {
-                $service_url = "https://api.github.com/users/" . $user . "/repos";
-                $service_url2 = "https://api.github.com/users/" . $user . "/followers";
+        <?php elseif (isset($_POST['btn']) && $opt == "repo" && !empty($jsons_repo)) : ?>
+            <?php foreach ($jsons_repo as $data) : ?>
+                <h2>name: <?php echo $data->name; ?></h2>
+                <p>id: <?php echo $data->id; ?></p>
+                <p>full_name: <?php echo $data->full_name; ?></p>
+                <p>login: <?php echo $data->owner->login; ?></p>
+                <p>followers_url: <?php echo $data->owner->followers_url; ?></p>
+                <p>deployments_url: <?php echo $data->deployments_url; ?></p>
+                <p>created_at: <?php echo $data->created_at; ?></p>
+                <p>updated_at: <?php echo $data->updated_at; ?></p>
+                <p>pushed_at: <?php echo $data->pushed_at; ?></p>
+                <p>git_url: <?php echo $data->git_url; ?></p>
+                <p>clone_url: <?php echo $data->clone_url; ?></p>
+                <p>ssh_url: <?php echo $data->ssh_url; ?></p>
+                <p>svn_url: <?php echo $data->svn_url; ?></p>
+                <p>visibility: <?php echo $data->visibility; ?></p>
+                <p>default_branch: <?php echo $data->default_branch; ?></p>
+                <hr style="background-color:white; width: 90%;">
+            <?php endforeach ?>
 
-                $curl = curl_init($service_url);
-                $curl2 = curl_init($service_url2);
+        <?php elseif (isset($_POST['btn']) && $opt == "followers" && !empty($jsons_followers)) : ?>
 
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl, CURLOPT_POST, false);
-                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($curl, CURLOPT_USERAGENT, "Github Api in Curl");
+            <?php foreach ($jsons_followers as $data) : ?>
+                <h2><?php echo $data->login; ?></h2>
+                <img src="<?php echo $data->avatar_url; ?>">
+            <?php endforeach ?>
 
-                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl2, CURLOPT_POST, false);
-                curl_setopt($curl2, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($curl2, CURLOPT_USERAGENT, "Github Api in Curl");
-
-                $curl_response = curl_exec($curl);
-                curl_close($curl);
-
-                $curl_response2 = curl_exec($curl2);
-                curl_close($curl2);
-
-                $jsons = json_decode($curl_response);
-
-                $jsons2 = json_decode($curl_response2);
-
-
-                if (!empty($jsons)) {
-                    foreach ($jsons as $data) {
-                        $_id = $data->id;
-                        $name = $data->name;
-                        $full_name = $data->full_name;
-                        $login = $data->owner->login;
-                        $followers_url = $data->owner->followers_url;
-                        $deployments_url = $data->deployments_url;
-                        $created_at = $data->created_at;
-                        $updated_at = $data->updated_at;
-                        $pushed_at = $data->pushed_at;
-                        $git_url = $data->git_url;
-                        $ssh_url = $data->ssh_url;
-                        $clone_url = $data->clone_url;
-                        $svn_url = $data->svn_url;
-                        $visibility = $data->visibility;
-                        $default_branch = $data->default_branch;
-
-                        echo "<h2>name: " . $name . "</h2>";
-                        echo "<p>id: " . $_id . "</p>";
-                        echo "<p>full_name: " . $full_name . "</p>";
-                        echo "<p>login: " . $login . "</p>";
-                        echo "<p>followers_url: " . $followers_url . "</p>";
-                        echo "<p>deployments_url: " . $deployments_url . "</p>";
-                        echo "<p>created_at: " . $created_at . "</p>";
-                        echo "<p>updated_at: " . $updated_at . "</p>";
-                        echo "<p>pushed_at: " . $pushed_at . "</p>";
-                        echo "<p>git_url: " . $git_url . "</p>";
-                        echo "<p>clone_url: " . $clone_url . "</p>";
-                        echo "<p>svn_url: " . $svn_url . "</p>";
-                        echo "<p>visibility: " . $visibility . "</p>";
-                        echo "<p>default_branch: " . $default_branch . "</p>";
-
-                        echo '<hr style="background-color:white; width: 90%;">';
-                    }
-                } else {
-                    echo "Repos Were Not Found!";
-                    echo '<hr style="background-color:white; width: 90%;">';
-                }
-
-                if (!empty($jsons2)) {
-                    foreach ($jsons2 as $data2) {
-                        $img = $data2->avatar_url;
-                        $foloerName = $data2->login;
-                        echo "<h2>" . $foloerName . "</h2>";
-                        echo '<img src="' . $img . '">';
-                    }
-                } else {
-                    echo "Followers Were Not Found!";
-                    echo '<hr style="background-color:white; width: 90%;">';
-                }
-            }
-            else if ($opt == "repo") {
-                $service_url = "https://api.github.com/users/" . $user . "/repos";
-
-                $curl = curl_init($service_url);
-
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl, CURLOPT_POST, false);
-                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($curl, CURLOPT_USERAGENT, "Github Api in Curl");
-
-                $curl_response = curl_exec($curl);
-                curl_close($curl);
-
-                $jsons = json_decode($curl_response);
-
-                if (!empty($jsons)) {
-                    foreach ($jsons as $data) {
-                        $_id = $data->id;
-                        $name = $data->name;
-                        $full_name = $data->full_name;
-                        $login = $data->owner->login;
-                        $followers_url = $data->owner->followers_url;
-                        $deployments_url = $data->deployments_url;
-                        $created_at = $data->created_at;
-                        $updated_at = $data->updated_at;
-                        $pushed_at = $data->pushed_at;
-                        $git_url = $data->git_url;
-                        $ssh_url = $data->ssh_url;
-                        $clone_url = $data->clone_url;
-                        $svn_url = $data->svn_url;
-                        $visibility = $data->visibility;
-                        $default_branch = $data->default_branch;
-
-                        echo "<h2>name: " . $name . "</h2>";
-                        echo "<p>id: " . $_id . "</p>";
-                        echo "<p>full_name: " . $full_name . "</p>";
-                        echo "<p>login: " . $login . "</p>";
-                        echo "<p>followers_url: " . $followers_url . "</p>";
-                        echo "<p>deployments_url: " . $deployments_url . "</p>";
-                        echo "<p>created_at: " . $created_at . "</p>";
-                        echo "<p>updated_at: " . $updated_at . "</p>";
-                        echo "<p>pushed_at: " . $pushed_at . "</p>";
-                        echo "<p>git_url: " . $git_url . "</p>";
-                        echo "<p>clone_url: " . $clone_url . "</p>";
-                        echo "<p>svn_url: " . $svn_url . "</p>";
-                        echo "<p>visibility: " . $visibility . "</p>";
-                        echo "<p>default_branch: " . $default_branch . "</p>";
-
-                        echo '<hr style="background-color:white; width: 90%;">';
-                    }
-                } else {
-                    echo "No Repos Was Found!";
-                    echo '<hr style="background-color:white; width: 90%;">';
-                }
-            } else {
-                $service_url = "https://api.github.com/users/" . $user . "/followers";
-
-                $curl = curl_init($service_url);
-
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl, CURLOPT_POST, false);
-                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($curl, CURLOPT_USERAGENT, "Github Api in Curl");
-
-                $curl_response = curl_exec($curl);
-                curl_close($curl);
-
-                $jsons = json_decode($curl_response);
-
-                if (!empty($jsons)) {
-                    foreach ($jsons as $data) {
-                        $img = $data->avatar_url;
-                        $foloerName = $data->login;
-                        echo "<h2>" . $foloerName . "</h2>";
-                        echo '<img src="' . $img . '">';
-                    }
-                } else {
-                    echo "Nothing Was Found!";
-                    echo '<hr style="background-color:white; width: 90%;">';
-                }
-            }
-        } else {
-            echo "Please Input Github User Name!";
-            echo '<hr style="background-color:white; width: 90%;">';
-        }
-        ?>
+        <?php endif ?>
 
     </div>
 </body>
