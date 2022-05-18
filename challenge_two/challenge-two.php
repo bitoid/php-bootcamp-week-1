@@ -51,7 +51,9 @@
           <!-- Render form at the beginning, when the user has not yet submitted the data -->
         <?php elseif (isset($_POST) && $haveData === false): ?>
             <?php include 'renderForm.php' ?>
-            <p class="error-message">Git user does not exist</p>
+            <?php foreach ($errors as $error): ?>
+              <p class="error-message"><?= $error ?></p>
+            <?php endforeach ?>
         <?php endif ?>
       </section>
     </div>
