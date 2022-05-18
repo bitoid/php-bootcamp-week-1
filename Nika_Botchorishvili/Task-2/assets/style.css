@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 100%;
+    min-height: 400px;
+}
+
+.container h1{
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: red;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.container form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.container #error{
+    color: red;
+    text-align: center;
+}
+.container form select,input,button{
+    align-self: flex-start;
+}
+
+.container form select{
+    padding: 7px 11px;
+}
+.container form input{
+    padding: 10 13px;
+}
+
+.container form select:hover{
+    border: 1px solid red;
+}
+
+.container form button{
+    text-transform: uppercase;
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: #00F6FF;
+}
+
+
+#list table, td {
+    border:1px solid black;
+}
+
+#list table td img{
+    height: 100px;
+}
+
+#list table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+}
+  
+#list table td, #list table th {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+#list table tr:nth-child(even){background-color: #f2f2f2;}
+
+#list table tr:hover {background-color: #ddd;}
+
+#list table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+  
