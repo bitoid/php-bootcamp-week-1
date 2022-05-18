@@ -62,7 +62,7 @@
 ?>
 
 <?php
-    $req_method = htmlspecialchars($_SERVER['REQUEST_METHOD']);
+    $req_method = $_SERVER['REQUEST_METHOD'];
 
     if ($req_method === 'GET') {
         include 'inc/form.php';
