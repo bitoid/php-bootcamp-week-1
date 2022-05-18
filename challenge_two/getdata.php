@@ -3,6 +3,7 @@ $haveData = false;
 $haveDataFollowers = false;
 $errors = [];
 
+// get the number of followers or repos the user has
 function get_followers_and_repos($url, $username) {
   $url_user = $url . $username;
   $resource = curl_init($url_user);
@@ -19,8 +20,21 @@ function get_followers_and_repos($url, $username) {
   return $result;
 }
 
+// calculate number of pages that we have to fetch
 function calculate_pages($info) {
   return ceil($info / 100);
+}
+
+// unnest the given array
+function unnest_array($arr) {
+  $unnested = [];
+  // Unnesting the array
+  for ($i = 0; $i < count($arr); $i++) {
+    for ($j = 0; $j < count($arr[$i]); $j++) {
+      $unnested[] = $arr[$i][$j];
+    }
+  }
+  return $unnested;
 }
 
 if ($_POST["username"]) {

@@ -1,6 +1,5 @@
 <?php
 $repos_nested = [];
-$repos = [];
 for ($i = 1; $i <= $number_of_pages_repos; $i++) {
   // Using curl to fetch data about user's repos.
   // if there's more than one page to be fetched, we can do it like this :)
@@ -18,17 +17,12 @@ for ($i = 1; $i <= $number_of_pages_repos; $i++) {
     curl_close($resource_user);
 }
 
+$repos = unnest_array($repos_nested);
+
 // If the user does not exist, save error message
 if (!$resource_user) {
   $errors[] = "Github user not found";
 } else {
   $haveData = true;
-}
-
-// Unnest the repositories array, so that implementing pagination will be possible
-for ($i = 0; $i < count($repos_nested); $i++) {
-  for ($j = 0; $j < count($repos_nested[$i]); $j++) {
-    $repos[] = $repos_nested[$i][$j];
-  }
 }
 ?>

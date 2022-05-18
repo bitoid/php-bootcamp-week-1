@@ -46,6 +46,7 @@
             <!-- If none were checked, render form and show the error message -->
           <?php else: ?>
             <?php include 'renderForm.php' ?>
+            <?php $errors[] = "You must check at least one of the boxes"?>
             <p class='error-message'>You must check at least one of the boxes</p>
           <?php endif ?>
           <!-- Render form at the beginning, when the user has not yet submitted the data -->
