@@ -37,6 +37,7 @@
             $lastName = isset($_POST['lastName']) && !empty($_POST['lastName'])? $_POST['lastName']: "";
             $error = "";
             $fileDestination = "";
+            
             //Error Handling
             do{
                 if(empty($name) && empty($lastName)){

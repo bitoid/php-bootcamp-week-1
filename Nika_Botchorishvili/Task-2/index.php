@@ -45,10 +45,10 @@
             </div>
         </form>
     
-        <?php $error = $username == null && isset($_POST)? "Please enter a username": ""; ?>
+        <?php $error = empty($username) && isset($_POST['username'])? "Please enter a username": ""; ?>
         <p id="error"><?= $error ?> </p>
 
-        <?php if(empty($error)): ?>
+        <?php if(empty($error) && !empty($username)): ?>
             <div id="list">
                 <table>
                     <tr>
@@ -71,6 +71,5 @@
             </div>
         <?php endif; ?>
     </div>
-
 </body>
 </html>
