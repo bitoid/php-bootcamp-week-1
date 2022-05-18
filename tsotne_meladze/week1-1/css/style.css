@@ -7,8 +7,7 @@
 }
 
 body {
-  height: 100vh;
-  background-image: url(../img/pattern1.png);
+  background-image: url(../img/pattern.png);
   background-size: auto;
   background-repeat: repeat;
 }
@@ -27,6 +26,7 @@ img {
   margin-top: 20px;
   width: 100%;
   height: auto;
+  border-radius: 14px;
 }
 
 .box,
@@ -97,41 +97,4 @@ input:focus {
 #line4 {
   margin-top: -10px;
   text-align: center;
-}
-
-#line4 input {
-  width: 79%;
-  height: 43px;
-  font-size: 21px;
-  padding: 4px;
-  border-radius: 6px;
-  text-transform: uppercase;
-}
-#line4 p {
-  margin: 2px;
-  color: antiquewhite;
-  font-size: 0.7em;
-}
-
-#helpme {
-  color: #c7c7c7;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
-#quitme {
-  color: #c7c7c7;
-  position: absolute;
-  left: 10px;
-  top: 10px;
-}
-
-.contact {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 332px;
-  z-index: 100;
-  color: black;
 }
