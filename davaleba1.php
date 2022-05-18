@@ -73,7 +73,7 @@ if(isset($_POST['submit']))
  
  ?>
  <p class="suname"><?php echo $name." ".$surname ?></p>
-     <p>Seicvala ??</p>
+     
 
 </body>
 </html>
