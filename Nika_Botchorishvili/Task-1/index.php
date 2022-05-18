@@ -7,47 +7,11 @@
     <title>Task 1</title>
 </head>
 <body>
-<?php
-
-$name = "";
-$lastName = "";
-$fileDest = "";
-$error = "";
-if(isset($_POST) && !empty($_POST)){
-    if(ctype_alpha($_POST['name']) && ctype_alpha($_POST['lastName'])){
-        $name = $_POST['name'];
-        $lastName = $_POST['lastName'];
-        if(!empty($name) && !empty($lastName)){
-            $fileName = $_FILES['pfp']['name'];
-            $fileTempName = $_FILES['pfp']['tmp_name'];
-            $fileType = $_FILES['pfp']['type'];
-            $fileSize = $_FILES['pfp']["size"];
-            $fileError = $_FILES['pfp']['error'];
-
-            $fileNameExp = explode(".", $fileName);
-            $fileExt = end($fileNameExp);
-
-            $allowedTypes = ["jpg",  "png", "jpeg"];
-            if(in_array($fileExt, $allowedTypes)){
-                if($fileError === 0){
-                    $modifiedFileName = uniqid("", true) . "." . $fileExt;
-                    $fileDest = "uploads/" . $modifiedFileName;
-                    move_uploaded_file($fileTempName, $fileDest);
-                }
-            }else{
-                $error = "File should either be jpg, png or jpeg!";
-            }
-        }else{
-            $error = "Fill in the inputs!";
-        }
-    }else{
-        $error = "Use characters only!";
-    }
-}
-
-?>
     <div class="container">
+        
         <h1 id="header">Task 1</h1>
+
+        <?php if(empty($_POST)): ?>
         <form action="" method="POST" enctype="multipart/form-data">
             <div id="form-cont">
                 <div class="input-group">
@@ -63,21 +27,80 @@ if(isset($_POST) && !empty($_POST)){
                 
                 <div class="input-group">
                    <button>SUBMIT</button>
-
                 </div>
-                
             </div>
         </form>
 
-        <?php if(isset($_POST) && !empty($_POST) && empty($error)): ?> 
+        <?php else: ?>
+            <?php 
+            $name = isset($_POST['name']) && !empty($_POST['name'])? $_POST['name']: "";
+            $lastName = isset($_POST['lastName']) && !empty($_POST['lastName'])? $_POST['lastName']: "";
+            $error = "";
+            $fileDestination = "";
+            //Error Handling
+            do{
+                if(empty($name) && empty($lastName)){
+                    $error = "Name and last name inputs are empty";
+                    break;
+                }
+                 
+                if(!empty($name) && empty($lastName)){
+                    $error = "Last name input is empty";
+                    break;
+                }
+    
+                if(empty($name) && !empty($lastName)){
+                    $error = "Name input is empty";
+
+                    break;
+                }
+    
+                if(!ctype_alpha($name) && !ctype_alpha($lastName)){
+                    $error = "Name and last name should be written only in characters";
+                    break;
+                }
+            
+                if(isset($_FILES) && !empty($_FILES['pfp'])){
+                    $fileName = $_FILES['pfp']['name'];
+                    $fileTempName = $_FILES['pfp']['tmp_name'];
+                    $fileType = $_FILES['pfp']['type'];
+                    $fileSize = $_FILES['pfp']["size"];
+                    $fileError = $_FILES['pfp']['error'];
+        
+                    $fileNameExp = explode(".", $fileName);
+                    $fileExt = end($fileNameExp);
+        
+                    $allowedTypes = ["jpg",  "png", "jpeg"];
+                    if(in_array($fileExt, $allowedTypes)){
+                        if($fileError === 0){
+                            $modifiedFileName = uniqid("", true) . "." . $fileExt;
+                            $fileDestination = "uploads/" . $modifiedFileName;
+                            move_uploaded_file($fileTempName, $fileDestination);
+                            unset($_FILES);
+                        }
+                    }else{
+                        $error = "File should either be jpg, png or jpeg!";
+                        break;
+                    }
+                }
+                break;
+            }while(empty($error));
+            ?>
+
+            <?php if(empty($error)): ?>
+
             <div class="res-cont">
                 <h1>Name: <?= $name ?></h1>
                 <h1>Last Name: <?= $lastName ?></h1>
-                <img src="<?= $fileDest ?>" alt="">
+                <img src="<?= $fileDestination ?>" alt="">
             </div>
+
+            <?php else: ?>
+
+                <p><?= $error ?></p>
+            <?php endif; ?>
+
         <?php endif; ?>
-        <p><?= $error ?></p>
-        </div>
     </div>
 </body>
 </html>
