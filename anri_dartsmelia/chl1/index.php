@@ -18,7 +18,6 @@ if (isset($_FILES['img'])) {
         }
 
         move_uploaded_file($file_tmp, $path . $file_name);
-        
     } else {
         $errors[] = "Please Upload Image!";
     }
@@ -99,11 +98,12 @@ if (isset($_FILES['img'])) {
 
     <?php elseif (empty($errors) == false) : ?>
         <div class="after" style="background-color: #f2e9e4; border-radius: 10px; min-width: 40vw; max-width: 80vw; min-height: 40vh; max-height: 60vh; -webkit-box-shadow: 5px 5px 15px -5px #c9ada7; box-shadow: 5px 5px 15px -5px #c9ada7; display: flex; justify-content: center; align-items: center; margin-left: 20px; color:red; flex-direction: column;">
-            <?php foreach ($errors as $err) {
-                echo "<p>" . $err . "</p>";
-            } ?>
+            <?php foreach ($errors as $err) : ?>
+                <p><?php echo $err ?></p>
+            <?php endforeach ?>
         </div>
-    <?php endif; ?>
+
+    <?php endif ?>
 
 </body>
 
