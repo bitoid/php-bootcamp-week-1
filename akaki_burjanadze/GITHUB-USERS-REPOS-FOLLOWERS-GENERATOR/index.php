@@ -4,37 +4,37 @@
     $USERNAME_REQUIRED;
     $data_to_render = 'repos';
 
-    if (isset($_POST['submit'])) {
-        if (!$_POST['username']) {
+    if (isset($_GET['submit'])) {
+        if (!$_GET['username']) {
             $USERNAME_REQUIRED = 'Github Username is required';
         }
 
-        if ($_POST['category']) {
-            $data_to_render = htmlspecialchars($_POST['category']);
+        if ($_GET['category']) {
+            $data_to_render = htmlspecialchars($_GET['category']);
         }
 
         // get github user
-        $github_user_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_POST['username']), 'REPOS-FOLLOWERS-GENERATOR');
+        $github_user_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_GET['username']), 'REPOS-FOLLOWERS-GENERATOR');
         $github_user = json_decode($github_user_json, true);
 
         // get user repos
         if ($data_to_render === 'repos') {
-            $repos_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_POST['username']).'/repos?page=1&per_page=100', 'REPOS-FOLLOWERS-GENERATOR');
+            $repos_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_GET['username']).'/repos?page=1&per_page=100', 'REPOS-FOLLOWERS-GENERATOR');
             $repos = json_decode($repos_json, true);
         }
 
         // get user followers
         if ($data_to_render === 'followers') {
-            $followers_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_POST['username']).'/followers?page=1&per_page=100', 'REPOS-FOLLOWERS-GENERATOR');
+            $followers_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_GET['username']).'/followers?page=1&per_page=100', 'REPOS-FOLLOWERS-GENERATOR');
             $followers = json_decode($followers_json, true);
         }
 
         // get repos and followers
         if ($data_to_render === 'both') {
-            $repos_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_POST['username']).'/repos?page=1&per_page=100', 'REPOS-FOLLOWERS-GENERATOR');
+            $repos_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_GET['username']).'/repos?page=1&per_page=100', 'REPOS-FOLLOWERS-GENERATOR');
             $repos = json_decode($repos_json, true);
 
-            $followers_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_POST['username']).'/followers?page=1&per_page=100', 'REPOS-FOLLOWERS-GENERATOR');
+            $followers_json = get_api_data('https://api.github.com/users/'.htmlspecialchars($_GET['username']).'/followers?page=1&per_page=100', 'REPOS-FOLLOWERS-GENERATOR');
             $followers = json_decode($followers_json, true);
         }
     }
@@ -42,7 +42,7 @@
 ?>
 
 <div class="container mt-5">
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="GET">
         <div class="mb-5">
             <label class="form-label text-white" for="username">Github Username</label>
             <input class="form-control" type="text" name="username" id="username" placeholder="Enter a github username">
