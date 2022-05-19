@@ -26,12 +26,8 @@
                     <?php
                         if (isset($_GET['submitName'])) {
                             $userName = $_GET['username'];
-                            
-
-                            
-    
                             if (!empty($_GET['username'])) {
-    
+
                                 $curl = curl_init();
                                 
                                 $response = [];
@@ -58,14 +54,15 @@
                                     array_push($response,...$result);
                                     
                                 }
-
-                                if (!empty($_GET['select'])) {
-                                    $selected = $_GET['select'];
-                                    if ($selected == "repos") {
-                                        foreach($response as $resp){
-                                            echo '<li><a target="_blank" href="'.$resp["html_url"].'">'.$resp["name"].'</a></li>';
-                                        }
+                    ?>
+                    <?php 
+                        if (!empty($_GET['select'])) {
+                                $selected = $_GET['select'];
+                                if ($selected == "repos") {
+                                    foreach($response as $resp){
+                                        echo '<li><a target="_blank" href="'.$resp["html_url"].'">'.$resp["name"].'</a></li>';
                                     }
+                                }
     
                                 }
     
