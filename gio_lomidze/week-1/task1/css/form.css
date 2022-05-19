@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    width: 100%;
+    font-family: 'Roboto',sans-serif;
+}
+
+.wrapper {
+    margin-inline: auto;
+    max-width: 425px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top:60px;
+    transition: 300ms;
+}
+
+input {
+    border: 1px solid #888;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-top: 20px;
+}
+
+input[type='file'] {
+    padding: 7px 10px;
+    cursor: pointer;
+    margin-top:0;
+    width: 100%;
+}
+
+input:hover {
+    border-color: #555;
+}
+
+input:focus {
+    border-color: #111;
+    outline: none;
+}
+
+button {
+    border: 1px solid #777;
+    border-radius: 4px;
+    padding: 10px;
+    background: #ebebeb;
+    margin-top: 25px;
+}
+
+button:hover {
+    cursor: pointer;
+    border-color: #444;
+    background: #ddd;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.success {
+    color: rgb(52, 165, 86);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.error {
+    color: rgb(230, 67, 67);
+    font-size: 12px;
+}
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.result {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+img {
+    margin-inline: auto;
+    max-width: 100%;
+}
+.img_wrap {
+    text-align: center;
+    margin-top: 30px
+}
+
+.custom_input_file label {
+    margin:15px 0 8px;
+    font-size: 14px;
+    display: block;
+}
+/* 
+.lbl {
+    display:block;
+    height:39px;
+}
+.lbl:after {
+    content:"Click to upload an image 🖼️";
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+    inset:0;
+    border: 1px dashed #888;
+    border-radius:4px;
+    font-size: 14px;
+}
+.lbl:hover {
+    cursor:pointer;
+}
+
+.custom_input_file {
+    position: relative;
+    margin-top:20px;
+}
+
+.custom_input_file input {
+    display: none;
+} */
