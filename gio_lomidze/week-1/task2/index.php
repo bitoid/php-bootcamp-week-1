@@ -47,9 +47,7 @@ $_SESSION['github'] = $info;
             </form>
 
             <div class='result'>
-                <?php
-                    include 'function.php';
-                ?>
+                <?php include 'function.php'; ?>
             </div>
         </div>
     </body>

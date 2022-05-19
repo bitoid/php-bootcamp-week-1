@@ -3,34 +3,39 @@
 $per_page = 30; // show items per page
 $page_num = isset($_GET['submit_page']) ? $_GET['submit_page'] : 1; // if pages don't exist, equals to 1
 
-if(isset($_GET['submit']) || isset($_GET['submit_page'])) {
+?>
+
+<?php if(isset($_GET['submit']) || isset($_GET['submit_page'])) : ?>
+
+    <?php 
     // ******************* fetch general information about an user ********* //
 
-    $urlInfo = "https://api.github.com/users/$user";
-    $curlInfo = curl_init($urlInfo);
+    $url_info = "https://api.github.com/users/$user";
+    $curl_info = curl_init($url_info);
 
-    curl_setopt($curlInfo, CURLOPT_URL, $urlInfo);
-    curl_setopt($curlInfo, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl_info, CURLOPT_URL, $url_info);
+    curl_setopt($curl_info, CURLOPT_RETURNTRANSFER, true);
 
     $headers = array(
         "User-Agent: ReqBin Curl Client/1.0",
         );
 
-    curl_setopt($curlInfo, CURLOPT_HTTPHEADER, $headers);
-    $responseInfo = curl_exec($curlInfo);
+    curl_setopt($curl_info, CURLOPT_HTTPHEADER, $headers);
+    $response_info = curl_exec($curl_info);
 
-    $dataInfo = json_decode($responseInfo, true);
+    $data_info = json_decode($response_info, true);
 
-    curl_close($curlInfo);
+    curl_close($curl_info);
     
     //****************** end of user information fetch *****************//
-    if(isset($dataInfo['public_repos']) && isset($dataInfo['followers'])) {
-        $total_repo = $dataInfo['public_repos']; // total repositories of an user
-        $total_repo > 1 ? $sr = 's' : $sr = ''; //for plural -> repo(s)
+
+    if(isset($data_info['public_repos']) && isset($data_info['followers'])) {
+        $total_repo = $data_info['public_repos']; // total repositories of an user
+        $total_repo > 1 ? $s_plural_repo = 's' : $s_plural_repo = ''; //for plural -> repo(s)
         $page_repo = ceil($total_repo / $per_page); // count pages
 
-        $total_follow = $dataInfo['followers']; // total followers of an user
-        $total_follow > 1 ? $sf = 's' : $sf = ''; //for plural -> follower(s)
+        $total_follow = $data_info['followers']; // total followers of an user
+        $total_follow > 1 ? $s_plural_follow = 's' : $s_plural_follow = ''; //for plural -> follower(s)
         $page_follow = ceil($total_follow / $per_page); // count pages
     }
     
@@ -50,51 +55,73 @@ if(isset($_GET['submit']) || isset($_GET['submit_page'])) {
     curl_close($curl);
 
     $data = json_decode($response, true);
-
+    
     // *********** end of data fetch using curl **************** //
     //*************** loops through fetched data and generates desired html **************//
-    if($status === 200) {
-        if($info === 'repos' && $page_repo > 0) {
-            echo "<h2>Repo$sr of <b>$user</b>:</h2><br>";
-            foreach($data as $key => $val)
-                echo 
-                    "<div class='repo'><span>" . $key + 1 + ($page_num - 1) * 30 . ")</span><a href='" . $val['owner']['html_url'] . '/' . $val['name'] . "' target='_blank'>
-                        <p>" . $val['name'] . "</p>
-                    </a></div>"; //generates repos
-            if($page_repo >= 1 || isset($_GET['submit_page'])) {
-                echo "<div class='pagination'><form action='' method='GET'>"; //generates pagination for repos
-                for($i=1; $i < $page_repo + 1; $i++){
-                    $page_num == $i ? $active = 'active' : $active = ''; // class 'active' highlights current page
-                    echo "<button class='$active' type = 'submit' name = 'submit_page' value='$i'>$i</button>";
-                }
-                echo "</form></div>";
-            }
-        } else if($info === 'followers' && $page_follow > 0) {
-            echo "<h2>Follower$sf of <b>$user</b>:</h2><br>";
-            foreach($data as $val)
-                echo
-                    "<p>" . $val['login'] . "</p>
+    ?>
+
+    <?php if($status === 200) : ?>
+
+       <?php if($info === 'repos' && $page_repo > 0) : ?>
+            <h2>Repo<?= $s_plural_repo ?> of <b><?= $user ?></b>:</h2><br>
+            <?php foreach($data as $key => $val) : ?>
+ 
+                    <div class='repo'>
+                        <span><?= $key + 1 + ($page_num - 1) * 30 ?>)</span>
+                        <a href='<?= $val['owner']['html_url'] . '/' . $val['name'] ?>' target='_blank'>
+                        <p><?= $val['name'] ?></p>
+                    </a></div>
+            <?php endforeach ?>
+
+            <?php if($page_repo >= 1 || isset($_GET['submit_page'])) : ?>
+                
+                <div class='pagination'>
+                    <form action='' method='GET'>
+                        <?php for($i=1; $i < $page_repo + 1; $i++) : ?>
+                            <?php $page_num == $i ? $active = 'active' : $active = ''; // class 'active' highlights current page ?>
+                            
+                            <button class='<?= $active ?>' type = 'submit' name = 'submit_page' value='<?= $i ?>'><?= $i ?></button>
+                        <?php endfor ?>
+                    </form>
+                </div>
+
+            <?php endif ?>
+        <?php elseif($info === 'followers' && $page_follow > 0) : ?>
+            <h2>Follower<?= $s_plural_follow ?>of <b><?= $user ?></b>:</h2><br>
+            <?php foreach($data as $val) : ?>
+
+                    <p><?= $val['login'] ?></p>
                     <div class='img_wrap'>
-                        <a href=" . $val['html_url'] ." target='_blank'>
-                            <img src='" . $val['avatar_url'] . "'>
+                        <a href='<?= $val['html_url'] ?>' target='_blank'>
+                            <img src='<?= $val['avatar_url'] ?>'>
                         </a>
-                    </div>"; //generates followers
-            if($page_follow >= 1 && (isset($_GET['submit_page']) || isset($_GET['submit']))) {
-                echo "<div class='pagination'><form action='' method='GET'>"; //generates pagination for followers
-                for($i=1; $i < $page_follow + 1; $i++){
-                    $page_num == $i ? $active = 'active' : $active = ''; // class 'active' highlights current page
-                    echo "<button class='$active' type = 'submit' name = 'submit_page' value='$i'>$i</button>";
-                }
-                echo "</form></div>";
-            }
-        } else if(!$page_repo) {
-            echo '<p class="error">User has no repositories</p>';
-        } else {
-            echo '<p class="error">User has no followers</p>';
-        }
-    } else if($status === 403){
-        echo '<p class="error">Forbidden, API calls hourly limit exceeded, try again later</p>'; // error code 403 if API server forbids connection
-    } else {
-        echo '<p class="error">Error, invalid Github Username</p>'; // error message for other errors
-    }
-}
+                    </div>
+
+            <?php endforeach ?>
+
+            <?php if($page_follow >= 1 && (isset($_GET['submit_page']) || isset($_GET['submit']))) : ?>
+                <div class='pagination'><form action='' method='GET'>
+                    <?php for($i=1; $i < $page_follow + 1; $i++) : ?>
+                        <?php $page_num == $i ? $active = 'active' : $active = ''; // class 'active' highlights current page ?>
+
+                        <button class='<?= $active ?>' type = 'submit' name = 'submit_page' value='<?= $i ?>'><?= $i ?></button>
+                    <?php endfor ?>
+                </form>
+                </div>
+            <?php endif ?>
+        <?php elseif(!$page_repo) : ?>
+            <p class="error">User has no repositories</p>
+        <?php else : ?>
+            <p class="error">User has no followers</p>
+        <?php endif ?>
+
+    <?php elseif($status === 403) : ?>
+
+        <p class="error">Forbidden, API calls hourly limit exceeded, try again later</p>
+
+    <?php else : ?>
+
+        <p class="error">Error, invalid Github Username</p>
+
+    <?php endif ?>
+<?php endif ?>
