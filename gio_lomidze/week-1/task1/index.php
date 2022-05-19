@@ -1,6 +1,14 @@
 <?php
-    include 'function.php';
-    $validateInputs = [false,false,false];
+    function validator($cond,$msg) {
+        if($cond): ?>
+        
+            <p class='error'><?= $msg ?></p>
+        
+        <?php endif;
+    }
+?>
+<?php
+    $validateInputs = [false, false, false];
 ?>
 <!doctype HTML>
 <html>
@@ -71,20 +79,27 @@
 
                 <?php
                     if(isset($_POST['submit'])) {
-                        if($validateInputs[0] && $validateInputs[1] && $validateInputs[2]) {
-                            print   '<p class="success">Your data was submitted successfully!</p>
-                                    <p>First name: ' . $_POST['firstName'] . '</p>
-                                    <p>Last name: ' . $_POST['lastName'] . '</p>';
-                            $img = $_FILES['userImage'];
-                            $dir = 'images/';
-                            if(!is_dir($dir)) {
-                                mkdir($dir,'0777',true);
-                            }
-                            $img_name = $dir . $_FILES['userImage']['name'];
-                            $tmp_img_name = $_FILES['userImage']['tmp_name'];
-                            move_uploaded_file($tmp_img_name, $img_name);
-                            echo "<div class='img_wrap'><img src='$img_name' alt='$img_name'/></div>";
-                        }
+                        if($validateInputs[0] && $validateInputs[1] && $validateInputs[2]): ?>
+
+                            <p class="success">Your data was submitted successfully!</p>
+                            <p>First name: <?= $_POST['firstName'] ?> </p>
+                            <p>Last name: <?= $_POST['lastName'] ?> </p>
+                            
+                            <?php 
+                                $img = $_FILES['userImage'];
+                                $dir = 'images/';
+                                if(!is_dir($dir)) {
+                                    mkdir($dir,'0777',true);
+                                }
+                                $img_name = $dir . $_FILES['userImage']['name'];
+                                $tmp_img_name = $_FILES['userImage']['tmp_name'];
+                                move_uploaded_file($tmp_img_name, $img_name);
+                            ?>
+
+                            <div class='img_wrap'>
+                                <img src= <?=$img_name?> alt= <?=$img_name?> />
+                            </div>
+                        <?php endif;
                     }
                 ?>
 
