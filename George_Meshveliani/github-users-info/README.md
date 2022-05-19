@@ -1,14 +1,8 @@
 ## Instructions
 
-#### Run project on your local machine
-1. `cd githubs-users-info` 
-2. `cd src`
-3. `composer install`
-4. `cd ..`
-5. `cd docker`
-6. `docker-compose up`
-7. Go to `localhost:8000`
-
-#### Stop project on your local machine
-1. `docker-compose down`
+1. `cd githubs-users-info` - Go to the project directory
+2. `cd docker` - Open a docker directory
+3. `docker-compose up` - Run the project
+4. `localhost:8000` - Open a browser on your local server
+5. `docker-compose down` - Stop the project
 
