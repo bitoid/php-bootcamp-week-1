@@ -19,7 +19,3 @@ $data = json_decode($response, true);
 // for incrementing repository indexis
 $i = 1;
 
-$previous = "javascript:history.go(-1)";
-if(isset($_SERVER['HTTP_REFERER'])) {
-    $previous = $_SERVER['HTTP_REFERER'];
-}

@@ -5,7 +5,7 @@
         <thead>
             <tr>
                 <th>
-                    <a href="<?= $previous ?>">Repositories/</a>
+                    <a href="index.php">Repositories/</a>
                     <h3 style="display: inline-block;">Followers</h3>
                 </th>
             </tr>

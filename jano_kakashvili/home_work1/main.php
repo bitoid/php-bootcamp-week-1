@@ -1,15 +1,18 @@
 <?php
 // header('Content-Type: text/plain; charset=utf-8');
 
-$fnameValidated = false;
-$lnameValidated = false;
-$nameValidationSuccess = false;
+$first_name_validated = false;
+$last_name_validated = false;
+$name_validation_passed = false;
 
 // Show Error in html
 // define variables for errors
-$firstNameErr = $lastNameErr = $upload_error_message = "";
-$text_input_error = "hidden"; // error message display
+$first_name_eror = $last_name_error = $upload_error_message = "";
+$text_input_error = "hidden"; // if error occurs displait
 $file_upload_error = "hidden";
+
+// do not display user information block before validation
+$display_user_info = "hidden";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -18,24 +21,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     */  ///////////////
 
     if (empty($_POST['fname'])) {
-        $firstNameErr = "First name is required!";
+        $first_name_eror = "First name is required!";
     } else if (ctype_alpha($_POST['fname'])) {
-        $fnameValidated = true;
+        $first_name_validated = true;
     } else {
-        $firstNameErr = "Please use only letters (a-z).";
+        $first_name_eror = "Please use only letters (a-z).";
     }
 
 
     if (empty($_POST['lname'])) {
-        $lastNameErr = "Last name is required!";
+        $last_name_error = "Last name is required!";
     } else if (ctype_alpha($_POST['lname'])) {
-        $lnameValidated = true;
+        $last_name_validated = true;
     } else {
-        $lastNameErr = "Please use only letters (a-z).";
+        $last_name_error = "Please use only letters (a-z).";
     }
 
     // display errors
-    if ($firstNameErr || $lastNameErr) {
+    if ($first_name_eror || $last_name_error) {
         $text_input_error = "visible";
     }
 
@@ -115,16 +118,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target_file = "uploads/" . $sha1file . '.' . $ext; // ატვირთული ფაილის მისამართი
 
     // add results
-    if ($fnameValidated && $lnameValidated) {
-        $nameValidationSuccess = true;  // სახელი და გვარის ვალიდაცია დასრულდა წარმატებით
+    if ($first_name_validated && $last_name_validated) {
+        $name_validation_passed = true;  // სახელი და გვარის ვალიდაცია დასრულდა წარმატებით
     }
 
-    
+
     // თუ text და file input-ების ვალიდაცია წარმატებით დასრულდა მონაცემთა 
     // დამუშავება გაგრძელდება
-    if ($nameValidationSuccess && $fileUploadSuccess) {
+    if ($name_validation_passed && $fileUploadSuccess) {
         $first_name = $_POST['fname'];
         $last_name = $_POST['lname'];
-        $display_image = "<img class='image' src='$target_file' width='250' height='280'><br>";
+        $display_user_info = "visible";
     }
 }
+
+print_r($target_file);
