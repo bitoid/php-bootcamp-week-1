@@ -38,10 +38,10 @@ $param = [
 ];
 
 $context = stream_context_create($param);
-$i=1;
+
 if (isset($name)) {
-  while ($i!=0) {
-    $url = 'https://api.github.com/users/' .$name. '/' .$item.'?page=' .$i. '&per_page=10';
+
+    $url = 'https://api.github.com/users/' .$name. '/' .$item.'?page=1&per_page=30';
 
     $result = json_decode(file_get_contents($url, false, $context));
     if (empty($result)) {
@@ -52,37 +52,41 @@ if (isset($name)) {
         if ($_POST['item']=="repos") {
           $str =strrev($value->html_url);
           $array[] = strrev(substr($str, 0, strpos($str, '/')));
-          echo $str.'<br>';
         }
         else{
           $array[] = [
             'login' => $value->login,
             'avatar' => $value->avatar_url
           ];
-          echo $value->avatar_url.'<br>';
         }
       }
     }
-    $i++;
-  }
+  
 }
 }
   ?>
+
 <div class="center">
   <ol>
-    <?php foreach ($array as $info) : ?>
+    <?php foreach ($array as $info): ?>
       <li>
-        <h1>
-        <?php if ($item==="repos" ) {
-          echo $info;
+        <?php if ($item==="repos" ) {?> 
+          <h2>
+              <?php echo $info; ?>
+          </h2> <?php
         }
         else {
-          echo $info['login']."<img src=\"" .$info['avatar']. "\">";
-        }
-        ?>
-        </h1>
+          ?>
+
+  <div>
+    <h1>I am  <?php echo $info['login'] ?> </h1>
+    <div class="image" style="background-image: url('<?php echo $info['avatar']?>');">
+          <a href="https://github.com/<?php echo $info['login'] ?>" target=”_blank”> <button class="follow">Follow me</button> </a>
+    </div>
+
+<?php } ?>
       </li>
-    <?php endforeach; ?>
+      <?php endforeach; ?>
 </ol>
 </div>
 </html>

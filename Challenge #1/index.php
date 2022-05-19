@@ -34,23 +34,18 @@
   }
   else if($_POST['firstName'] && $_POST['lastName']) {
     echo "<h2 class='center'> Welcome " . $_POST['firstName'] . " " . $_POST['lastName'] . "</h2> \n";
+    
+      $image = $_FILES['fileToUpload'] ?? null;
+      $imagePath = "./".$image['name'];
+      if ($image) {
+          move_uploaded_file($image['tmp_name'], "./".$image['name']);
+      }
+  
+    if ($image) { ?>
+      <div class="center">
+          <img src="<?php echo $imagePath ?>" >
+      </div>
+  <?php }
     }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $image = $_FILES['fileToUpload'] ?? null;
-    $imagePath = "./".$image['name'];
-    if ($image) {
-        move_uploaded_file($image['tmp_name'], "./".$image['name']);
-    }
-
-}
-   ?>
-
-   <?php if ($image): ?>
-        <div class="center">
-            <img src="<?php echo $imagePath ?>" >
-        </div>
-    <?php endif; ?>
-
-   
-
+   ?> 
    </html>
