@@ -80,13 +80,13 @@
                     </div>
                     <span class="label">Image :</span>
                     <div class="picture">
-                        <img src="<?php 
-                            if (isset($_POST['firstName']) || isset($_FILES['image'])){
-                                if(preg_match('/^[a-zA-Z]+[ ]?[a-zA-Z]+$/', $firstName) && !empty($firstName)  && $imageName && preg_match('/^[a-zA-Z]+[ ]?[a-zA-Z]+$/', $lastName) && !empty($lastName)){
-                                    echo  'media/'.$imageName;
-                            }
-                            }?>"
-                        >
+                        <?php if (isset($_POST['firstName']) || isset($_FILES['image'])): ?>
+                                <?php 
+                                    if(preg_match('/^[a-zA-Z]+[ ]?[a-zA-Z]+$/', $firstName) && !empty($firstName)  && $imageName && preg_match('/^[a-zA-Z]+[ ]?[a-zA-Z]+$/', $lastName) && !empty($lastName)) :?>
+                                        <img src="<?php echo "media/".$imageName ?>" alt="Profile Picture">
+                                <?php endif ?>
+                        <?php endif ?>
+                       
                     </div>
             </div>
         </div>
