@@ -35,30 +35,34 @@
 
 <?php
 
-if ($_POST){
-   if ( !ctype_alpha($_POST["firstname"]) or !ctype_alpha($_POST["lastname"])){
-       echo '<div class="alert alert-primary" role="alert"> შეავსეთ სწორად ველები!!!</div>';
+if ($_POST):
+   if ( !ctype_alpha($_POST["firstname"]) or !ctype_alpha($_POST["lastname"])):
+     ?>
+       <div class="alert alert-primary" role="alert"> შეავსეთ სწორად ველები!!!</div>
+     <?php
        exit;
-   }
+   endif;
 
+   
    echo  $_POST["firstname"]. " ". $_POST["lastname"]."<br>"; 
 
-if ($_FILES){
+if ($_FILES):
     
     $fileName = $_FILES["formFile"]["tmp_name"];
    
 
-    if (move_uploaded_file( $fileName, 'temp.jpeg')) {
-         echo "<img src='temp.jpeg' width='150px' />";
-      } 
+    if (move_uploaded_file( $fileName, 'temp.jpeg')) : ?>
+        <img src='temp.jpeg' width='150px' />
 
-}
-}
+      <?php
+    endif;
+
+  endif;
+endif;
 ?>
 <?php
 // API URL
 $url = 'https://api.github.com/users/otarza/followers';
-//$url = "http://api.github.com/users/devinmatte/repos";
 $opts = [
     'http' => [
         'method' => 'GET',
@@ -72,15 +76,19 @@ $json = file_get_contents($url, false, stream_context_create($opts));
 
 $obj = json_decode($json);
 
-//var_dump($obj[0]);
-echo '<div class="grid">';
-for ($i=0; $i<count($obj); $i++){
-  echo '<div class="g-col-6">'.$obj[$i]->login.'</div>';
-  
-}
-echo '</div>';
 ?>
+  <div class="grid">
+<?php
+for ($i=0; $i<count($obj); $i++):
+  
+  ?>
+    <div class="g-col-6"><?= $obj[$i]->login; ?></div>
+  
+<?php 
+endfor
 
+?>
+</div>
 
 
 </body>
