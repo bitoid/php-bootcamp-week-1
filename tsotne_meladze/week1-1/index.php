@@ -13,9 +13,13 @@
       $image_name = "x.png";
       $fullName = "";
     }  else  {
+        $directory_name = "vault";
+        if (!is_dir($directory_name)) {
+          mkdir($directory_name);       
+      }
         $image_name = $_FILES['uploadfile']['name'];
         $image_tmp_name= $_FILES['uploadfile']['tmp_name'];
-        move_uploaded_file($_FILES['uploadfile']['tmp_name'], "vault/$image_name");
+        move_uploaded_file($_FILES['uploadfile']['tmp_name'], "$directory_name/$image_name");
         $fullName = $fname . " " . $lname;
     }
   }
@@ -68,7 +72,7 @@
   <div class="result">
     
     <p><?=$error . $fullName?></p>
-    <img src='vault/<?=$image_name?>'>
+    <img src='<?=$directory_name?>/<?=$image_name?>'>
 
   </div>
   <?php } ?>
