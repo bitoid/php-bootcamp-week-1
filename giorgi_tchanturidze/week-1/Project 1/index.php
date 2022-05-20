@@ -1,46 +1,74 @@
+  <?php
+  //Cheking name and surname if they are alphabet characters (A to Z)
+    if (preg_match("/[^A-Za-z'-]/",$_POST['name'])){
 
-<!--                          Week 1 Project 1                        -->
-
-
-<?php 
-  //Pre described variables
-  $image=$_FILES['image'] ?? null;
-  $imagePath='';
-  $errors=[];
-  $name=$_POST['name'];
-  $lastname=$_POST['lastname'];
-
-  //Cheking name and last name if they are alphabet characters (A to Z)
-  if (preg_match("/[^A-Za-z'-]/",$name)){
-      
-    $errors[]='Invalid Name. <br /> Should be only alphabet characters (A to Z)';
-  }
-  if (preg_match("/[^A-Za-z'-]/",$lastname)){
-      
-    $errors[]='Invalid Last name. <br /> Should be only alphabet characters (A to Z)';
-  }
-
-  //If last name and name was correctly added uploading image
-  if(empty($errors)){  
-    if (!is_dir('images')){
-      mkdir('images');
+      $errors[]='Invalid Name. <br /> Should be only alphabet characters (A to Z)';
     }
+    if (preg_match("/[^A-Za-z'-]/",$_POST['surname'])){
 
+<<<<<<< HEAD
     if(isset($image)){
       $imagePath = 'images/'.$image['name'] ;
       move_uploaded_file($image['tmp_name'],$imagePath);
+=======
+      $errors[]='Invalid Last name. <br /> Should be only alphabet characters (A to Z)';
+>>>>>>> 381db55 (Giorgi Tchanturidze - week 1 home work (updated))
     }
-  }
-?>
-
-<!doctype html>
+  ?>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Week 1 - Project 1</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <meta charset="utf-8"/>
+  <title>Upload image</title>
+  <link href="appcss.css"  rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body class="container">
+  <?php if(empty($_POST) || !empty($errors)):?>
+    <!-- If there are any errors, print them -->
+    <?php if (!empty($errors)): ?>
+      <div class="alert alert-danger">
+        <?php foreach($errors as $error): ?>
+          <div><?php echo $error ?></div>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+    <!-- Submitting with POST method -->
+  <form action="/index.php" method="post" enctype="multipart/form-data">
+    <div class="mt-5">
+      <p class="h6">Should be only alphabet characters (A to Z)</p>
+      <input type="text"name="name"placeholder="Name"class="form-control mb-3">
+      <input type="text"name="surname"placeholder="Surname"class="form-control mb-3">
+      <input type="file"name="image"class="form-control mb-3">
+      <input type="submit" value="submit" class="btn btn-primary form-control mb-3">
+    </div>
+  </form>
+  <?php else: ?>
+  <?php
+  // making image folder if dont exist already
+  if (!is_dir('images')){
+    mkdir('images');
+  }
+  // if file was submited, uploading to local folder
+  if(isset($_FILES['image'])){
+    $imagePath = 'images/'.$_FILES['image']['name'] ;
+    move_uploaded_file($_FILES['image']['tmp_name'],$imagePath);
+  }
+  ?>
+  <!-- Showing results -->
+  <div class="card mb-3">
+    <img src="<?php print $imagePath?>" width="500">
+    <div class="card body">
+    <h5 class="card-title"><?php echo $_POST['name'] . ' ' .  $_POST['surname']?></h5>
+    <p class="card-text" ><small class="text-muted">Image uploaded on: <?php print date('d/Y/M') ?> </small></p>
+    </div>
+  </div>
+  <?php endif; ?>
 
+</body>
+
+<<<<<<< HEAD
     <!-- Bootstrap, CSS -->
     <link href="appcss.css"  rel="stylesheet"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -104,3 +132,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+=======
+</html>
+>>>>>>> 381db55 (Giorgi Tchanturidze - week 1 home work (updated))

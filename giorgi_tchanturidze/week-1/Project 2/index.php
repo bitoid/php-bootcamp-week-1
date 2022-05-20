@@ -45,17 +45,19 @@ if (isset($name)){
 
     <!-- Bootstrap, CSS -->
     <link href="appcss.css"  rel="stylesheet"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body>
     <!-- HTML body-->
+    <?php if(empty($_POST)): ?>
     <form action="" method="POST">
       <div class="form-group">
         <label >Enter Github Username</label>
         <input type="text" class="form-control" name="name" placeholder="Username" />
       </div>
       <div class="form-group">
-        <select class="form-select" name="select" aria-label="Default select example">
+        <select class="form-select form-select-sm" name="select" aria-label=".form-select-sm example">
           <option selected>Open this select menu</option>
           <option value="repos">Repos</option>
           <option value="followers">Followers</option>
@@ -65,6 +67,7 @@ if (isset($name)){
         <button type="submit" class="btn btn-primary" >Submit</button>      
       </div>
     </form>
+    <?php endif; ?>
     <!-- Showing list of resoults -->
     <div>
       <!-- Checking if Repos was requested  -->
@@ -85,8 +88,8 @@ if (isset($name)){
           <?php foreach ($arr as $new) : ?>
               <li>
                 <a href="<?php echo $new ?>"><?php echo str_ireplace("https://github.com/", "", $new) ?><br>
-                <img class="images" src="<?php echo 'https://avatars.githubusercontent.com/'. str_ireplace("https://github.com/", "", $new) ?>" alt="Italian Trulli">
-                </a>
+                <img class="images" src="<?php echo 'https://avatars.githubusercontent.com/'. str_ireplace("https://github.com/", "", $new) ?>" alt="Italian Trulli"><br>
+                </a><br>
             </li>
           <?php endforeach; ?>
           </ul>
