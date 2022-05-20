@@ -1,7 +1,6 @@
 <?php
 
-        $noUser = '<table><tr><tr id="header"><th id="comment" style="border-top-left-radius: 12px;" colspan=2>კომენტარი</th></tr><tr style="background-color: red;"><td style="color: white"; colspan=2 >ასეთი მომხმარებელი არ არსებობს</td></tr></table>'; 
-        //table with comment for  non-existing user
+
         
         function tableHeader($a, $b, $c ) {
           echo '
@@ -21,21 +20,9 @@
           $content = curl_exec($c);
           return $content;      
         };
+        //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
 
-        function parseJsonGET($urls) {
 
-          $param = [
-              'http' => [
-                  'method' => 'GET',
-                  'header' => [
-                      'User-Agent: PHP'
-                  ]
-              ]
-          ];
-          $content = file_get_contents($urls, false, stream_context_create($param));
-          return $content; 
-        }; //alternate method og gettong url Info
-        
         function emptyUser($tag) {
           echo '<table>
           <tr>

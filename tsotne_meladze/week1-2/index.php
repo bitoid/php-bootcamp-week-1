@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(isset($_POST["submit"])) {
+  $_SESSION["user"] = $_POST["user"];
+ if ($_POST["github"] == "repos") {
+  header('Location: repos/index.php');
+ } else {
+  header('Location: followers/index.php');
+ }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,18 +29,17 @@
   </head>
   <body>
     <div class="box">
-      <form action="result.php" method="post" enctype="multipart/form-data">
+      <form action="" method="post" enctype="multipart/form-data">
         <div class="line1">
           <div class="icon"><i class="bx bx-user-circle"></i></div>
-          <div class="input"><input id="lname" type="text" name="user" placeholder="Github პროფილი" required /></div>
+          <div class="input"><input id="user" type="text" name="user" placeholder="Github პროფილი" required /></div>
         </div>
         <div class="line2">
           <div class="icon"><i class="bx bxs-message-square-check"></i></div>
           <div class="input">
-            <select name="github" id="cars">
-              <option value="repo">Repository</option>
-              <option value="follow">Followers</option>
-              <option value="both">Both</option>
+            <select name="github">
+              <option value="repos">Repository</option>
+              <option value="followers">Followers</option>
             </select>
           </div>
         </div>
