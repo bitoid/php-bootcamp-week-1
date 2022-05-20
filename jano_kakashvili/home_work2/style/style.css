@@ -1,0 +1,21 @@
+.followers_image {
+    width: 100px;
+    height: 100px;
+}
+
+.main_form {
+    width: 33%;
+    margin: auto;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 18px;
+}
+
+.nav-bar > h3 {
+    margin: 0;
+    padding: 0 10px 5px 0;
+}
