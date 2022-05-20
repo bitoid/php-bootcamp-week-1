@@ -1,3 +1,8 @@
+<!-- 
+    Fixed multiple if statements
+    Split html and php (stringed part)
+-->
+
 <html lang="en">
 <head>
 	<link rel="stylesheet" href="./demo.css" type="text/css">
@@ -10,49 +15,66 @@
 
 <?php
 
-if(isset($_POST["name"]) and isset($_POST["last-name"]) and isset($_POST["submit"])){   
-    $name = $_POST["name"];
+if(isset($_POST["name"]) && isset($_POST["last-name"]) && isset($_POST["submit"])){   
 
-    $lastName = $_POST["last-name"];
-    $fullName = $name . " " . $lastName;
 
     $file = $_FILES["file"];
 
     $fileName = $_FILES["file"]["name"];
-    $fileTmpName = $_FILES["file"]["tmp_name"];
-    $fileSize = $_FILES["file"]["size"];
-    $fileError = $_FILES["file"]["error"];
     $fileType = $_FILES["file"]["type"];
-
     $fileExt = explode(".", $fileName);
     $fileActualExt = strtolower(end($fileExt));
 
     $allowed = ["jpg", "jpeg", "png"];
 
-    if(in_array($fileActualExt, $allowed)){
-        if($fileError === 0) {
-            if($fileSize < 1000000){
-                $fileNameNew = uniqid("", true).".".$fileActualExt;
-                # Created a folder in the current directory, called "uploads"
-                $fileDestination = "uploads/".$fileNameNew;
-                move_uploaded_file($fileTmpName, $fileDestination);
+    $fileError = $_FILES["file"]["error"];
 
-                echo "<div class='output-container'>";
-                if(preg_match("/^[A-Za-z]+$/", $name) and preg_match("/^[A-Za-z]+$/", $lastName)){
-                    echo "<h1>$fullName</h1>";
-                    echo "<img src=$fileDestination>"; 
-                } else {
-                    echo "<p id='invalid-input'>INVALID INPUT</p>";                     
-                }
-                echo "</div>";
-                
-            } else {
-                echo "File is too large";
-            }
-        } else {
-            echo "There was an error uploading your file.";
-        }
+    if(in_array($fileActualExt, $allowed)){
+        checkErrors($fileError);
     } else {
         echo "Unsupported file format";
     }
 }
+
+function checkErrors($fileError){
+    $fileSize = $_FILES["file"]["size"];
+
+    if($fileError === 0) {
+        checkFileSize($fileSize);
+    } else {
+        echo "There was an error uploading your file.";
+    }
+}
+
+function checkFileSize($fileSize){
+    if($fileSize < 1000000){
+        moveFileToDestination();
+    } else {
+        echo "File is too large";
+    }
+}
+
+function moveFileToDestination(){
+    $fileName = $_FILES["file"]["name"];
+    $fileExt = explode(".", $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $fileTmpName = $_FILES["file"]["tmp_name"];
+
+    $name = $_POST["name"];
+    $lastName = $_POST["last-name"];
+    $fullName = $name . " " . $lastName;
+
+    $fileNameNew = uniqid("", true).".".$fileActualExt;
+        # Created a folder in the current directory, called "uploads"
+        $fileDestination = "uploads/".$fileNameNew;
+        move_uploaded_file($fileTmpName, $fileDestination);
+    ?>
+        <div class='output-container'>
+            <?php if(preg_match("/^[A-Za-z]+$/", $name) && preg_match("/^[A-Za-z]+$/", $lastName)): ?>
+                <h1><?php print $fullName ?></h1>
+                <img src=<?php print $fileDestination ?>
+            <?php else: ?>
+                <p id="invalid-input">INVALID INPUT</p>                     
+            <?php endif; ?>
+        </div>
+<?php } ?>

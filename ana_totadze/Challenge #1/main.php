@@ -1,3 +1,7 @@
+<!--
+    Added label tags
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +15,14 @@
 <body>
 	<div class="form-container">
         <form action="upload.php" method="POST" enctype="multipart/form-data">
-            Your Name:
-            <input type="text" name="name">
+            <label for="name">Your Name:</label>
+            <input type="text" name="name" id="name">
             <br>
-            Your Last Name:
-            <input type="text" name="last-name">
+            <label for="last-name">Your Last Name:</label>
+            <input type="text" name="last-name" id="last-name">
             <br>
-            Please, upload your photo here:
-			<input type="file" name="file">
+            <label for="file">Please, upload your photo here:</label>
+			<input type="file" name="file" id="file">
 			<input type="submit" name="submit">
         </form>
     </div>
