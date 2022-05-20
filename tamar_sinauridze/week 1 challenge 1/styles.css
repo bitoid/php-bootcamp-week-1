@@ -20,7 +20,7 @@ img {
 }
 
 label {
-    padding-bottom: 5px;
+    padding: 15px 0 5px 0;
 }
 
 input[type="text"] {
@@ -31,18 +31,15 @@ input[type="text"] {
     width: 92%;
 }
 
-input[type="file"] {
-    margin-bottom: 30px;
-}
-
 input[type="submit"] {
-    margin: 0 auto;
+    margin: 20px auto 10px auto;
 }
 
 .errmsg {
     color: red;
     font-size: 16px;
     font-weight: bold;
+    
 }
 
 h2 {
