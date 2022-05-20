@@ -20,7 +20,7 @@
           $content = curl_exec($c);
           return $content;      
         };
-        //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
+
 
 
         function emptyUser($tag) {
