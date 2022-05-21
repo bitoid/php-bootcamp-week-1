@@ -1,0 +1,64 @@
+.container {
+    background-color: beige;
+}
+
+.FirstPage {
+    margin: auto;
+    margin-top: 15%;
+    border-radius: 3%;
+    border: 1px solid black;
+    background-color: azure;
+    width: 303px;
+    height: 210px;
+}
+
+.Fname, .Lname {
+    margin-left: 54.5px;
+    padding: 7px;
+    margin-top: 10px;
+}
+.image {
+    margin-left: 47.5px;
+    color: transparent;
+    margin-top: 10px;
+    padding: 7px;
+}
+
+.image::-webkit-file-upload-button{
+    width: 195px;
+    height: 30px;
+}
+
+.submit {
+    margin-left: 35%;
+    padding: 7px;
+    margin-top: 10px;
+    
+    font-size: x-large;
+}
+
+.submit:hover{
+    background-color: red;
+    color: yellow;
+}
+
+.SecondPage {
+    margin: auto;
+    border-radius: 3%;
+    border: 1px solid black;
+    background-color: azure;
+    width: 300px;
+    height: 300px;
+}
+
+.UploadedImage {
+    width: 298px;
+    height: 50%;
+    margin-left: 1px;
+    margin-top: 2px;
+    border-radius: 3%;
+}
+
+.FullName {
+    text-align: center;
+}
