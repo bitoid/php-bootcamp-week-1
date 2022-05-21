@@ -21,14 +21,14 @@
         <?php
             // Here we check whether all profile datas is inputted or not 
             // If all profile datas correctly filled then hide form block 
-            if(isset($_POST['submit']) && !$firstNameErr && !$lastNameErr && ($_FILES['profImg']['error'] == 0)) {
+            if(isset($_POST['submit']) && !$first_name_err && !$last_name_err && ($_FILES['profImg']['error'] == 0)) {
                 $display = 'display: none';
         ?>
             <!-- After hiding form block we display profile data and greeting on the page  -->
-            <h1>Welcome, <?php echo "$firstName $lastName"?></h1>
+            <h1>Welcome, <?php echo "$first_name $last_name"?></h1>
             <img src="images/<?php echo $image; ?>" alt="Profile image">
-            <p>First name: <span><?php echo $firstName; ?></span></p>
-            <p>Last name: <span><?php echo $lastName; ?></span></p>
+            <p>First name: <span><?php echo $first_name; ?></span></p>
+            <p>Last name: <span><?php echo $last_name; ?></span></p>
 
         <?php
             // If profile datas are incorrect or aren't inputted yet then display default image and 
@@ -51,31 +51,31 @@
         <h2>Hi, please fill in your profile data</h2>
         <form action="" method="post" enctype='multipart/form-data' >
             <!-- It's first name input field section  -->
-            <div class="input-group firstName">
+            <div class="input-group first_name">
                 <label for="">First name:</label>
                 <!-- Here we check first name field, if submit button is clicked and error text exists, 
                     then style input field with red border  -->
-                <input style="<?php if (!empty($_POST) && $firstNameErr) echo $style; ?>" 
+                <input style="<?php if (!empty($_POST) && $first_name_err) echo $style; ?>" 
                     type="text" 
-                    name="firstName" 
+                    name="first_name" 
                     placeholder="Please enter your first name"
-                    value="<?php echo $firstName;?>"
+                    value="<?php echo $first_name;?>"
                 ><br/>
                 <!-- If error text exists then we display error message  -->
-                <span><?php echo $firstNameErr; ?></span>
+                <span><?php echo $first_name_err; ?></span>
             </div>
-            <div class="input-group lastName">
+            <div class="input-group last_name">
                 <label for="">Last name:</label>
                 <!-- Here we check last name field, if submit button is clicked and error text exists, 
                     then style input field with red border  -->
-                <input style="<?php if (!empty($_POST) && $lastNameErr) echo $style; ?>" 
+                <input style="<?php if (!empty($_POST) && $last_name_err) echo $style; ?>" 
                     type="text" 
-                    name="lastName" 
+                    name="last_name" 
                     placeholder="Please enter your last name"
-                    value="<?php echo $lastName;?>"
+                    value="<?php echo $last_name;?>"
                 ><br/>
                 <!-- If error text exists then we display error message  -->
-                <span><?php echo $lastNameErr; ?></span>
+                <span><?php echo $last_name_err; ?></span>
             </div>
             <div class="input-group">
                 <!-- Here is image button with custom styles  -->
@@ -88,7 +88,7 @@
                 <span id='profImgName'></span>
                 <br/>
                 <!-- If error text exists then we display error message  -->
-                <span><?php echo $fileErr; ?></span>
+                <span><?php echo $file_err; ?></span>
             </div>
 
             <button name='submit' type="submit">Submit</button>
