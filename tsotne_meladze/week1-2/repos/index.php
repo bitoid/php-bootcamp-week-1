@@ -16,7 +16,7 @@ $existCheck = array_key_exists("public_repos", $userInfo);
     <meta property="og:image" content="https://gpx.ge/root/img/main.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/x-icon" href="img/ico.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="../img/ico.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -52,21 +52,13 @@ $existCheck = array_key_exists("public_repos", $userInfo);
                     }
                   }
                 else {?>
-                  <li style="color: white"; colspan=2 >მომხმარებელს არ აქვს რეპოზიტორია</li>      
+                  <p style="color: white">მომხმარებელს არ აქვს რეპოზიტორია</p>      
                   <?php
                     }
               }
               
               elseif ($existCheck === false) {?>
-              <table>
-                <tr></tr>
-                <tr id="header">
-                  <th id="comment" style="border-top-left-radius: 12px" colspan="2">კომენტარი</th>
-                </tr>
-                <tr style="background-color: red">
-                  <td style="color: white" ; colspan="2">ასეთი მომხმარებელი არ არსებობს</td>
-                </tr>
-              </table>
+                  <p style="color: white">ასეთი მომხმარებელი არ არსებობს</p>
                 <?php }  ?>
               
      </div>
