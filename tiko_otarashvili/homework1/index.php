@@ -16,13 +16,13 @@
   <form action="index.php" method="post" enctype="multipart/form-data" class="input_cont">
    
   <label for="" class="input_header">Enter Your Name:</label> 
-    <input type="text" name="firstname" placeholder="Enter Firstname">
+    <input type="text" name="firstname" placeholder="Enter Firstname" required >
 
     <label for="" class="input_header">Enter Your Last Name:</label>
-    <input type="text" name="lastname" placeholder="Enter Lastname">
+    <input type="text" name="lastname" placeholder="Enter Lastname" required>
 
     <label class="form-label input_header" for="formFile">Upload Profile Picture</label>
-   <input type="file" name="file" class="form-control" id="formFile">
+   <input type="file" name="file" class="form-control" id="formFile" required >
      
      <input type="submit" name="submit" value="Submit"/>
   </form>
@@ -49,13 +49,13 @@
   <form action="index.php" method="post" enctype="multipart/form-data" class="input_cont">
    
   <label for="" class="input_header">Enter Your Name:</label> 
-    <input type="text" name="firstname" placeholder="Enter Firstname">
+    <input type="text" name="firstname" placeholder="Enter Firstname" required>
 
     <label for="" class="input_header">Enter Your Last Name:</label>
-    <input type="text" name="lastname" placeholder="Enter Lastname">
+    <input type="text" name="lastname" placeholder="Enter Lastname" required>
 
     <label class="form-label input_header" for="formFile">Upload Profile Picture</label>
-   <input type="file" name="file" class="form-control" id="formFile">
+   <input type="file" name="file" class="form-control" id="formFile" required>
 
    <div style="color: red; text-align:left;">
     <p> Incorrect Format! <br> 
