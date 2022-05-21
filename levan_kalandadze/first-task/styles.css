@@ -38,18 +38,15 @@
         margin-right: auto;
         width: 40%;
         }
-    p {
-        text-align: center;
-        
-    }
 
-    .error {
-        color: red;
-    }
 
     .name {
         margin: auto;
         width: 60%;
         border: 3px solid #73AD21;
         padding: 10px;
+    }
+
+    .errors {
+        color: red;
     }
