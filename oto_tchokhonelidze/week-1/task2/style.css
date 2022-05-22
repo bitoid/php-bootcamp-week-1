@@ -11,9 +11,15 @@ body{
   
 form{
     margin: auto;
-    width: 500px;
+    width: 600px;
     margin: auto;
     margin-bottom: 50px;
+    font-size: 21px;
+    color: rgb(2, 11, 36);
+}
+
+input, select{
+    font-size: 21px;
 }
   
 h1{

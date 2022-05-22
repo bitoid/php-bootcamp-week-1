@@ -5,75 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 1</title>
+    <link rel="stylesheet" href="style.css?<?php echo time(); ?>">
 </head>
 <body>
     
 <?php  
-$fnameErr = $lnameErr = $imageErr = "";  
-$fname = $lname = $img_name = "";
+include "functions.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {  
-      
-    if (empty($_POST["fname"])) {  
-        $fnameErr = "First Name is required";  
-    } else {   
-        $fname = $_POST["fname"];
-        if (!preg_match("/^[A-Za-z]+$/",$fname)) {  
-            $fnameErr = "Only alphabets are allowed";  
-        }  
-    }  
-      
-    if (empty($_POST["lname"])) {  
-        $lnameErr = "Last Name is required";  
-    } else {  
-        $lname = $_POST["lname"];
-        if (!preg_match("/^[A-Za-z]+$/",$lname)) {  
-            $lnameErr = "Only alphabets are allowed";  
-        }  
-    }
+$show_form = true;
 
-    if ($_FILES['image']['name'] == "") {
-        $imageErr = "Image is required";
-    } else {
-        $img_name = $_FILES['image']['name'];
-        $img_type = $_FILES['image']['type'];
-        $img_tmp_name = $_FILES['image']['tmp_name'];
-        move_uploaded_file($img_tmp_name, "images/$img_name");
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fnameErr = $lnameErr = $imageErr = "";  
+    check_inputs($_POST, $_FILES);
+}
 
-}  
+if($show_form){
+    ?>
+    <form method="post" action="index.php" enctype="multipart/form-data">    
+        <label for="fname">First Name: </label>  
+        <input type="text" name="fname" value=<?php echo $_POST['fname'] ?>>  
+        <span class=<?php echo ($fnameErr) ? 'error' : ''; ?>><?php echo $fnameErr; ?> </span>  
+        <br>  
+        <label for="lname">Last Name: </label>   
+        <input type="text" name="lname" value=<?php echo $_POST['lname'] ?>>  
+        <span class=<?php echo ($lnameErr) ? 'error' : ''; ?>><?php echo $lnameErr; ?> </span>  
+        <br> 
+        <input type="file" name="image">
+        <br>                       
+        <input type="submit" name="submit" value="Submit">   
+        <br>                             
+    </form> 
+    <?php
+}
  
-?>  
-  
-<form method="post" action="index.php" enctype="multipart/form-data">    
-    First Name:   
-    <input type="text" name="fname">  
-    <span><?php echo $fnameErr; ?> </span>  
-    <br><br>  
-    Last Name:   
-    <input type="text" name="lname">  
-    <span><?php echo $lnameErr; ?> </span>  
-    <br><br> 
-    <input type="file" name="image">
-    <br><br>                       
-    <input type="submit" name="submit" value="Submit">   
-    <br><br>                             
-</form>  
-  
-<?php  
-    if(isset($_POST['submit'])) {  
-        if($fnameErr == "" && $lnameErr == "" && $imageErr == "") {  
-            echo "<h2>Your Input:</h2>";  
-            echo "<h3>First Name: " .$fname.'</h3>';  
-            echo "<br>";  
-            echo "<h3>Last Name: " .$lname.'</h3>';
-            echo "<br>";
-            ?>
-            <img src="images/<?php echo $img_name ?>" alt="">
-            <?php
-        } else {  
-        echo "<h3><b>Please fill in all the fields.</b></h3>";  
-        }
+    if(isset($_POST['submit'])) { 
+        show_result($_POST, $_FILES['image']['name']);
     }  
 ?>  
   
