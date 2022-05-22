@@ -1,0 +1,24 @@
+body {
+    background: linear-gradient(45deg, #FC466B, #3F5EFB);
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container{
+    margin-top: 100px;
+    padding: 3em;
+    height: 320px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    position: relative;
+    box-shadow: 4px 4px 60px rgba(0,0,0,0.2);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+#inputGroupFile02 {
+width: 50%;
+}
