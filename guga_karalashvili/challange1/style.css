@@ -1,0 +1,52 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: rgb(54, 51, 51);
+    width: 100vw;
+    color:rgb(255, 255, 255);
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    top: 0;
+    left: 0;
+}
+
+form{
+    width: 50vw;
+    height: 60vh;
+    min-height: 400px;
+    margin:80px auto;
+    background: rgb(155, 95, 27);
+    border-radius: 30px;
+    padding: 8vh 6vw;
+}
+
+.card{
+    width: 50vw;
+    max-width: 1600px;
+    height: auto;
+    max-height: 900px;
+    margin: 50px auto;
+    background: rgb(155, 95, 27);
+    border-radius: 30px;
+    padding: 25px;
+}
+p {
+    font-size: 2rem;
+    text-align: center;
+}
+
+img {
+    display: block;
+    width: auto;
+    max-width: 40vw;
+    height: auto;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 10px;
+}
