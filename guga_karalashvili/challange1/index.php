@@ -1,3 +1,4 @@
+<?php require_once './form_logics.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,43 +10,52 @@
     <title>Bitoid Technologies : W 1 - Chall 1</title>
 </head>
 <body>
+<?php if($_POST == null) :?>
+    <form action="./index.php" method="POST" enctype="multipart/form-data">
+        
+        <div class="form-group">
+            <input type="text" name="first_name" placeholder="Enter First Name..." value = "<?php echo $first_name ?>" class="form-control" id="formGroupExampleInput">
+            <?php if ($errors['first_name_empty'] != null) : ?>
+                <div class="alert alert-danger">
+                    <div><?php echo $errors["first_name_empty"] ?></div>
+                </div>
+            <?php endif; ?>
+            <?php if ($errors["first_name_validation"] != null): ?>
+                <div class="alert alert-danger">
+                    <div><?php echo $errors["first_name_validation"] ?></div>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="form-group">
+            <input type="text" name="last_name" placeholder="Enter Last Name..." value = "<?php echo $last_name ?>" class="form-control" id="formGroupExampleInput2">
+            <?php if ($errors["last_name_empty"] !=null): ?>
+                <div class="alert alert-danger">
+                    <div><?php echo $errors["last_name_empty"] ?></div>
+                </div>
+            <?php endif; ?>
+            <?php if ($errors["last_name_validation"]!= null): ?>
+                <div class="alert alert-danger">
+                    <div><?php echo $errors["last_name_validation"] ?></div>
+                </div>
+            <?php endif; ?>
+        </div>
+    
+        <div class="form-group">
+            <input type="file" name="profile_photo" class="form-control-file" id="exampleFormControlFile1">
+            <?php if ($errors["image_empty"] != null): ?>
+                <div class="alert alert-danger">
+                    <div><?php echo $errors['image_empty'] ?></div>
+                </div>
+            <?php endif; ?>
+        </div>
+        <input type="submit" name="submit" class="btn btn-primary mb-2">
+    </form>
 
-    <?php 
-    $firstName = '';
-    $lastName = '';
-    $imgPath = '';
-    
-    if($_POST == null){
-        include './form.php';
-    }
-    
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $firstName = $_POST['FirstName'];
-        $lastName = $_POST['LastName'];
-        $img = $_FILES['image'];
-        $image = $img['name'];
-        if($image){
-            include './files.php';
-            move_uploaded_file($img['tmp_name'],'images/'.$image);
-            $imgPath = "./images/"."$image";
-        }
-        if(!preg_match('/[^A-Za-z]/',$firstName) && !preg_match('/[^A-Za-z]/',$lastName)){
-            echo '<div class="fullname">';
-            echo '<p>' . "$firstName" . ' ' . "$lastName" . '</p>';
-            echo '<img src="' . "$imgPath" . '"' . ' alt="image not found">';
-            echo '</div>';
-        }else {
-            if(preg_match('/[^A-Za-z]/',$firstName)){
-                $firstName='';
-                echo '<p class="first">Your first name must contains only alphabet characters!!!</p>';
-            }
-            if(preg_match('/[^A-Za-z]/',$lastName)){
-                $lastName='';
-                echo '<p class="last">Your last name must contains only alphabet characters!!!</p>';
-            }
-            include_once './form.php';
-        }
-    }
-    ?>
+<?php else : ?>
+    <div class="card">
+        <p><?php echo $first_name . ' '; ?> <?php echo $last_name ; ?></p>
+        <img src="<?php echo $profile_photo_url; ?> " alt="profile photo">
+    </div>
+<?php endif; ?>
 </body>
 </html>
