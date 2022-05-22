@@ -1,14 +1,6 @@
 <?php
-function prnt($array)
-{
-    echo '<pre>';
-    print_r($array);
-    echo '<pre>';
-}
-
 $error_list = [];
 
-//variables for validations and erros.
 $name_errors = [
     "nameEmpty" => "Name should be min 2 character",
     "azAZ" => "No numbers or special characters allowed",
@@ -59,19 +51,18 @@ function pic_validations()
         2 => "File can not be larger than 10mb",
         3 => "The uploaded file was only partially uploaded.",
         4 => "No file was uploaded.",
-        //5 => "The file uploaded with success.",
         6 => "Missing a temporary folder.",
         7 => "Failed to write file to disk."
     };
 
     if ($errorMatch) {
         array_push($tmp_errors, $errorMatch);
-        echo 'if';
     } else if (!(preg_match("/\.jpg$/", $_FILES["pic"]['name']) || preg_match("/\.jpeg$/", $_FILES["pic"]['name']))) {
         array_push($tmp_errors, "No allowed file extension");
     }
 
     return $tmp_errors;
 }
-
-$error_list = array_merge(name_validations($name_errors), email_validations($email_errors), pic_validations());
+if (isset($_POST['submit'])) {
+    $error_list = array_merge(name_validations($name_errors), email_validations($email_errors), pic_validations());
+}

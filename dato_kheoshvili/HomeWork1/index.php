@@ -8,18 +8,16 @@
 <body>
     <div class="formContainer">
         <?php
-        //$notSubmitedWell = true;
-
-        //if (isset($_FILES['pic']) && isset($_FILES['pic']['error']) && !$_FILES['pic']['error'] && $_POST['name'] && $_POST['email']) {
-        //     $notSubmitedWell = false;
-        // }
+        require_once("validation.php");
 
         if (!isset($_POST['submit']) || $error_list) : ?>
             <form class="form" action="" method="POST" enctype="multipart/form-data">
-                <input class="forminput formitem" type="text" name="name" /><br />
-                <input class="forminput formitem" type="email" name="email" /><br />
+                <label for="name">First name:</label><br>
+                <input class="forminput formitem" type="text" name="name" pattern="^[a-zA-Z]{2,}$" required/><br />
+                <label for="email">Email:</label><br>
+                <input class="forminput formitem" type="email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required/><br />
                 <input class="forminput formitem" type="hidden" name="MAX_FILE_SIZE" value="300000" />
-                <input class="forminput formitem" type="file" name="pic" /><br>
+                <input class="forminput formitem" type="file" name="pic" required/><br>
                 <input class="formbutton formitem" type="submit" name="submit" value="Upload">
             </form>
         <?php endif; ?>
@@ -27,14 +25,10 @@
     </div>
 
     <?php
-    require_once("validation.php");
-
-    if (isset($_POST['submit'])) {
-        if (!$error_list) {
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            move_uploaded_file($_FILES['pic']["tmp_name"], "uploads/" . $_FILES["pic"]["name"]);
-        }
+    if (isset($_POST['submit']) && !$error_list) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        move_uploaded_file($_FILES['pic']["tmp_name"], "uploads/" . $_FILES["pic"]["name"]);
     }
     ?>
     <?php if ($error_list) : ?>
@@ -46,8 +40,7 @@
     <?php endif; ?>
 
     <?php
-    //var_dump('<img src= "uploads/"'.$_FILES["pic"]["name"].'/>');   
-    if (!$notSubmitedWell) : ?>
+    if (isset($_POST['submit']) && !$error_list) : ?>
         <div class="card">
             <img class="cardImg" src=uploads/<?php $_FILES["pic"]["name"] ?> />
             <div class="cardInfo">
