@@ -1,0 +1,109 @@
+body {
+    background-color: bisque;
+}
+
+h1 {
+    padding: 10px;
+}
+
+p,
+h1,
+h2,
+h3 {
+    text-align: center;
+}
+
+form {
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+}
+
+input[type="text"] {
+    display: block;
+    min-width: 350px;
+    padding: 20px;
+    margin: 0 auto 20px auto;
+    border-radius: 5px;
+}
+
+input[type="submit"]{
+    display: block;
+    margin: 20px auto;
+}
+
+ol {
+    list-style: none;
+}
+
+img {
+    width: 50px;
+    border-radius: 50%;
+    border: 3px solid blue;
+    margin: 5px;
+}
+
+.errmsg {
+    color: red;
+}
+
+.zen {
+    color: purple;
+    font-size: 32px;
+}
+
+.container {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.repos,
+.fols {
+    background-color: rgb(255, 209, 153);
+    box-shadow: 3px -3px 5px 6px rgb(97, 85, 72);
+}
+
+.repos {
+    flex: 1 0 350px;
+}
+
+.fols {
+    flex: 4 0 350px;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+.fols ol {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+}
+
+.fols li {
+    flex: 1 0 320px;
+}
+
+.fols a {
+    font-size: 24px;
+    display: flex;
+}
+
+.repos a {
+    font-size: 20px;
+}
+
+.login {
+    align-self: center;
+}
+
+@media (min-width: 791px) {
+    .jump {
+        display: none;
+    }
+}

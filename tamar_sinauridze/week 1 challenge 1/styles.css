@@ -1,0 +1,53 @@
+body {
+    color: rgb(59, 29, 29);
+    font-size: 20px;
+    background-color: rgb(131, 100, 100);
+}
+
+.container {
+    box-sizing: border-box;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgb(233, 211, 211);
+}
+
+label,
+input,
+img {
+    display: block;
+}
+
+label {
+    padding: 15px 0 5px 0;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 3px solid rgb(143, 117, 117);
+    width: 92%;
+}
+
+input[type="submit"] {
+    margin: 20px auto 10px auto;
+}
+
+.errmsg {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+    
+}
+
+h2 {
+    text-align: center;
+}
+
+img {
+    margin: 10px auto;
+    max-width: 92%;
+    border-radius: 5px;
+}
