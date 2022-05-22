@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 0 10px;
+  max-width: 600px;
+}
+
+.form input {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.form__error {
+  color: rgb(241, 72, 72);
+  font-size: 0.7em;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.summary {
+  margin-top: 20px;
+}
+
+.summary__item {
+  margin-bottom: 10px;
+}
+
+.summary img {
+  width: 100%;
+  object-fit: cover;
+  max-height: 500px;
+}
