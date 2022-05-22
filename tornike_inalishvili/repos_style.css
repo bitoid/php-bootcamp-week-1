@@ -1,0 +1,111 @@
+body {
+    background: linear-gradient(45deg, #FC466B, #3F5EFB);
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+.container-1{
+    margin-top: 100px;
+    padding: 3em;
+    height: 320px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    position: relative;
+    box-shadow: 4px 4px 60px rgba(0,0,0,0.2);
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.container-2{
+    margin: 10px auto;
+    font-size: 18px;
+    text-align: left;
+    position: relative;
+    box-shadow: 4px 4px 60px rgba(0,0,0,0.2);
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    
+}
+
+.form {
+    width: 500px;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.user {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    font-size: 1.3rem;
+    padding: 7px 0;
+    font-size: 22px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.followers{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.repositories {
+    background-color: rgba(248, 242, 242);
+    border-radius: 30px;
+    padding: 7px 0;
+    width: 300px;
+    margin: 5px;
+}
+
+#select{
+    margin-bottom: 20px;
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    font-size: 1.3rem;
+    padding: 7px 0;
+    font-size: 22px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    overflow: hidden;
+    cursor: pointer;
+
+}
+
+
+
+
+#submit{
+    margin-top: 20px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 22px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+
+}
