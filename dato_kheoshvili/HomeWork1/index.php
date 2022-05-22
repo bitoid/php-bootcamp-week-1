@@ -42,7 +42,7 @@
     <?php
     if (isset($_POST['submit']) && !$error_list) : ?>
         <div class="card">
-            <img class="cardImg" src=uploads/<?php $_FILES["pic"]["name"] ?> />
+            <img class="cardImg" src=uploads/<?php echo $_FILES["pic"]["name"] ?> />
             <div class="cardInfo">
                 <h4>Hi <p><?php echo $name; ?></p>
                 </h4>
