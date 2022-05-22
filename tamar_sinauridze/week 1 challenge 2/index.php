@@ -16,20 +16,14 @@
             <input type="submit" name="submit">
         </form>
 
-        <?php
-        $submitted = false;
-
+        <?php // validates username
         if(isset($_POST["submit"])) {
-            // validates username
             if(empty($_POST["username"])) {
-                echo '<p class="errmsg">username required</p>';
+                $error = "username required";
+            } else if (!preg_match("/^[a-zA-Z0-9-]{0,39}$/",$_POST["username"])) {
+                $error = "Letters, numbers and dashes only, up to 39 characters";
             } else {
-                if (!preg_match("/^[a-zA-Z0-9-]{0,39}$/",$_POST["username"])) {
-                    echo '<p class="errmsg">Letters, numbers and dashes only, up to 39 characters</p>';
-                } else {
-                    $username = test_input($_POST["username"]);
-                    $submitted = true;
-                }
+                $username = test_input($_POST["username"]);
             }
         }
         function test_input($data) {
@@ -38,92 +32,98 @@
             $data = htmlspecialchars($data);
             return $data;
         }
+        if(isset($error)) { ?>
+            <p class="errmsg"><?php echo $error ?></p>
+        <?php } ?>
+
+        <?php 
+        $num_rep=0;
+        $num_fol=0;
         
-        $numRep=0;
-        $numFol=0;
-        
-        if($submitted) {
-            // user agent header
+        if(isset($username)) {
             $opts = [
                 'http'=>[
                     'method'=>'GET',
                     'header'=>[
                         'User-Agent: PHP'
-                    ]
+                    ],
+                    'ignore_errors' => true
                 ]
             ];
             $context= stream_context_create($opts);
 
             // gets information about the number of repositories and followers
-            $userInfo = json_decode(file_get_contents("https://api.github.com/users/$username", false, $context), true) ?? false;
-            $numRep = $userInfo["public_repos"] ?? 0;
-            $numFol = $userInfo["followers"] ?? 0;
+            $user_info_json = file_get_contents("https://api.github.com/users/$username", false, $context);
+            $user_info = json_decode($user_info_json, true) ?? false;
+            $num_rep = $user_info["public_repos"] ?? 0;
+            $num_fol = $user_info["followers"] ?? 0;
+            ?>
 
-            // displays what information it retrieved from github
-            if ($userInfo==false) {
-                $zen = file_get_contents("https://api.github.com/zen", false, $context) ?? false;
-                if($zen==false) {
-                    echo '<p class="errmsg">Couldn\'t retrieve data from github.</p>';
-                } else {
-                    echo "<p>Couldn't find information about <i>$username</i>. You can read this random zen phrase from github instead:</p>";
-                    echo "<p class=\"zen\">$zen</p>";
-                }
-            } else {
-                echo "<h2>$username has $numRep repositories and $numFol followers.</h2>";
-            }
+            <?php // displays what information it retrieved from github
+            if($user_info==false){ ?>
+                <p class="errmsg">Couldn't retrieve data from github.</p>
+            <?php } else if (isset($user_info["message"]) && $user_info["message"]==="Not Found") {
+                $zen = file_get_contents("https://api.github.com/zen", false, $context); ?>
+                <p>Couldn't find information about <i><?php echo $username ?></i>. You can read this random zen phrase from github instead:</p>
+                <p class="zen"><?php echo $zen ?></p>
+            <?php } else { ?>
+                <h2><?php echo $username ?> has <?php echo $num_rep ?> repositories and <?php echo $num_fol ?> followers.</h2>
+            <?php } ?>
 
-            // handles the radio buttons
+            <?php // handles the radio buttons
             if($_POST["which_info"]=="followers") {
-                $numRep=0;
+                $num_rep=0;
             }
             if($_POST["which_info"]=="repositories") {
-                $numFol=0;
-            }
+                $num_fol=0;
+            } 
 
-            if($numRep!=0 && $numFol!=0){
-                echo '<p><a class="jump" href="#jump-to-followers">Jump to followers</a></p>';
-            }
-        }
+            if($num_rep!=0 && $num_fol!=0){ ?>
+                <p><a class="jump" href="#jump-to-followers">Jump to followers</a></p>
+            <?php }
+        } ?>
 
-        echo '<div class="container">';
-        //gets information about repositories
-        if($numRep>0) {
-            echo '<div class="repos">';
+        <div class="container">
+
+        <?php //gets information about repositories
+        if($num_rep>0){
             $repos = [];
             $i=0;
-            while($numRep>100*$i) {
+            while($num_rep>100*$i) {
                 $i++;
                 $repos = array_merge($repos, json_decode(file_get_contents("https://api.github.com/users/$username/repos?per_page=100&page=$i", false, $context), true));
-            }
-            //displays information about repositories
-            echo "<h3>Repositories:</h3>";
-            echo '<ol>';
-            for($i=0; $i<$numRep; $i++){
-                echo '<li><a href="' .  $repos[$i]["html_url"] . '">' . $repos[$i]["name"] . '</a></li>';
-            }
-            echo '</ol>';
-            echo '</div>';
-        }
-        
-        //gets information about followers
-        if($numFol>0) {
-            echo '<div class="fols">';
+            } ?>
+
+            <div class="repos">
+            <h3>Repositories:</h3>
+            <ol>
+            <?php //displays information about repositories
+            for($i=0; $i<$num_rep; $i++){ ?>
+                <li><a href="<?php echo $repos[$i]["html_url"] ?>"><?php echo $repos[$i]["name"] ?></a></li>
+            <?php } ?>
+            </ol>
+            </div>
+        <?php } ?>
+
+        <?php // gets information about followers
+        if($num_fol>0){
             $fols = [];
             $i=0;
-            while($numFol>100*$i) {
+            while($num_fol>100*$i) {
                 $i++;
                 $fols = array_merge($fols, json_decode(file_get_contents("https://api.github.com/users/$username/followers?per_page=100&page=$i", false, $context), true));
-            }
-            //displays information about followers
-            echo '<h3 id="jump-to-followers">Followers:</h3>';
-            echo '<ol>';
-            for($i=0; $i<$numFol; $i++) {
-                echo '<li><a href="' . $fols[$i]["html_url"] . '"><img src="' . $fols[$i]["avatar_url"] . '" alt=""><span class="login">' . $fols[$i]["login"] . '</span></a></li>';
-            }
-            echo '</ol>';
-            echo '</div>';
-        }
-        echo '</div>';
-        ?>
+            } ?>
+
+            <div class="fols">
+            <h3 id="jump-to-followers">Followers:</h3>
+            <ol>
+            <?php // displays information about followers
+            for($i=0; $i<$num_fol; $i++){ ?>
+                <li><a href="<?php echo $fols[$i]["html_url"] ?>"><img src="<?php echo $fols[$i]["avatar_url"] ?>" alt=""><span class="login"><?php echo $fols[$i]["login"] ?></span></a></li>
+            <?php }?>
+            </ol>
+            </div>
+        <?php } ?>
+        </div>
     </body>
 </html>

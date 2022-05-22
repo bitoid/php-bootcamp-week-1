@@ -37,14 +37,14 @@ function validate_picture() {
     } else {
         create_directory("uploads");
         $target_file = "uploads/" . basename($_FILES["userpic"]["name"]);
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $image_file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         if(getimagesize($_FILES["userpic"]["tmp_name"]) === false) {
             $errors["picture"][] = "File is not an image";
         } 
         if ($_FILES["userpic"]["size"] > 5242880) {
             $errors["picture"][] = "File is too large";
         }
-        if($imageFileType !="jpg" && $imageFileType !="png" && $imageFileType !="jpeg" && $imageFileType !="gif"){
+        if($image_file_type !="jpg" && $image_file_type !="png" && $image_file_type !="jpeg" && $image_file_type !="gif"){
             $errors["picture"][] = "Only JPG, JPEG, PNG & GIF files are allowed";
         }
     }
