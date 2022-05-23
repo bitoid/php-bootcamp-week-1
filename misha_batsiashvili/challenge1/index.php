@@ -130,17 +130,11 @@ if(isset($_POST['submit'])){
                         <img src="./upload.png" alt="delete">
                     </div>
                     <div class="profile-image-sizing-wrp">
-                        <?php
-                        if(isset($profile_image_url) && $profile_image_url){
-                        ?>
+                        <?php if(isset($profile_image_url) && $profile_image_url): ?>
                             <img src="<?php echo $profile_image_url; ?>" id="profile-image" alt="profile">
-                        <?php
-                        } else {
-                        ?>
+                        <?php else: ?>
                             <img id="profile-image" alt="profile">
-                        <?php
-                        }
-                        ?>
+                        <?php endif; ?>
                     </div>
                 </label>
             </div>
@@ -148,18 +142,14 @@ if(isset($_POST['submit'])){
             <input type = "submit" name = "submit" value = "Submit">
         </form>
 
-        <?php
-        if(isset($_POST['firstname']) && isset($_POST['lastname']) && $_POST['firstname'] && $_POST['lastname'] && $profile_image_url){
-        ?>
+        <?php if(isset($_POST['firstname']) && isset($_POST['lastname']) && $_POST['firstname'] && $_POST['lastname'] && $profile_image_url): ?>
         <div class="data_wrp">
             <div>
                 <img src="<?php echo $profile_image_url ?? 'default.png'; ?>">
             </div>
             <p><?php echo $_POST['firstname'] . ' ' . $_POST['lastname']; ?></p>
         </div>
-        <?php
-        }
-        ?>
+        <?php endif; ?>
     </div>
 
 
