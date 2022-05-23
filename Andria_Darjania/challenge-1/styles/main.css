@@ -141,9 +141,10 @@ label {
 .uploaded {
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
-    height: 60%;
     border-radius: 15px;
+    max-width: 80%;
+    min-width: 20%;
+    max-height: 80%;
 }
 
 h1 {

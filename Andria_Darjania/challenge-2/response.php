@@ -93,31 +93,25 @@
             </tr>
         </thead>
         <tbody>
-        <?php 
-        if ($_GET['require'] == "repositories") {
-            $counter = 0;
-            foreach ($full_api as $repos) {
-            $counter += 1;
-                print  '<tr>
-                            <td>'.  $counter .'</td>
-                            <td><a href="' . $repos["html_url"] . '" target="_blank">' . $repos["name"] . '</a></td>
-                            <td>' . $repos["description"] . '</td>
-                            <td> <a href="' . $repos["html_url"] . '" target="_blank">Open repository</a></td> 
-                        </tr>'; 
-            }
-        } else {
-            $counter = 0;
-            foreach ($full_api as $repos) {
-            $counter += 1;
-                print  '<tr>
-                            <td>'.  $counter .'</td>
-                            <td><a href="' . $repos["html_url"] . '" target="_blank">' . $repos["login"] . '</a></td>
-                            <td> <a href="' . $repos["html_url"] . '" target="_blank"><img class="profile-picture"src="' . $repos["avatar_url"] .' alt="Avatar"></a></td>
-                            <td > <a href="' . $repos["html_url"] . '" target="_blank">View</a></td> 
-                        </tr>'; 
-            }
-        }
-         ?>  
+        <?php if ($_GET['require'] == "repositories"): ?> 
+            <?php foreach ($full_api as $i => $repos): ?>
+                <tr>
+                    <td><?= ++$i ?></td>
+                    <td><a href="<?= $repos["html_url"]?>" target="_blank"><?= $repos["name"]?></a></td>
+                    <td><?= $repos["description"] ?></td>
+                    <td> <a href="<?= $repos["html_url"] ?>" target="_blank">Open repository</a></td> 
+                </tr> 
+            <?php endforeach ?>
+        <?php else: ?>
+            <?php foreach ($full_api as $i => $repos): ?>
+                    <tr>
+                        <td><?= ++$i ?></td>
+                        <td><a href="<?=$repos["html_url"] ?>" target="_blank"><?= $repos["login"] ?></a></td>
+                        <td> <a href="<?= $repos["html_url"] ?>" target="_blank"><img class="profile-picture"src="<?= $repos["avatar_url"] ?> alt="Avatar"></a></td>
+                        <td > <a href="<?=  $repos["html_url"] ?>" target="_blank">View</a></td> 
+                    </tr> 
+            <?php endforeach ?>
+        <?php endif ?>
         </tbody>
         </table>
     </body>

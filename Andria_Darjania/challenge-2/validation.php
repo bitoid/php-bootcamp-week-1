@@ -1,5 +1,7 @@
-<?php 
-    $url = 'https://api.github.com/search/users?q=' . $_GET['user'] . '';
+<?php
+
+function checkUser($user) {
+    $url = "https://api.github.com/search/users?q=$user";
     $param = [
         'http' => [
             'method' => 'GET',
@@ -14,9 +16,8 @@
 
 
     if ($data['total_count'] == 0) {
-        return "NOTVALIDATED";
-    } else {
-        return "VALIDATED";
+        return "User Does not exist!";
     }
+}
 
 ?>
