@@ -68,13 +68,15 @@ span {
 .submited_form-message {
     position: absolute;
     background-color: white;
-    color: green;
+    color: black;
     width: 60%;
     height: 700px;
     margin-left: 15%;
     justify-content: center;
     text-align: center;
     padding-top: 30px;
+    border: 1px solid red;
+    border-radius: 25px;
 }
 
 img {

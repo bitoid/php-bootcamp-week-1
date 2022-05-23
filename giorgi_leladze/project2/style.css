@@ -1,17 +1,6 @@
-table, th, td {
-    border: 1px solid black;
-}
-
 table {
-    min-width: 50%;
-    margin-top: 100px;
-    margin-left: 25%;
-}
-
-td {
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
+    max-width: 60%;
+    margin: 100px 0 0 20%;
 }
 
 img {
@@ -35,7 +24,7 @@ header {
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 a:hover {
@@ -49,16 +38,10 @@ input {
 }
 
 button {
-    background-color: red;
-    color: black;
-    border: 1px solid black;
-    border-radius: 5px;
     padding: 3px 10px;
 }
 
-button:hover {
-    background-color: black;
-    border-color: red;
-    color: white;
-    cursor: pointer;
+.btn-div {
+    margin: 30px 0 40px 45%;
 }
+

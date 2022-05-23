@@ -4,26 +4,24 @@
     $imgFileError = "";
     $imagesExp = ['jpg', 'jpeg', 'png']; // allowed exp for images
 
-    function renderSubmitedForm($img, $fname, $lname){
-        print "
-            <div class='submited_form-message'>
-                <img src='$img'>
-                <h1>$fname</h1>
-                <h2>$lname</h2>
-            </div>";
-    }
+    $img;
+    $fname;
+    $lname;
 
+    $bool = true;
+?>
 
+<?php 
     function checkFile($file, $allowed){
         // take elements from file array
         $fileName = $file["name"];
         $fileSize = $file['size'];
         $fileError = $file['error'];
         $fileType = $file['type'];
-
+        
         $fileExp = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExp));
-
+       
         // validations of file
         if($fileSize == 0) {
             $imgFileError = "you should chose picture to submit";
@@ -37,48 +35,46 @@
             $imgFileError = "there was an errror uploading your file";
             return false;
         }
-        // uncommenting this will limit how much you can upload
-        // if($fileSize > 1000000) {
-        //     $imgFileError = "file is too big";
-        //     return false;
-        // }
         return true; // if any validation faill return false. else return true
     }
-
+    
     function checkData($data){
-        return ctype_alpha(trim($data));
+        $str = trim($data);
+        if(strlen($str) < 3) return false;
+        return ctype_alpha($str);
     }
-
-    if($_POST['firstname'] || $_POST["lastname"]){
-        $bool = true; //default true. if any validation error --> set it to false
+    
+    if($_SERVER["REQUEST_METHOD"] === "POST"){
         
         if(!checkData($_POST['firstname'])) {
             $firstNameError = "invalid first name";
             $bool = false;
         }
+
         if(!checkData($_POST['lastname'])) {
             $lastNameError = "invalid last name";
             $bool = false;
         }
-
+        
         if(!checkFile($_FILES['userImage'], $imagesExp)) {
             $bool = false;
         }
-
+        
         if($bool) { // if bool variable is true this mean all validation was passed
             $fileTmpName = $_FILES['userImage']['tmp_name'];
             $fileExp = explode('.', $_FILES['userImage']['name']);
             $fileActualExt = strtolower(end($fileExp));
-
+            
             $fileNameNew = uniqid('', true).".".$fileActualExt; // generate new name
             $fileDestination = "uploads/".$fileNameNew;
-            move_uploaded_file($fileTmpName, $fileDestination); // apload to "uploads" folder
-
-            renderSubmitedForm($fileDestination, $_POST["firstname"], $_POST["lastname"]);
+            move_uploaded_file($fileTmpName, $fileDestination); // apload to "uploads" folder       
+            
+            $img = $fileDestination;
+            $fname = $_POST["firstname"];
+            $lname = $_POST["lastname"];
         }
     }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +86,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="form-container">
+    <?php if($_SERVER["REQUEST_METHOD"] === "GET" || !$bool) : ?>
+        <div class="form-container">
         <form action="/index.php" method="post" enctype="multipart/form-data">
 
             <input class="input-text" type="text" name="firstname" placeholder="First Name">
@@ -105,5 +102,12 @@
             <button class="btn" type="submit" name="submit">Submit Form</button>
         </form>
     </div>
+    <?php else: ?>
+        <div class='submited_form-message'>
+            <img src='<?php echo $img ?>'>
+            <h1> <?php echo $fname ?> </h1>
+            <h2> <?php echo $lname ?> </h2>
+        </div>
+    <?php endif; ?>
 </body>
 </html>
