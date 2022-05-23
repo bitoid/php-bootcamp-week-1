@@ -1,0 +1,89 @@
+/*mtavari index php*/
+body {
+    margin: 0;
+
+    background-image: url("foto.jpg");
+    width: 100%;
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.square {
+    text-align: center;
+    width: 400px;
+    height: 300px;
+    background-color: royalblue;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 180px;
+    opacity: 0.8;
+}
+
+.square h2 {
+    margin-top: 30px;
+    color: white;
+}
+
+.square a {
+    margin: 20px;
+    padding: 15px;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    border-bottom: 4px solid blue;
+}
+
+.square a:hover {
+    color: blue;
+    border-bottom: 4px solid white;
+}
+
+/*challenge1 php*/
+.forminfo {
+    text-align: center;
+    width: 500px;
+    height: 450px;
+    background-color: aliceblue;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 180px;
+    opacity: 0.7;
+    position: relative;
+}
+
+.forminfo form {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.forminfo a{
+    text-decoration: none;
+    font-size: 22px;
+    border-bottom: 3px solid black;
+    color: black;
+}
+
+.forminfo a:hover{
+    border-bottom: 3px solid blue;
+    color: blue;
+}
+
+.forminfo form input {
+    width: 300px;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.result {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+}
