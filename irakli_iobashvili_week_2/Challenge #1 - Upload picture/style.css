@@ -1,0 +1,26 @@
+body {
+  background-color: #5e807f;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.formula {
+  margin: auto;
+  width: 600px;
+  text-align: center;
+  margin-top: 80px;
+  padding: 10px;
+  background-color: #9dc5bb;
+  border-radius: 12px;
+}
+
+.picture {
+  margin: auto;
+  margin-top: 5rem;
+  text-align: center;
+  font-size: larger;
+}
+
+img {
+  max-width: 50%;
+  border-radius: 12px;
+}
