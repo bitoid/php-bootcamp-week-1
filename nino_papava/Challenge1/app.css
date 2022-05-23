@@ -1,0 +1,9 @@
+body{
+    background-color: brown;
+    color: white;
+}
+.head, h1 {
+ display: absolute;
+  width: 220px;
+  
+}
