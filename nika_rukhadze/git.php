@@ -53,39 +53,33 @@ function getFollowers($user){
         </form>
         <?php
             $api_url = 'https://github.com/';
-            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if($_SERVER['REQUEST_METHOD'] === 'POST'):
                 $user_name = $_POST['username'];
-                $followers = getFollowers($user_name);
-                echo "<h2 class='text-center'>$user_name Followers</h2>";
-                echo "<div class='container'>";
-                echo "<div class='row'>";
-                foreach($followers as $item){
-                ?>
-                <div class="card" style="width: 18rem;">
-                    <img src="<?=$item->avatar_url?>" class="card-img-top">
-                    <div class="card-body">
-                        <p>Follower: <?=$item->login?></p>
-                        <p>Proflie link: <a href="<?=$item->html_url?>"><?=$item->html_url?></a>
+                $followers = getFollowers($user_name); ?>
+        
+                <h2 class='text-center'><?= $user_name ?> Followers</h2>
+                <div class='container'>
+                    <div class='row'>
+                        <?php foreach($followers as $item): ?>
+                            <div class="card" style="width: 18rem;">
+                                <img src="<?= $item->avatar_url ?>" class="card-img-top">
+                                <div class="card-body">
+                                    <p>Follower: <?= $item->login ?></p>
+                                    <p>Proflie link: <a href="<?= $item->html_url ?>"><?php print $item->html_url ?></a>
+                                </div>
+                            </div>
+                        <?php  endforeach; ?>
                     </div>
                 </div>
 
-                <?php
-                }
-                echo "</div>";
-                echo "</div>";
-
-
-                $repositories = getRepositories($user_name); 
-                echo "<h2 class='text-center'>$user_name Repositories</h2>";
-                echo "<ul class='repos'>";
-                foreach($repositories as $item){
-                    echo "<li><a href=$item->html_url> $item->name</a></li>";
-                }
-                echo "</ul>";
-
-
-            }
-        ?>
+                <?php $repositories = getRepositories($user_name);?>
+                <h2 class='text-center'><?= $user_name ?> Repositories</h2>
+                    <ul class='repos'>
+                        <?php foreach($repositories as $item): ?>
+                            <li><a href="<?= $item->html_url ?>"> <?= $item->name ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+        <?php endif; ?>
 
     </body>
 </html>

@@ -21,34 +21,40 @@
             </form>
         </div>
         </div>
-        <?php 
-            if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_FILES["image"])){
+            <?php if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_FILES["image"])):
                 $fname = $_POST['fname'];
                 $lname = $_POST['lname'];
-                if (preg_match("/^[A-Za-z]+$/", $fname) && preg_match("/^[A-Za-z]+$/", $lname)){
-                move_uploaded_file($_FILES["image"]["tmp_name"], "image/image");
-                        echo "
-                        <div class='container'>
-                            <div class='form'>
-                                <img src='image/image'>
-                                <p>Profile Picture</p>
-                                <p>First Name: $fname</p>
-                                <p>Last Name: $lname</p>
-                                
-                            </div>
+                if (preg_match("/^[A-Za-z]+$/", $fname) && preg_match("/^[A-Za-z]+$/", $lname)):
+                
+                $uploadDirectory = getcwd() . "/images/";
+                $profile_image_name = basename($_FILES["image"]["tmp_name"]);
+                $profile_image_url = NULL;
+
+                if(!file_exists($uploadDirectory)){
+                    mkdir($uploadDirectory);
+                }
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadDirectory . $profile_image_name)){
+                    $profile_image_url = $uploadDirectory . $profile_image_name;
+                } ?>
+                       
+                <div class="container">
+                    <div class="form">
+                        <img src="<?= "/images/" . $profile_image_name; ?>">
+                        <p>Profile Picture</p>
+                        <p>First Name: <?= $fname ?></p>
+                        <p>Last Name: <?= $lname ?></p>
+                    </div>
+                </div>
+                
+                <?php else: ?>
+                    <div class="container">
+                        <div class="form">
+                            <p>First Name and Last Name must contain A-Z characters !!!</p>
+                            <p>Please fill all Inputs to Submit Form !!!</p>
                         </div>
-                        ";
-                }
-                else{
-                    echo "<div class='container'>
-                            <div class='form'>
-                                <p>First Name and Last Name must contain A-Z characters !!!</p>
-                                <p>Please fill all Inputs to Submit Form !!!</p>
-                            </div>
-                        </div>";
-                }
-            }
-        ?>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>    
     </div>
 </body>
 </html>
