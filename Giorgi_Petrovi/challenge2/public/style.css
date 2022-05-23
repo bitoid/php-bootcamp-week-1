@@ -11,7 +11,6 @@ footer {
     text-align: right;
 }
 
-
 .wrapper {
     margin-top: 5vh;
 }
@@ -93,20 +92,20 @@ footer {
     background-color: #4FC3A1;
 }
 
-
 .tbl {
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 1em;
     border-radius: 5px;
     font-size: 16px;
     font-weight: normal;
     border: none;
     border-collapse: collapse;
-    width: 80%;
+    width: 80vw;
     max-width: 100%;
     white-space: nowrap;
     background-color: white;
 }
+
 .tbl th {
     text-align: center;
     color: #ffffff;
@@ -119,7 +118,6 @@ footer {
     border-right: 1px solid #f8f8f8;
     font-size: 14px;
 }
-
 
 .tbl thead th:nth-child(odd) {
     color: #ffffff;
@@ -134,7 +132,7 @@ footer {
     width: auto;
     max-width: 75px;
     max-height: 75px;
-    border: 2px solid skyblue;
+    border: 3px solid skyblue;
     border-radius: 50%;
     transition: transform .4s
 }
@@ -143,6 +141,24 @@ footer {
     transform: scale(1.1);
 }
 
+.follower-tbl {
+    max-width: 80vw;
+    margin: 0 auto;
+    margin-top: 1em;
+    padding: 2em 0;
+    display: grid; 
+    grid-template-columns: repeat(5, 1fr); 
+    justify-items: center;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+
+
+.follower-tbl__card{
+    text-align: center;
+    }
+
 .error-alert {
     margin-top: 20px;
     padding: 5px;
@@ -150,6 +166,22 @@ footer {
     text-align: center;
 }
 
-.hidden {
-    display: none;
+.page-select-wrapper {
+    margin: 0 auto;
+    margin-top: 1.5em;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.page-select__page {
+    font-weight: 700;
+    color: black;
+    text-decoration: none;
+    margin: 5px;
+    padding: 2px 5px;
+}
+
+.active-page {
+    text-decoration: none;
+    color:  #4FC3A1;
 }
