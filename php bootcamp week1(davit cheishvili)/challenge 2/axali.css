@@ -38,28 +38,7 @@ body{
     border-radius: 24px;
     transition: 0.25s;
 }
-.divd{
-    width: 500px;
-    padding: 30px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    left: 50%;
-    transform: translate(0%, 150px);
-    background: #191919;
-    text-align: center;
-    border-radius: 40px;
-    transition: 0.5s;
-}
-.tabee{
-    display: flex;
-    
-}
-
-.div table{
-    display: block;
-}
 .box input[type = "text1"]:focus{
     width: 380px;
     border-color: #2ecc71;
@@ -81,9 +60,4 @@ body{
 }
 .box input[type = "submit"]:hover{
     background: #2ecc71;
-}
-.pagination{
-    margin-top: 130px;
-    display: inline-block;
-    padding: 50px;
 }
