@@ -1,0 +1,104 @@
+@import 'globals';
+
+form {
+    margin-top: 5rem;
+    padding: 5rem 2rem 5rem 2rem;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.125rem;
+    padding: 3rem 1.2rem 3rem 1.2rem;
+    background-color: #88d9e2;
+    .register {
+        width: 100%;
+        border-bottom: 1px solid ;
+        text-align: center;
+        color: #037F8C;
+        font-size: 2rem;
+        padding: 0 0 .6rem .125rem;
+        text-transform: capitalize;
+        pointer-events: none;
+    }
+    input{
+        outline: none;
+        border: none;
+        font-size: 1.2rem;
+        text-transform: capitalize;
+        color: #1c5e5e;
+        caret-color: #ababbf;
+        background: transparent;
+        transition: all 0.3s ease-in-out;
+        border-bottom: 1px solid transparent;
+        &::placeholder{
+            padding-left: .125rem;
+            color: #8fabbd;
+            transition: all 0.3s ease-in-out;
+        }
+        &:hover::placeholder{
+            transform: translateY(-5px);
+        }
+        
+        &:hover{
+            border-color: #1c5e5e;
+        }
+    }
+    input[type="file"]{
+        display: none;
+    }
+    .icon{
+        font-size: 1.5rem;
+        color: #037F8C;
+        text-transform: capitalize;
+        cursor: pointer;
+        border-radius: .6rem;
+        padding: .3rem 1rem;
+        transition: all .3s ease-in-out;
+        &:hover{
+            box-shadow: 0 0 10px rgba(0,0,0,.1);
+        }
+    }
+    button{
+        border: none;
+        border-radius: .8rem;
+        outline: none;
+        background: none;
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+        text-transform: capitalize;
+        font-size: 1.2rem;
+        color: #1c5e5e;
+        max-width: max-content;
+        padding: .8rem 3rem;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        &:hover{
+            box-shadow: 0 0 10px rgba(0,0,0,.5);
+        }
+    }
+}
+
+.output{
+    margin-top: 5rem;
+    background: #88d9e2;
+    padding: 1.5rem 1rem;
+    border-radius: .8rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .3);
+    & > *{
+        color: #1c5e5e;
+        font-size: 1.2rem;
+        text-transform: capitalize;
+
+    }
+    .profile_picture{
+        max-width: 80%;
+        border-radius: .5rem;
+        overflow: hidden;
+        img{
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+    }
+}
