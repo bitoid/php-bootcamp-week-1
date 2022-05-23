@@ -1,0 +1,23 @@
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #4b757c, #3a65b4);
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+.container-fluid{
+    max-width: min-content;
+    margin: 0 auto;
+}
