@@ -26,88 +26,111 @@
     <?php
 
         $username = $_POST["username"];
-        $userUrl = "https://api.github.com/users/".$username;
+        $user_url = "https://api.github.com/users/".$username;
         
 
         // Curl to find out User repo number
 
-        $curlHandleTwo = curl_init();
+        $curl_handle_two = curl_init();
 
-        curl_setopt_array($curlHandleTwo, [
+        curl_setopt_array($curl_handle_two, [
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => $userUrl,
+            CURLOPT_URL => $user_url,
             CURLOPT_HTTPHEADER => ["Authorization: token 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"],
             CURLOPT_USERAGENT => 'Api in curl two'
         ]);
 
-        $dataUser = curl_exec($curlHandleTwo);
-        $dataUserArray = json_decode($dataUser,TRUE);
+        $data_user = curl_exec($curl_handle_two);
+        $data_user_array = json_decode($data_user,TRUE);
 
-        $repoNumber = $dataUserArray["public_repos"];
-        $followerNumber = $dataUserArray["followers"];
+        $repo_number = $data_user_array["public_repos"];
+        $follower_number = $data_user_array["followers"];
 
-        $pageNumber = ceil($repoNumber/100);
-        $pageFollowerNumber = ceil($followerNumber/100);
+        $page_number = ceil($repo_number/100);
+        $page_follower_number = ceil($follower_number/100);
         
-        curl_close($curlHandleTwo);
+        curl_close($curl_handle_two);
+    
+    ?>
 
+    
+    <?php
         //Curl for followers 
-        for($i=0;$i<$pageFollowerNumber;$i++){
-            $apiFollowerUrl = "https://api.github.com/users/".$username."/followers?per_page=100&page=$i";
+        for($i=0;$i<$page_follower_number;$i++){
+            $api_follower_url = "https://api.github.com/users/".$username."/followers?per_page=100&page=$i";
 
             $ch = curl_init();
 
             curl_setopt_array($ch, [
                 CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_URL => $apiFollowerUrl,
+                CURLOPT_URL => $api_follower_url,
                 CURLOPT_HTTPHEADER => ["Authorization: token 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"],
                 CURLOPT_USERAGENT => 'Api in curl one'
             ]);
 
             $followers = curl_exec($ch);
-            $followersArray = json_decode($followers,TRUE);
+            $followers_array = json_decode($followers,TRUE);
 
-            foreach($followersArray as $follower){
-                $followerNames[] = $follower['login'];
+            foreach($followers_array as $follower){
+                $follower_names[] = $follower['login'];
                 $photos[] = $follower['avatar_url'];
-                $profileLink[] = $follower['html_url'];
+                $profile_link[] = $follower['html_url'];
             }
+    ?>
             
-            for ($x = 0; $x < sizeof($followerNames); $x++) {
-                print "Follower Name: " . $followerNames[$x] . " Profile Picture: <a target=_blank href=".$profileLink[$x].">
-                <img  src=".$photos[$x]." width=100></a>; <br>";
+    <?php   for ($x = 0; $x < sizeof($follower_names); $x++) { ?>
+
+                <div class = "followerResult">
+                    <p id="followerName">Follower Name: <?= $follower_names[$x]?> </p>
+                    <p id="followerProfilePic">
+                        Profile Picture: <a target=_blank href="<?=$profile_link[$x]?>"> <img  src="<?=$photos[$x]?>" width=100> </a> 
+                    </p>
+                    <br>
+                </div> 
+    
+    <?php
             }
         }
+    ?>
 
-
+    
+    <?php
         // CURL For Repos
-        for($i=0;$i<$pageNumber;$i++){
+        for($i=0;$i<$page_number;$i++){
             
-            $apiUrl  = "https://api.github.com/users/" .$username. "/repos?per_page=100&page=$i";
+            $api_url  = "https://api.github.com/users/" .$username. "/repos?per_page=100&page=$i";
         
-            $curlHandle = curl_init( );
+            $curl_handle = curl_init( );
 
-            curl_setopt_array($curlHandle, [
+            curl_setopt_array($curl_handle, [
                 CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_URL => $apiUrl,
+                CURLOPT_URL => $api_url,
                 CURLOPT_HTTPHEADER => ["Authorization: token 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"],
                 CURLOPT_USERAGENT => 'Api in curl'
             ]);
 
-            $data = curl_exec($curlHandle);
-            $dataArray = json_decode($data,TRUE);
+            $data = curl_exec($curl_handle);
+            $data_array = json_decode($data,TRUE);
 
 
-            foreach($dataArray as $repo){
+            foreach($data_array as $repo){
                 $names[] = $repo['name'];
                 $links[] = $repo['html_url'];
             }
+    ?>
 
-            for ($x = 0; $x < sizeof($names); $x++) {
-                echo "Repo Name: $names[$x] Repo Link: $links[$x] <br>";
+    <?php   for ($x = 0; $x < sizeof($names); $x++) { ?>
+
+                <div class = "followerResult">
+                    <p id="repoName">Repo Name: <?= $names[$x]?> </p>
+                    <p id="repoLink">Repo Link: <?= $links[$x]?> </p>
+                    <br>
+                </div> 
+
+    <?php
             }
 
-            curl_close($curlHandle);
+            curl_close($curl_handle);
         }
     
     ?>
