@@ -1,0 +1,17 @@
+body{
+    background-image: url('./man.jpg');
+  background-color: #8FBC8F;
+    color: black;
+ }
+ h1{
+    text-align: center;
+ }
+ .container{
+  transform: translate(580px, 50px);
+ }
+ .error{
+    display: none;
+ }
+ .new{
+    transform: translate(870px, -350px);
+ }
