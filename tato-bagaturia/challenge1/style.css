@@ -1,5 +1,5 @@
 .uploadForm{
-    margin: 50px 550px;
+    margin: 50px 750px;
     padding: 25px;
     height:500px;
     position: relative;
@@ -41,4 +41,31 @@
     cursor: pointer;
     padding: 19px;
     margin: 10px 0;
+}
+
+.result {
+    margin: 50px 700px;
+    padding: 25px;
+    position: relative;
+    background: white;
+    text-align: center;
+}
+
+.result #resultNames{
+    background: rgb(248, 246, 246);
+    display: block ;
+    padding: 14px;
+    margin: 5px 0 16px;
+    width: 100%;
+    font-size: 40px;
+    font-family: monospace;
+}
+
+.alert {
+    color: red;
+    font-family: monospace;
+    font-size: 40px;
+    margin: 50px 700px;
+    position: relative;
+    text-align: center;
 }
