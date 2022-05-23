@@ -1,0 +1,31 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #33495e;
+    height: auto;
+}
+
+.divd{
+    width: 500px;
+    padding: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    transform: translate(0%, 0px);
+    background: #191919;
+    text-align: center;
+    border-radius: 40px;
+    transition: 0.5s;
+}
+.tabee{
+    display: flex;
+    
+}
+
+.div table{
+    display: block;
+}
+
