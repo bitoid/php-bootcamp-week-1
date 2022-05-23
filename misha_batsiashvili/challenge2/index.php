@@ -118,13 +118,9 @@ if( isset($_GET['username']) and $_GET['username'] ){
     <div class="wrp">
         <div class="formWrp">
             <form action="/" method="GET" >
-                <?php
-                if($error){
-                ?>
+                <?php if($error): ?>
                 <span class="input_error">Unable to handle your request</span>
-                <?php
-                }
-                ?>
+                <?php endif; ?>
                 <div class="form-group">
                     <input class="form_input" type="text" name="username" placeholder="Github Username" value="<?php echo $_GET['username'] ?? ''; ?>">
                     <button type="submit">Submit</button>
@@ -137,106 +133,77 @@ if( isset($_GET['username']) and $_GET['username'] ){
         <div class="main">
             <div class="repos">
                 <h1>Repositories</h1>
-                <?php if(count($reposArr) > 0){ ?>
+                <?php if(count($reposArr) > 0): ?>
                     <ul>
-                    <?php
-                        foreach ($reposArr as &$repo) {
-                            echo '<li class="repo_item"><a href="'. $repo['url'] .'" >' . $repo['name'] . '</a></li>';
-                        }
-                        unset($repo);
-                    ?>
+                        <?php foreach ($reposArr as &$repo): ?>
+                        <li class="repo_item"><a href="<?=$repo['url']?>"><?=$repo['name']?></a></li>
+                        <?php endforeach; ?>
                     </ul>
-
-                <?php } else if ($reposPage === 1 && count($reposArr) === 0) { ?>
+                <?php elseif ($reposPage === 1 && count($reposArr) === 0): ?>
                     <p>No Repos Found</p>
-                <?php
-                }    
-                ?>
+                <?php endif; ?>
 
-                <?php if($reposPage >= 1 && count($reposArr) > 0){ ?>
+                <?php if($reposPage >= 1 && count($reposArr) > 0): ?>
+                    <div class="pagin_wrp">
+
+                        <?php if($reposPage > 1): ?>
+                            <a href="<?php echo '?' . http_build_query(array_merge($_GET, ['reposPage' => $reposPage > 1 ? $reposPage - 1 : 1])); ?>" class="pagin_item" >Prev</a>
+                        <?php else: ?>
+                            <a class="pagin_item disabled" disabled >Prev</a>
+                        <?php endif; ?>
+
+                        <div><?php echo $reposPage; ?></div>
+
+                        <?php if(!($reposPage > 1 && count($reposArr) === 0)): ?>
+                        <a href="<?php echo '?' . http_build_query(array_merge($_GET, ['reposPage' => $reposPage + 1])); ?>" class="pagin_item" >Next</a>
+                        <?php else: ?>
+                        <a class="pagin_item disabled" disabled >Next</a>
+                        <?php endif; ?>
+
+                    </div>
+                <?php endif; ?>
+
                 
-                <div class="pagin_wrp">
-                    <?php
-                    if($reposPage > 1){    
-                    ?>
-                    <a href="<?php echo '?' . http_build_query(array_merge($_GET, ['reposPage' => $reposPage > 1 ? $reposPage - 1 : 1])); ?>" class="pagin_item" >Prev</a>
-                    <?php
-                    } else {
-                    ?>
-                    <a class="pagin_item disabled" disabled >Prev</a>
-                    <?php } ?>
-                    
-                    <div><?php echo $reposPage; ?></div>
-
-
-                    <?php
-                    if(!($reposPage > 1 && count($reposArr) === 0)){    
-                    ?>
-                    <a href="<?php echo '?' . http_build_query(array_merge($_GET, ['reposPage' => $reposPage + 1])); ?>" class="pagin_item" >Next</a>
-                    <?php
-                    } else {
-                    ?>
-                    <a class="pagin_item disabled" disabled >Next</a>
-                    <?php } ?>
-                </div>
-
-                <?php } ?>
             </div>
             
             <div class="followers">
                 <h1>Followers</h1>
-                <?php if(count($followersArr) > 0){ ?>
+
+                <?php if(count($followersArr) > 0): ?>
                 <ul>
-                <?php
-                    foreach ($followersArr as &$follower) {
-                        echo (
-                            '<li class="follower_item">
-                                <img src="'. $follower['image_url'] .'" >'.
-                                '<div class="text_content">
-                                    <h3>' . $follower['name'] . '</h3>
-                                    <a href="'. $follower['url'] .'" >View Profile</a>
-                                </div>'.
-                            '</li>'
-                        );
-                    }
-                    unset($follower);
-                ?>
+                    <?php foreach ($followersArr as &$follower): ?>
+                        <li class="follower_item">
+                            <img src="<?=$follower['image_url']?>" >
+                            <div class="text_content">
+                                <h3><?=$follower['name']?></h3>
+                                <a href="<?=$follower['url']?>" >View Profile</a>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
-
-                <?php } else if ($followersPage === 1 && count($followersArr) === 0) { ?>
+                <?php elseif ($followersPage === 1 && count($followersArr) === 0): ?>
                     <p>No Followers Found</p>
-                <?php
-                }    
-                ?>
+                <?php endif; ?>
                 
-                <?php if($followersPage >= 1 && count($followersArr) > 0){ ?>
+                <?php if($followersPage >= 1 && count($followersArr) > 0): ?>
                 
-                <div class="pagin_wrp">
-                    <?php
-                    if($followersPage > 1){    
-                    ?>
-                    <a href="<?php echo '?' . http_build_query(array_merge($_GET, ['followersPage' => $followersPage > 1 ? $followersPage - 1 : 1])); ?>" class="pagin_item" >Prev</a>
-                    <?php
-                    } else {
-                    ?>
-                    <a class="pagin_item disabled" disabled >Prev</a>
-                    <?php } ?>
-                    
-                    <div><?php echo $followersPage; ?></div>
+                    <div class="pagin_wrp">
+                        <?php if($followersPage > 1): ?>
+                        <a href="<?php echo '?' . http_build_query(array_merge($_GET, ['followersPage' => $followersPage > 1 ? $followersPage - 1 : 1])); ?>" class="pagin_item" >Prev</a>
+                        <?php else: ?>
+                        <a class="pagin_item disabled" disabled >Prev</a>
+                        <?php endif; ?>
+                        
+                        <div><?php echo $followersPage; ?></div>
 
+                        <?php if(!($followersPage > 1 && count($followersArr) === 0)): ?>
+                        <a href="<?php echo '?' . http_build_query(array_merge($_GET, ['followersPage' => $followersPage + 1])); ?>" class="pagin_item" >Next</a>
+                        <?php else: ?>
+                        <a class="pagin_item disabled" disabled >Next</a>
+                        <?php endif; ?>
+                    </div>
 
-                    <?php
-                    if(!($followersPage > 1 && count($followersArr) === 0)){    
-                    ?>
-                    <a href="<?php echo '?' . http_build_query(array_merge($_GET, ['followersPage' => $followersPage + 1])); ?>" class="pagin_item" >Next</a>
-                    <?php
-                    } else {
-                    ?>
-                    <a class="pagin_item disabled" disabled >Next</a>
-                    <?php } ?>
-                </div>
-
-                <?php } ?>
+                <?php endif; ?>
 
             </div>
         </div>
