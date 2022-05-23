@@ -1,0 +1,42 @@
+body{
+    padding: 20px;
+}
+
+.container{
+    padding: 30px;
+    margin: auto;
+}
+h2 {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+form {
+    text-align: center;
+    color: rgb(255, 0, 0);
+}
+.submit {
+    background-color: green;   
+}
+
+#img {
+    width: 350px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+#img:hover {
+    opacity: 60%;
+}
+
+.content {
+    text-align: center;
+    color: rgb(255, 0, 0);
+    font-size: 30px;
+
+}
+
+.container a {
+    color:blue;
+    font-family: sans-serif;
+}

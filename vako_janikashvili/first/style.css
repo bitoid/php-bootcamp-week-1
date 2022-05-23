@@ -1,0 +1,45 @@
+body {
+    background-color: rgb(83, 116, 216);
+    margin-top: 30px;
+    text-align: center;
+    font-size: 30px;
+    font-style: bold;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+.container {
+    width: 300px;
+    margin-bottom: 10px;
+    border: 1px solid #000000;
+    padding: 10px;
+    background-color: rgb(173, 185, 223);
+    box-shadow: 5px 5px;
+    font-size: 17px;
+    
+
+}
+
+form {
+    text-align: center;
+    
+}
+
+
+ #submit {
+    background-color: #48a11f;
+}
+
+.container input {
+    width: 250px;
+    border: none;
+    border-radius: 50px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+}
+
+img {
+    border-radius: 30%;
+    width: 250px;
+    margin: 5px;
+}
