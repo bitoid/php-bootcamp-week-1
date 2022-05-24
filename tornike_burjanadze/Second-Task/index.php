@@ -95,25 +95,29 @@
             </form>
             <div class="info-container">
                 <ol class="repository">
+                <?php if (isset($_GET['submitName'])) : ?>
                         <?php if ($_GET['select'] == "repos") : ?>
                             <?php   foreach($response as $resp):?>
                                 <li>
-                                    <a target="_blank" href="<?php $resp["html_url"] ?>"><?php echo $resp["name"] ?></a>
+                                    <a target="_blank" href="<?php echo $resp["html_url"] ?>"><?php echo $resp["name"] ?></a>
                                 </li>
                             <?php endforeach ?>
                         <?php endif ?>
+                    <?php endif ?>
                 </ol>
                 <ol class="followers">
-                    <?php if ($_GET['select'] == "followers") : ?>
-                            <?php foreach($followerResult as $resP) : ?>
-                               <li>
-                                   <a target="_blank" href="<?php $resP["html_url"] ?>">
-                                       <img src="<?php echo $resP["avatar_url"] ?>">
-                                       <span><?php echo $resP["login"] ?></span>
-                                    </a>
-                                </li>;
-                            <?php endforeach ?>
-                    <?php endif ?> 
+                    <?php if (isset($_GET['submitName'])) : ?>
+                        <?php if ($_GET['select'] == "followers") : ?>
+                                <?php foreach($followerResult as $resP) : ?>
+                                <li>
+                                    <a target="_blank" href="<?php echo $resP["html_url"] ?>">
+                                        <img src="<?php echo $resP["avatar_url"] ?>">
+                                        <span><?php echo $resP["login"] ?></span>
+                                        </a>
+                                    </li>;
+                                <?php endforeach ?>
+                        <?php endif ?> 
+                    <?php endif ?>
                 </ol>
             </div>
         </div>
