@@ -25,18 +25,18 @@
                 <div class="validation">
 
                     <h3 class='error'>
-                        <?php echo $fillValidator; ?>
+                        <?php echo $fill_Validator; ?>
                     </h3>
 
                     <h3 class='error'>
 
-                        <?php echo $caseValidator; ?>
+                        <?php echo $case_Validator; ?>
 
 
                     </h3>
 
                     <h3 class="error">
-                        <?php echo $numberError; ?>
+                        <?php echo $number_Error; ?>
                     </h3>
 
                     <h3 class='sucsess'>
@@ -69,7 +69,7 @@
 
             <div class="card-img">
 
-                <?php if($isValid) : ?>
+                <?php if($is_Valid) : ?>
                 <img class='profile-img' src="./uploads/<?php if($isValid){ echo $image;} ?>" alt="image">
 
                 <?php endif; ?>
@@ -78,12 +78,12 @@
 
             <div class="card-text">
 
-                <h1><?php if ($isValid) {
+                <h1><?php if ($is_Valid) {
                   echo $name;
                 } ?>
                 </h1>
 
-                <h1><?php if ($isValid) {
+                <h1><?php if ($is_Valid) {
                   echo $surname;
                 } ?>
                 </h1>
