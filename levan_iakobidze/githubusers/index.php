@@ -1,9 +1,6 @@
 <?php
-
 require_once 'logic.php';
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
