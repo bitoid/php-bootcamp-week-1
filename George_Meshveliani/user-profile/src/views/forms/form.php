@@ -11,13 +11,11 @@
         <label>Last name</label>
         <input type="text" name="lastName" class="form-control" id="exampleFormControlInput1" placeholder="Enter user last name" />
     </div>
-    <input  type="file" name="fileToUpload" id="fileToUpload">
+    <input type="file" name="fileToUpload" id="fileToUpload">
     <br />
     <br />
     <input type="submit" value="Add user" name="submit">
 </form>
 <?php else: ?>
-
-<h4>User is added, you can add more users <a href="/">here</a> </h4>
-
+    <h4>User is added, you can add more users <a href="/">here</a> </h4>
 <?php endif; ?>
