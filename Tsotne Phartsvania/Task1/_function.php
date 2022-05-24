@@ -1,6 +1,5 @@
 <?php
 
-
     function emptyInput($name,$lastname,$image){
         $result = false;
         if(empty($name) || empty($lastname) || empty($image) ){
@@ -31,6 +30,3 @@
         } 
         return $result;
     }
-    
-    
- 

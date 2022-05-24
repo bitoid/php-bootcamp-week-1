@@ -27,4 +27,3 @@
             return header("Location: index.php?error=ესეთი მომხმარებელი ვერ მოიძებნა.");
         endif;
     }
-

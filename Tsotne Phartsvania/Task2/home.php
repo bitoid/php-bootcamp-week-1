@@ -10,7 +10,6 @@
             $_SESSION['followers'] = $response['followers'];
             $_SESSION['repos'] = $response['public_repos'];
         }
-       
 ?>
         <!DOCTYPE html>
         <html lang="en">
