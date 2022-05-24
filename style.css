@@ -1,0 +1,13 @@
+.box{
+border: 2em;
+    border-color: aliceblue;
+    align:center;
+    background-color: aqua;
+}
+.header {
+    color:blue;
+    font-size: 25em;;
+}
+*{
+    background-color: black;
+}
