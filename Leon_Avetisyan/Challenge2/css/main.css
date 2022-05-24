@@ -1,0 +1,102 @@
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.repos-form {
+    border: 1px solid gray;
+    width: 300px;
+    padding: 25px;
+    background: #4a48af;
+    border-radius: 15px;
+    margin: 50px auto 70px;
+    display: flex;
+    flex-flow: column;
+}
+
+.repos-form input {
+    margin: 5px 0 15px;
+    padding: 7px;
+}
+
+.repos-form button {
+    width: 150px;
+    margin: 0 auto;
+    padding: 5px 0;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background: #66d5d5;
+    font-size: 15px;
+    font-weight: 700;
+    color: #101210;
+}
+.error {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.repoFound {
+    text-align: center;
+}
+
+.repoList {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 15px;
+    width: 80%;
+}
+
+.repoItem {
+    background: gray;
+    border: 1px solid gray;
+    border-radius: 3px;
+    margin: 10px 5px;
+    padding: 5px;
+}
+
+.repoItem a {
+    color: #fff;
+    padding: 5px;
+}
+
+.flwerList {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0;
+    width: 80%;
+
+}
+
+.flwerProfile {
+    margin: 25px;
+    /* height: 200px; */
+    text-align: center;
+}
+
+.flwerProfile a {
+    display: block;
+    margin: 15px 0;
+}
+
+.flwerProfile span {
+    color: green;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.flwerProfile img {
+    border: 1px solid green;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
