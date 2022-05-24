@@ -1,0 +1,69 @@
+.page {
+    background-color: rgb(187, 190, 223) ;
+}
+
+.startercontainer {
+    width: 250px;
+    height: 250px;
+    background-color: lawngreen;
+    border-radius: 5%;
+    border: 1px solid rgb(33, 77, 99);
+    margin: auto;
+}
+
+.username {
+    padding: 9px;
+    margin-top: 20%;
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: large;
+}
+
+.username:hover {
+    background-color: white;
+    color: black;
+}
+
+.submit {
+    padding: 10px;
+    margin-top: 20%;
+    margin-left: 30%;
+    background-color: brown;
+    font-size: x-large;
+}
+
+.submit:hover{
+    background-color: yellow;
+    color: green;
+}
+
+.maintxt {
+    margin: auto;
+    text-align: center;
+    font-size: 4vw;
+}
+
+.sectxt {
+    margin: auto;
+    text-align: center;
+    font-size: x-small;
+}
+
+/* second page */
+
+
+table, th, td {
+    border: 1px solid gold;
+    border-collapse: collapse;
+}
+
+.noninfodiv {
+    margin: auto;
+}
+
+.noninfo {
+    text-decoration: underline;
+    margin-left: 450px;
+    margin-top: 500px;
+}
