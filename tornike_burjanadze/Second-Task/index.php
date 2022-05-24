@@ -1,3 +1,75 @@
+<?php
+    if (isset($_GET['submitName'])) {
+        $user_name = $_GET['username'];
+        $response = [];
+
+        $page = 1;
+        $count = 1;
+
+
+        while($count == 1){
+            $curl = curl_init();
+            curl_setopt_array($curl, [
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => "https://api.github.com/users/".$user_name."/repos?page={$page}",
+                CURLOPT_USERAGENT => 'User Repos'
+            ]);
+
+            $data = curl_exec($curl);
+
+            $result = json_decode($data, true);
+
+            if (sizeof($result) == 0) {
+                $count = 0;
+            }
+            $page += 1;
+
+            array_push($response,...$result);
+
+            curl_close($curl);
+            
+        }
+    }
+
+
+ ?>
+
+<?php
+    if (isset($_GET['submitName'])) {
+        $user_name = $_GET['username'];
+        $curL = curl_init();
+
+        $followerResult = [];
+
+        $followerPage = 1;
+        $followerCount = 1;
+
+        while ($followerCount == 1) {
+             curl_setopt_array($curL, [
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => "https://api.github.com/users/".$user_name."/followers?page={$followerPage}",
+                CURLOPT_USERAGENT => 'User Followers'
+            ]);
+        
+            $datA = curl_exec($curL);
+        
+            $resulT = json_decode($datA, true);
+
+            if (sizeof($resulT) == 0) {
+                $followerCount = 0;
+            }
+            $followerPage += 1;
+
+            array_push($followerResult,...$resulT);
+
+            curl_close($curL);
+        }
+    }
+
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,106 +95,25 @@
             </form>
             <div class="info-container">
                 <ol class="repository">
-                    <?php
-                        if (isset($_GET['submitName'])) {
-                            $userName = $_GET['username'];
-                            if (!empty($_GET['username'])) {
-
-                                $curl = curl_init();
-                                
-                                $response = [];
-
-                                $page = 1;
-                                $count = 1;
-                                
-                                while($count == 1){
-                                    curl_setopt_array($curl, [
-                                        CURLOPT_RETURNTRANSFER => 1,
-                                        CURLOPT_URL => "https://api.github.com/users/".$userName."/repos?page={$page}",
-                                        CURLOPT_USERAGENT => 'User Repos'
-                                    ]);
-        
-                                    $data = curl_exec($curl);
-        
-                                    $result = json_decode($data, true);
-
-                                    if (sizeof($result) == 0) {
-                                        $count = 0;
-                                    }
-                                    $page += 1;
-
-                                    array_push($response,...$result);
-                                    
-                                }
-                    ?>
-                    <?php 
-                        if (!empty($_GET['select'])) {
-                                $selected = $_GET['select'];
-                                if ($selected == "repos") {
-                                    foreach($response as $resp){
-                                        echo '<li><a target="_blank" href="'.$resp["html_url"].'">'.$resp["name"].'</a></li>';
-                                    }
-                                }
-    
-                                }
-    
-                                
-                                curl_close($curl);
-                            }
-
-                        }
-                    ?>
+                        <?php if ($_GET['select'] == "repos") : ?>
+                            <?php   foreach($response as $resp):?>
+                                <li>
+                                    <a target="_blank" href="<?php $resp["html_url"] ?>"><?php echo $resp["name"] ?></a>
+                                </li>
+                            <?php endforeach ?>
+                        <?php endif ?>
                 </ol>
                 <ol class="followers">
-                    <?php 
-                        if (isset($_GET['submitName'])) {
-                            $userName = $_GET['username'];
-    
-                            if (!empty($_GET['username'])) {
-
-                                
-                                $curL = curl_init();
-
-                                $followerResult = [];
-
-                                $followerPage = 1;
-                                $followerCount = 1;
-
-                                while ($followerCount == 1) {
-                                    curl_setopt_array($curL, [
-                                        CURLOPT_RETURNTRANSFER => 1,
-                                        CURLOPT_URL => "https://api.github.com/users/".$userName."/followers?page={$followerPage}",
-                                        CURLOPT_USERAGENT => 'User Followers'
-                                    ]);
-        
-                                    $datA = curl_exec($curL);
-        
-                                    $resulT = json_decode($datA, true);
-
-                                    if (sizeof($resulT) == 0) {
-                                        $followerCount = 0;
-                                    }
-                                    $followerPage += 1;
-
-                                    array_push($followerResult,...$resulT);
-                                }
-    
-                                if (!empty($_GET['select'])) {
-                                    $selected = $_GET['select'];
-                                    if ($selected == "followers") {
-                                        foreach($followerResult as $resP){
-                                            echo '<li><a target="_blank" href="'.$resP["html_url"].'"><img src="'.$resP["avatar_url"].'"><span>'.$resP["login"].'</span></a></li>';
-                                        }
-                                        
-                                    }
-    
-                                }
-
-                                curl_close($curL);
-                            }
-
-                        }
-                    ?> 
+                    <?php if ($_GET['select'] == "followers") : ?>
+                            <?php foreach($followerResult as $resP) : ?>
+                               <li>
+                                   <a target="_blank" href="<?php $resP["html_url"] ?>">
+                                       <img src="<?php echo $resP["avatar_url"] ?>">
+                                       <span><?php echo $resP["login"] ?></span>
+                                    </a>
+                                </li>;
+                            <?php endforeach ?>
+                    <?php endif ?> 
                 </ol>
             </div>
         </div>
