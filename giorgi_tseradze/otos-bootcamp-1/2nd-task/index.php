@@ -37,20 +37,20 @@
 
             //trimming white space
             if(isset($_POST['input_username'])){
-                $_POST['input_username']=trim($_POST['input_username']); 
+                $_POST['input_username'] = trim($_POST['input_username']); 
             }
 
-            //cheking if all form is submited
+            //cheking if all form is submitted
             if (isset($_POST['submit'])&& isset($_POST['input_username']) && strlen($_POST['input_username'])>0) {     
 
 
                 $github_user_url="https://api.github.com/search/users?q=". $_POST['input_username'];
 
-                $user_decoded=file_get_contents( $github_user_url, false, stream_context_create($opts));
-                $user_validation=json_decode($user_decoded, true);
+                $user_decoded = file_get_contents( $github_user_url, false, stream_context_create($opts));
+                $user_validation = json_decode($user_decoded, true);
 
                 //username validation
-                if($user_validation["total_count"]===0) {
+                if($user_validation["total_count"] === 0) {
 
                     die("error: invalid github username '".$_POST['input_username']."'");
 
@@ -58,8 +58,8 @@
 
                     //checking dropdown value
                     if($_POST['operation']==='repository'||$_POST['operation']==='followers') {
-                        $username=$_POST['input_username'];
-                        $operation=$_POST['operation'];
+                        $username = $_POST['input_username'];
+                        $operation = $_POST['operation'];
 
                         //getting information from users api
                         $user_url = "https://api.github.com/users/". $username;
@@ -67,20 +67,21 @@
                         $content = file_get_contents($user_url, false, stream_context_create($opts));
 
                         $user_info = json_decode($content, true);
-
+                        
                         //showing name, picture and operation info
-                        echo "<img id='img' src='".$user_info["avatar_url"]."'>";
-                        echo "<p id='profile'>".$username."'s ".$operation." </p>"."<br>";
+                        ?><img id = 'img' src=<?= $user_info["avatar_url"]?>> 
+                        <p id = 'profile'><?php print"$username's $operation" ?></p><br><?php
 
                         //getting the number of followers and repos
                         if($operation === 'repository'){                           
                            $data_count = $user_info["public_repos"];
                         }else{                               
                             $data_count = $user_info["followers"];
-                        }
+                        }?>
 
-                        //using while loop to get all information
-                        echo "<table>";
+                        <!-- using while loop to get all information ---> 
+                        <table>
+                        <?php
                         $i = 0;
                         $c = 1;
                         $pagenumber = 0;
@@ -98,21 +99,23 @@
 
                             //showing user repos and followers
                             foreach($data_list as $data){
-                                echo "<tr>";                                 
-                                echo "<td>$c</td>";
-                                $c++; 
-                                if($operation === 'repository'){                                                                                      
-                                    echo "<td> <a href='".$data["html_url"]."' target='#_blank'>". $data["name"]."</a></td>";
-                                    echo "<td> ".$data["description"]." </td>";
+                                ?><tr>                                
+                                <td><?php $c ?></td>
+                                <?php $c++; 
+                                if($operation === 'repository'){ 
+                                    ?>                                                                          
+                                    <td> <a href=<?= $data["html_url"] ?> target='#_blank'><?= $data["name"] ?></a></td>
+                                    <td> <?=$data["description"] ?></td><?php
                                 }else{                               
-                                    echo "<td> <a href='".$data["html_url"]."' target='#_blank'>". $data["login"]."</a></td>";
-                                    echo "<td> <img id='img' src=".$data["avatar_url"]."> </td>";                                  
+                                    ?>
+                                    <td> <a href=<?= $data["html_url"] ?> target='#_blank'> <?= $data["login"] ?></a></td>
+                                    <td> <img id='img' src=<?=$data["avatar_url"] ?>> </td><?php                                 
 
                                 }                                                              
-                                echo "</tr>";                               
+                                ?></tr><?php                             
                             }                                                                                                                      
                         }
-                        echo "</table>";                   
+                        ?></table><?php                  
                     }                                         
                 } else {                  
                     die('error: missing information');
