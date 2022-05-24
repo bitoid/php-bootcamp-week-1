@@ -1,6 +1,4 @@
 <?php require_once "validation.php";
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,84 +15,53 @@
 </head>
 
 <body>
-
     <main>
         <div class="form-wrapper">
-
             <form action="index.php" method='POST' enctype="multipart/form-data">
                 <div class="validation">
-
                     <h3 class='error'>
                         <?php echo $fill_Validator; ?>
                     </h3>
-
                     <h3 class='error'>
-
                         <?php echo $case_Validator; ?>
-
-
                     </h3>
-
                     <h3 class="error">
                         <?php echo $number_Error; ?>
                     </h3>
-
                     <h3 class='sucsess'>
                         <?php echo $success; ?>
                     </h3>
-
                 </div>
                 <div class="firstName-lastName-cont">
                     <input type="text" name='firstname' placeholder="First Name">
                     <input type="text" name='lastname' placeholder="Last Name">
                 </div>
-
                 <div class="photoInput-photo-cont">
-
                     <div class="photo-input-cont">
-
                     </div>
                     <input type="file" name="image">
-
-
                 </div>
                 <input class='submit-btn' type="submit" name='submit' placeholder='submit'>
-
-
             </form>
-
         </div>
-
         <div class="output">
-
             <div class="card-img">
-
                 <?php if($is_Valid) : ?>
                 <img class='profile-img' src="./uploads/<?php if($isValid){ echo $image;} ?>" alt="image">
-
                 <?php endif; ?>
             </div>
-
-
             <div class="card-text">
-
                 <h1><?php if ($is_Valid) {
                   echo $name;
                 } ?>
                 </h1>
-
                 <h1><?php if ($is_Valid) {
                   echo $surname;
                 } ?>
                 </h1>
             </div>
-
-
         </div>
-
-
     </main>
-
 </body>
 
 </html>
