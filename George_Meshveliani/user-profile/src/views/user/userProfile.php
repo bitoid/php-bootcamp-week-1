@@ -11,7 +11,7 @@
 </style>
 <div class='profile'>
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src='<?= $target_file ?>' alt="img" />
+        <img class="card-img-top" src='<?= "$target_file" ?>' alt="img" />
         <div class="card-body">
             <h4 class="card-title"><?= $name . ' ' . $lastName ?></h4>
             <h5>File name:</h5>
