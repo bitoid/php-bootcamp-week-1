@@ -8,7 +8,7 @@
 
 ##### note that if you cannot upload pictures because of special permissions you can run following command: 
 
-`sudo chown www-data:www-data uploads` - into public directory
+`sudo chown www-data:www-data uploads` - into app directory
 
 #### Project screenshots: 
 
