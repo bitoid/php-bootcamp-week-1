@@ -34,9 +34,10 @@ class HomeController {
             die;
         }
 
-        $target_file =  $_FILES["fileToUpload"]["name"];
+        $target_file =  basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $uploads_dir = '/var/www/public/uploads';
 
         if (isset($_POST["submit"])) {
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -64,7 +65,7 @@ class HomeController {
             echo "Sorry, your file was not uploaded.";
         }
         else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "$uploads_dir/$target_file")) {
                 echo "Inputs has been updated, thanks, you can add more";
             }
             else {
@@ -81,7 +82,7 @@ class HomeController {
             'lastName' => $lastName,
             'user_id' => $user_id,
             'target_file' => $target_file,
-
+            'uploads_dir' => $uploads_dir,
         ]);
 
         return $form . $userProfile;
