@@ -37,7 +37,7 @@ class HomeController {
         $target_file =  basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $uploads_dir = '/var/www/public/uploads';
+        $uploads_dir = '/var/www/app/uploads';
 
         if (isset($_POST["submit"])) {
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
