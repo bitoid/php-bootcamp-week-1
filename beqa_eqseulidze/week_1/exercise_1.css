@@ -1,0 +1,74 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:boredr-box;    
+}
+body{
+    padding: 10px;
+}
+
+fieldset{
+    max-width:700px;    
+    margin:20px auto;
+    padding:10px;
+    border:5px solid green; 
+}
+
+form{
+    width:100%;
+    border:1px solid purple;
+}
+
+label{
+    font-size:2em;   
+    width:150px;
+    display: inline-block; 
+    margin:10px; 
+}   
+
+input{
+    font-size:2em;     
+    display: inline-block;  
+    width:310px;
+    border:1px solid black;
+}
+p.error-text{
+    color:red;
+
+}
+input:last-child{
+    display: block;
+    width:200px;
+    margin:5px auto;
+    padding:5px;
+    border:none;
+    border-radius: 20px;
+    background-color: rgb(84, 134, 8);
+    color:white;
+    transition:0.5s;
+    cursor: pointer;
+}
+input:last-child:hover{
+    background-color:rgb(147, 245, 0) ;
+    transform:scale(1.1);
+    color:black;
+}
+
+
+div.output{
+    max-width:700px;    
+    margin:20px auto;
+    padding:10px;
+    border:5px solid rgb(0, 255, 149);   
+}
+div.output p{
+    font-size: 2em;
+}
+
+img{
+    width:200px;
+    display: block;
+    margin:10px auto;
+    border: 5px solid rgb(255, 208, 0);
+}
