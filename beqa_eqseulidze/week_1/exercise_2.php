@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 $header = [
     "User-Agent: Example REST API Client",
-    "Authorization: token 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"
+    "Authorization: token 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"
 ]; 
 ?>
 <!--  ===================== PHP BLOCK TO FETCH DATAS FROM GitHub ===================== -->
