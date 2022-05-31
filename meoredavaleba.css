@@ -1,0 +1,39 @@
+body{
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.person{
+    display: flex;
+     justify-content: space-around;
+     background-color: yellow;
+     align-items: center;
+   }
+   .person_folowers{
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+   }
+   .img{
+     height: 150px;
+     width: 150px;
+   }
+.Name_Control{
+    width: 95%;
+    text-align: center;
+    height: 30px;
+    border: 2px solid blue;
+}
+.submit{
+width: 20%;
+background-color: green;
+color: white;
+border: none;
+height: 30px;
+margin-left: 35%;
+}
+.er{
+    color: red;
+    margin-left: 40%;
+}
