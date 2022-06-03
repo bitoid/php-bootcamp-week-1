@@ -1,0 +1,17 @@
+body {
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.belowPadding {
+  padding-bottom: 5rem;
+}
+
+.form-class {
+  width: 1500px;
+  margin: auto;
+}
