@@ -7,6 +7,9 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
 </head>
 <body>
   <main>
@@ -25,6 +28,8 @@
   </div>
     <?php 
       include 'functions.php';
+
+      // Get how many public repositories user has
       if(isset($_POST["username"])){
         $username = $_POST['username'];
         $pages = getPages($username);
@@ -33,9 +38,21 @@
       $headers = [
         'User-Agent: GitHub-username'
         ];
-        // Get how many public repositories user has
-          ?>
+
+        // If user doesn't choose any option
+        if(!isset($_POST['repos']) && !isset($_POST['followers'])){
+          $errors[] = "Please choose at least one option";
+        }
+      ?>
         <?php if($username ?? null): ?>
+        <!-- If errors exist -->
+          <?php if(!empty($errors)): ?>
+          <?php foreach($errors as $error): ?>
+            <div class="alert alert-warning" role="alert">
+            <?= $error ?>
+            </div>
+          <?php endforeach; ?>
+        <?php endif; ?>
           <table>
             <thead>
               <tr>
@@ -48,8 +65,9 @@
             <tbody>
           <?php endif; ?>
     
+  
 <!-- If User chooses Both -->
-<?php if(isset($username) && isset($_POST['repos']) && isset($_POST['followers'])){ ?>
+<?php if(isset($username) && isset($_POST['repos']) && isset($_POST['followers'])): ?>
   <a href="#followers">Followers</a>
   <h1>Repositories</h1>
   <?php
@@ -86,7 +104,7 @@ for($x = 1; $x < $pages + 1; $x++){
     <?php
   for($x = 1; $x < $pages + 1; $x++){
     $decoded = getDecode($username, 'followers', $x);
-
+    $num = 1;
   ?>
         <?php foreach($decoded as $follower): ?>
         <tr>
@@ -105,7 +123,8 @@ for($x = 1; $x < $pages + 1; $x++){
 </html>
       
 <!-- If user only chooses repos -->
-<?php }else if(isset($username) && isset($_POST['repos'])){ 
+<?php elseif(isset($username) && isset($_POST['repos'])): ?>
+  <?php 
 
   for($x = 1; $x < $pages + 1; $x++){
   $decoded = getDecode($username, 'repos', $x);
@@ -128,8 +147,8 @@ for($x = 1; $x < $pages + 1; $x++){
 </html>
 
 <!-- If User only chooses followers -->
-<?php }else if(isset($username) && isset($_POST["followers"])){
-
+<?php elseif(isset($username) && isset($_POST["followers"])): ?>
+<?php
   for($x = 1; $x < $pages + 1; $x++){
     $decoded = getDecode($username, 'followers', $x);
   ?>
@@ -140,7 +159,8 @@ for($x = 1; $x < $pages + 1; $x++){
           <td><?= $follower["login"]?></td>
         </tr>
         <?php $num++; ?>
-        <?php endforeach; } }?>
+        <?php endforeach; }?>
+        <?php endif;?>
       </tbody>
       </table>
     </tbody>
