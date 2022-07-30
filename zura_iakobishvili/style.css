@@ -1,0 +1,19 @@
+.info {
+    display:flex;
+    height: 30px;
+    width: 400px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+body {
+    background-color: rgb(239 212 229);
+}
+
+
+.upload-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 300px;
+}
