@@ -1,0 +1,30 @@
+section {
+    width: 400px;
+    height: 120px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aquamarine;
+    
+}
+h1{
+    width: 243px;
+    padding-top: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+}
+input {
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+.personal-info{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.name-surname{
+    color:rgb(66, 99, 199);
+    font-size: 30px;
+    padding-left: 50px;
+}
