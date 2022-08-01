@@ -1,41 +1,85 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
-
-    <title>
-        First Challenge 
-    </title>
+        <meta charset="UTF-8">
+        <link rel = "stylesheet" href="style.css">
+        <title>
+         PHP FORM VALIDATION  
+        </title>
     </head>
-<body>
+    <body>
+    <div class = "container">
+       <img class = "main-logo" src="img.jpg" alt="image" >
 
-<div class = "upload-form" >
-    <form action="form.php" method="POST" enctype="multipart/form-data">
-        <input class = "info first-name"  type="text" name = "FirstName" placeholder="First Name"/>
-        <input class = "info last-name"  type="text" name = "LastName" placeholder="Last Name"/>
-        <input class = "info image"  type="file" name = "img" placeholder="Choose File"/>
-        <input class = "info submite"  type="submit" name = "Submit" placeholder="Submit"/>
-    </form>
-</div>
- 
-    <?php 
-    if($_POST['FirstName'] && $_POST['LastName'] ){
-        print "Full Name: " .$_POST['FirstName']  . " " .   $_POST['LastName'] ;
-    }
+        <h1>Bitoid Technologies</h1>
+        
+        <form action="form.php" method="POST" enctype = "multipart/form-data"> 
+            <input class = "info"  type="text" name = "firstname" placeholder = "First Name"/>
+            <input class = "info"  type="text" name = "lastname" placeholder = "Last Name"/>
+            <input class = "info"  type="file" name = "image" placeholder = "Upload your image"/>
+            <input class = "info"  type= "submit" name="submit" value="REGISTER"/>
+        </form>
+    </div>  
 
-    if(isset($_POST['submit']))
-    {
+
+  
+
+        
+    <?php
+        // $firstname = "";
+        // $lastname = "";
+       if($_SERVER['REQUEST_METHOD']=="POST"){
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $image;
+        $alpha = "/^[A-Z]+$/";
+
+        // First name errors 
+
+        if(empty($firstname)){
+            echo   "Please enter your First name ";
+        } elseif (strlen($firstname) < 6 ) { // strlen --> ასოების რაოდენობა სთრინგში 
+            echo "Your First name needs to have minimum 6 letters  ";
+        } elseif(preg_match ($alpha, $firstname)){
+            echo "<br><br>$firstname";
+        } else{
+            echo "<br>Firstname should contain only alphabet characters (A to Z) ";
+        }
+
+        // Last name errors 
+
+        if(empty($lastname)){
+            echo   "Please enter your Last name   ";
+        }elseif (strlen($lastname) < 6 ) { // strlen --> ასოების რაოდენობა სთრინგში 
+            echo "Your Last name needs to have minimum 6 letters  ";
+        } elseif(preg_match ($alpha, $lastname)){
+            echo "<br><br>$lastname";
+        } else{
+            echo "<br>Last name should contain only alphabet characters (A to Z) ";
+        }
+        
+
+
+        if($firstname && $lastname ) {
+            print "FULL NAME: " .$firstname . " " . $lastname;
+        } 
+
+    
+   
+
+    if($_SERVER['REQUEST_METHOD']=="POST"){
         $img_name = $_FILES['image']['name'];
         $tmp_img_name = $_FILES['image']['tmp_name'];
-        $uploads = "uploads";
-        move_uploaded_file($tmp_img_name,$uploads.$img_name);
-        echo "img src = '$uploads./$img_name'/>";
-    
+        $destination = "uploads/". $img_name;
+        move_uploaded_file($tmp_img_name, $destination);
     }
-    ?> 
+    if(empty($image)){
+        echo "Upload your image";
+    }
+}
     
+?> 
+     <img src="<?php echo $destination ?>">   
     
-</body>
-
+    </body>
 </html>
-
