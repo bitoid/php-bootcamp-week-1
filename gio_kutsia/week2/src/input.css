@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+    .card {
+        @apply bg-white rounded overflow-hidden shadow-lg;
+    }
+    .container {
+        @apply  grid md:grid-cols-3 gap-10 ;
+    }
