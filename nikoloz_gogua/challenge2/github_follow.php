@@ -22,8 +22,13 @@ function followers($username, $param)
     ?>
 <?php if ($statuscode_followers === "HTTP/1.1 404 Not Found") {?>
     <div class=error1><?="Invalid Username!"?></div>
+    <?php // Api limit exceeded?>
+  <?php } else if ($statuscode_followers === "HTTP/1.1 403 rate limit exceeded") {?>
+    <div class=success><?="Api limit exceeded"?></div>
+    <?php // 0 repositoy ?>
 <?php } else if (empty($decoded_followers)) {?>
-<div class=success><?="$username has 0 follower"?></div>
+  <div class=success><?="$username has 0 follower"?></div>
+  <?php //if everthing is ok ?>
 <?php } else {?>
 
 <div class=success><?=$username . "'s followers"?></div>
@@ -62,7 +67,7 @@ function followers($username, $param)
   <ul class="pagination">
 
 <?php for ($page = 1; $page <= $numofpages_follow; $page++) {?>
-    <li class="page-item"><a name="page"<?=$page?> class="page-link" href="input.php?page=<?=$page?>"><?=$page?></a></li>
+    <li class="page-item"><a name=<?="page" . $page?> class="page-link" href="input.php?page=<?=$page?>"><?=$page?></a></li>
 
     <?php }?>
 

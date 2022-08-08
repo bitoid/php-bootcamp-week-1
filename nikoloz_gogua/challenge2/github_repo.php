@@ -25,20 +25,15 @@ function repos($username, $param)
     ?>
 <?php if ($statuscode_repos === "HTTP/1.1 404 Not Found") {?>
   <div class=error1><?="Invalid Username!"?></div>;
-    <?php // 0 repository?>
-  <?php } else if (empty($decoded_repos)) {?>
-    <div class=success><?="$username has 0 repository"?></div>
-
-
-<?php // if everything is ok prints repositories table ?>
+    <?php // Api limit exceeded?>
+  <?php } else if ($statuscode_repos === "HTTP/1.1 403 rate limit exceeded") {?>
+    <div class=success><?="Api limit exceeded"?></div>
+    <?php // 0 repositoy ?>
+<?php } else if (empty($decoded_repos)) {?>
+  <div class=success><?="$username has 0 repository"?></div>
+  <?php //if everthing is ok ?>
 <?php } else {?>
-
-
-
 <div class=success><?=$username . "'s repositories"?></div>
-
-
-
 
 <table class="table table-hover">
 <thead>
@@ -60,9 +55,6 @@ function repos($username, $param)
 
 </table>
 
-
-
-
 <?php
 $numofpages_rep = floor(($num_rep / 100) + 1);
 
@@ -72,15 +64,21 @@ $numofpages_rep = floor(($num_rep / 100) + 1);
   <ul class="pagination">
 
 <?php for ($page = 1; $page <= $numofpages_rep; $page++) {?>
-    <li class="page-item"><a name="page"<?=$page?> class="page-link" href="input.php?page=<?=$page?>"><?=$page?></a></li>
+    <li class="page-item"><a class="page-link" href="input.php?Page=<?=$page?>"><?=$page?></a></li>
 
     <?php }?>
+<?php
+if (!isset($_GET["page"])) {
+            $page = 1;
+        } else {
+            $page = $_GET["page"];
+        }
 
+        ?>
   </ul>
 </nav>
 
 <?php }?>
-
 
 <?php }?>
 
