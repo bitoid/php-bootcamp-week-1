@@ -67,14 +67,7 @@ $numofpages_rep = floor(($num_rep / 100) + 1);
     <li class="page-item"><a class="page-link" href="input.php?Page=<?=$page?>"><?=$page?></a></li>
 
     <?php }?>
-<?php
-if (!isset($_GET["page"])) {
-            $page = 1;
-        } else {
-            $page = $_GET["page"];
-        }
 
-        ?>
   </ul>
 </nav>
 

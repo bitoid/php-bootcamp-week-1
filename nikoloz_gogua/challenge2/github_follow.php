@@ -67,7 +67,7 @@ function followers($username, $param)
   <ul class="pagination">
 
 <?php for ($page = 1; $page <= $numofpages_follow; $page++) {?>
-    <li class="page-item"><a name=<?="page" . $page?> class="page-link" href="input.php?page=<?=$page?>"><?=$page?></a></li>
+    <li class="page-item"><a class="page-link" href="input.php?page=<?=$page?>"><?=$page?></a></li>
 
     <?php }?>
 
