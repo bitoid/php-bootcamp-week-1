@@ -1,7 +1,5 @@
 <?php 
 if(isset($_POST['submit']) && isset($_FILES['profile']) && $_POST['name'] && $_POST['surname']){
-  
-  
   print '<h1>' . 'Name:' .'</h1>' . $_POST['name'];
   print '<h1>' . 'Surname:' .'</h1>' . $_POST['surname'];
   print '<h1>Profile Picture:</h1>';  
