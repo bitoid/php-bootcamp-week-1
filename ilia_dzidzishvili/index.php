@@ -12,7 +12,7 @@
    <?php 
       $uploadFileName = null;
       $hasPost = false;
-      if(isset($_POST["firstname"]) || isset($_POST["lastname"]) /*|| $_FILES["firstname"]*/) 
+      if(isset($_POST["firstname"]) || isset($_POST["lastname"]) || $_FILES["firstname"]) 
       {
          $hasPost = true;
          $errorMessages = [];
