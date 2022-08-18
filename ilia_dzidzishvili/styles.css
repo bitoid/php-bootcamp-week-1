@@ -1,0 +1,36 @@
+.container, form{
+   padding-top: 20px;
+   margin: auto;
+   width: 100%;
+   max-width: 800px;
+   display: flex;
+   flex-direction: column;
+}
+h1{
+   border-bottom: solid #dddbdb 1px;
+}
+label{
+   margin-bottom: 4px;
+}
+input{
+   border:solid grey 1px;
+   border-radius: 4px;
+   font-size: 14px;
+   padding: 8px;
+   margin-bottom: 12px;
+}
+input:focus{
+   border: solid blue 1px;
+   outline: #6ca2e9;
+}
+button{
+   width: fit-content;
+   padding: 8px 20px;
+}
+.error-messages{
+   border: solid #f97f7f 1px;
+   background-color: #ffc1be;
+   border-radius: 4px;
+   padding: 8px;
+   color: #f90909;
+}
