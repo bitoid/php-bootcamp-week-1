@@ -30,22 +30,10 @@
             <span><?= $file_error ?></span>
             <br>
             <input type="submit" name="submit" class="btn btn-primary" />
-        
-
-        
-
-        
-
-
 </form>
-
-
-
 <?php  
 else:
 ?>
-
-
 <div>
 <ul class="list">
         <li class= "list"><?php  echo "<h1>" . $_POST ['firstname'] .' '.  $_POST ['lastname'] ."</h1>"; ?></li>
