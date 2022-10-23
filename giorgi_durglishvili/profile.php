@@ -18,7 +18,7 @@
      </a>
     
     <div class="profile-component">
-        <img src="uploads/<?php echo $image; ?>" alt="image">
+        <img src="<?php echo $image; ?>" alt="image">
         <div class="full-name">
             <?php echo "$fname $lname" ?>
         </div>

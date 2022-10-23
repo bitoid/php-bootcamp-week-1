@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
     $file_size = $_FILES['upload']['size'];
     $file_tmp = $_FILES['upload']['tmp_name'];
 
-    $target_dir = "../uploads/$file_name";
+    $target_dir = "../$file_name";
 
     $file_ext = explode('.',$file_name);
     $file_ext = strtolower(end($file_ext));
