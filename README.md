@@ -1,1 +1,1 @@
-# php-bootcamp-week-1
+# php-bootcamp
